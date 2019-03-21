@@ -1,6 +1,8 @@
 package co.tiagoaguiar.icarus.graphics;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.SurfaceHolder;
 
 import co.tiagoaguiar.icarus.util.ILog;
@@ -93,10 +95,14 @@ public class RenderThread implements Runnable, RendererHolder {
 
           Canvas canvas = mHolder.lockCanvas();
 
+          canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+
           mRenderer.onDraw(canvas);
 
           mHolder.unlockCanvasAndPost(canvas);
         }
+
+        mRenderer.endDraw();
       }
 
 
@@ -108,6 +114,8 @@ public class RenderThread implements Runnable, RendererHolder {
     void onSurfaceChanged(int width, int height);
 
     void onDraw(Canvas canvas);
+
+    void endDraw();
 
   }
 

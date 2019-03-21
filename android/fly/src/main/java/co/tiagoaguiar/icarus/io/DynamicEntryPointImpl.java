@@ -1,11 +1,10 @@
 package co.tiagoaguiar.icarus.io;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.util.Log;
 
 import co.tiagoaguiar.icarus.graphics.CanvasManager;
+import co.tiagoaguiar.icarus.graphics.ShapeLibrary;
 
 /**
  * Março, 19 2019
@@ -19,6 +18,12 @@ public class DynamicEntryPointImpl implements DynamicEntryPoint {
   @Override
   public void setup(Canvas canvas) {
       canvasManager = CanvasManager.newGlobalInstance(canvas);
+  }
+
+  @Override
+  public void tearDown() {
+
+    canvasManager = null;
   }
 
   @Override

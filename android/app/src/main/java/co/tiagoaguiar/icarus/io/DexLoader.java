@@ -27,6 +27,7 @@ public class DexLoader {
 
   public DexLoader(Activity activity) {
     this.activity = activity;
+    // TODO: 21/03/19 remove permission from here
   }
 
   public DynamicEntryPoint load(String name, String cacheDir, String cls) {

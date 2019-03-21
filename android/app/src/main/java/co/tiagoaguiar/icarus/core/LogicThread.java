@@ -48,6 +48,12 @@ public class LogicThread implements Runnable {
       // TODO: 21/03/19 objectManager.draw()
       mRenderSystem.swap();
 
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+
     }
 
 

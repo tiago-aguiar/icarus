@@ -17,4 +17,6 @@ public interface DynamicEntryPoint {
 
   void drawBackground();
 
+  void tearDown();
+
 }

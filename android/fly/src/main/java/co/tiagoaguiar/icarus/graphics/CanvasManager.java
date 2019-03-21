@@ -19,10 +19,6 @@ public class CanvasManager {
 
   public static int backgroundColor;
 
-  private CanvasManager(Canvas canvas) {
-    this.canvas = canvas;
-    this.currentPaint = new Paint();
-  }
 
   public static void background(int color) {
     backgroundColor = Color.argb(255, color, color, color);
@@ -37,14 +33,18 @@ public class CanvasManager {
   }
 
   public static CanvasManager newGlobalInstance(Canvas canvas) {
-    if (INSTANCE == null)
-      INSTANCE = new CanvasManager(canvas);
+    INSTANCE = new CanvasManager(canvas);
     return INSTANCE;
   }
 
   public void drawBackground() {
     canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
     canvas.drawColor(backgroundColor);
+  }
+
+  private CanvasManager(Canvas canvas) {
+    this.canvas = canvas;
+    this.currentPaint = new Paint();
   }
 
 }

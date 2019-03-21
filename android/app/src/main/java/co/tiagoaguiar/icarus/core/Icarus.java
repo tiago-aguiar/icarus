@@ -1,7 +1,11 @@
 package co.tiagoaguiar.icarus.core;
 
+import android.app.Activity;
+
 import co.tiagoaguiar.icarus.graphics.RenderThread;
 import co.tiagoaguiar.icarus.graphics.RendererHolder;
+import co.tiagoaguiar.icarus.io.DexLoader;
+import co.tiagoaguiar.icarus.io.DynamicEntryPoint;
 import co.tiagoaguiar.icarus.system.RenderSystem;
 
 /**
@@ -11,13 +15,21 @@ import co.tiagoaguiar.icarus.system.RenderSystem;
  */
 public class Icarus {
 
+  private final Activity activity;
+
   private RenderThread mRenderThread;
   private LogicThread mLogicThread;
 
   private RenderSystem mRenderSystem;
 
+  public Icarus(Activity activity) {
+    this.activity = activity;
+  }
+
   public void onCreate() {
     mRenderSystem = new RenderSystem();
+
+    mRenderSystem.setEntryPoint(getEntryPoint());
 
     if (mLogicThread == null)
       mLogicThread = new LogicThread(mRenderSystem);
@@ -27,8 +39,12 @@ public class Icarus {
   }
 
   public void onStart() {
-      mLogicThread.start();
-      mRenderThread.start();
+    mLogicThread.start();
+    mRenderThread.start();
+  }
+
+  public void onReload() {
+    mRenderSystem.setEntryPoint(getEntryPoint());
   }
 
   public void onStop() {
@@ -41,6 +57,13 @@ public class Icarus {
 
   public RendererHolder getRendererHolder() {
     return mRenderThread;
+  }
+
+  private DynamicEntryPoint getEntryPoint() {
+    DexLoader dexLoader = new DexLoader(activity);
+    DynamicEntryPoint entryPoint = dexLoader.load("dm.dex",
+            activity.getCacheDir().getAbsolutePath(), "co.tiagoaguiar.icarus.EntryPoint");
+    return entryPoint;
   }
 
 }

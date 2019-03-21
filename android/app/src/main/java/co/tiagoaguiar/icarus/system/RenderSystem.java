@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import co.tiagoaguiar.icarus.graphics.RenderThread;
+import co.tiagoaguiar.icarus.io.DynamicEntryPoint;
 import co.tiagoaguiar.icarus.util.ILog;
 
 /**
@@ -13,26 +14,41 @@ import co.tiagoaguiar.icarus.util.ILog;
  */
 public class RenderSystem implements RenderThread.Renderer {
 
-  private Object drawLock = new Object();
-  private boolean drawQueueChanged;
+  private final Object entryLock = new Object();
+  private final Object drawLock = new Object();
 
-  Paint mock = new Paint();
+  private DynamicEntryPoint entryPoint;
+
+  private boolean drawQueueChanged;
+  private boolean drawing;
 
   @Override
   public void onSurfaceChanged(int width, int height) {
     ILog.i("RenderSystem: onSurface Changed :: w" + width + " x " + "h" + height);
   }
 
-  public void swap() {
+  public void swap() { // Logic Thread
     synchronized (drawLock) {
        drawQueueChanged = true;
        drawLock.notify();
     }
   }
 
-  @Override
-  public void onDraw(Canvas canvas) {
+  public void setEntryPoint(DynamicEntryPoint entryPoint) {
+    synchronized (entryLock) {
+      while (drawing) {
+        try {
+          entryLock.wait();
+        } catch (InterruptedException e) {
+          ILog.e(e);
+        }
+      }
+      this.entryPoint = entryPoint;
+    }
+  }
 
+  @Override
+  public void onDraw(Canvas canvas) { // Render Thread
 
     synchronized (drawLock) {
       while (!drawQueueChanged) {
@@ -45,12 +61,24 @@ public class RenderSystem implements RenderThread.Renderer {
       drawQueueChanged = false;
     }
 
+    drawing = true;
+
     // TODO: 21/03/19 draw stuff
-    canvas.drawColor(0xFFFF00FF);
-    mock.setColor(0xFFFF0000);
+    synchronized (entryLock) {
+      entryPoint.setup(canvas);
+      entryPoint.draw();
+      entryLock.notify();
+    }
 
-    canvas.drawRect(10, 10, 200, 200, mock);
+  }
 
+  @Override
+  public void endDraw() {
+    synchronized (entryLock) {
+      entryPoint.tearDown();
+      drawing = false;
+      entryLock.notify();
+    }
   }
 
 }

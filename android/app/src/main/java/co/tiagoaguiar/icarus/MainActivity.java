@@ -2,7 +2,11 @@ package co.tiagoaguiar.icarus;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import co.tiagoaguiar.icarus.core.Icarus;
@@ -10,6 +14,8 @@ import co.tiagoaguiar.icarus.graphics.MainSurfaceView;
 import co.tiagoaguiar.icarus.io.DexLoader;
 import co.tiagoaguiar.icarus.io.DynamicEntryPoint;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,12 +29,30 @@ public class MainActivity extends AppCompatActivity {
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
 
-    icarus = new Icarus();
+    icarus = new Icarus(this);
     icarus.onCreate();
+
+    FrameLayout frameLayout = new FrameLayout(this);
+    frameLayout.setLayoutParams(new FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT));
 
     MainSurfaceView mainSurfaceView = new MainSurfaceView(this);
     mainSurfaceView.setRendererHolder(icarus.getRendererHolder());
-    setContentView(mainSurfaceView);
+    frameLayout.addView(mainSurfaceView);
+
+    Button button = new Button(this);
+    button.setLayoutParams(new FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
+    button.setText("Teste");
+    frameLayout.addView(button);
+    
+    button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Toast.makeText(MainActivity.this, "hello", Toast.LENGTH_SHORT).show();
+        icarus.onReload();
+      }
+    });
+
+    setContentView(frameLayout);
 
 //    final DynamicEntryPoint entryPoint = test();
 //
