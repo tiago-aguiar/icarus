@@ -1,5 +1,6 @@
 package co.tiagoaguiar.icarus.devenv.controller;
 
+import co.tiagoaguiar.icarus.devenv.util.Dialogs;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,11 +13,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class MainController implements Initializable {
 
-  private static final String ROOT = "/home/tiago/android/icarus"; // TODO: 26/03/19
+  private static final String ROOT = "/home/tiago/android/icarus/devenv"; // TODO: 26/03/19
 
   @FXML
   private TabPane tabPaneFile;
@@ -39,24 +42,17 @@ public class MainController implements Initializable {
       File file = new File(root.toFile(), currentDirTree.toString());
 
       System.out.println(file);
+
+      if (!file.isDirectory())
+        file = file.getParentFile();
+
+      createFile(file, (fileCreated) -> {
+        initFileExplorer();
+        openTab(fileCreated);
+      });
     });
 
-    ObservableList<Tab> tabs = tabPaneFile.getTabs();
 
-    for (int i = 0; i < 4; i++) {
-
-      Tab tab = new Tab("tabe " + i);
-      tabs.add(tab);
-
-      StackPane anchorPane = new StackPane();
-      TextArea textArea = new TextArea();
-
-      anchorPane.getChildren().addAll(textArea);
-      tab.setContent(anchorPane);
-    }
-
-
-    System.out.println(location);
   }
 
   private void initFileExplorer() {
@@ -74,6 +70,37 @@ public class MainController implements Initializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  private void createFile(File dir, Consumer<File> consumer) {
+    Optional<String> result = new Dialogs.TextInputBuilder()
+            .title("New File")
+            .contentText("Digit a Class")
+            .build()
+            .showAndWait();
+
+    result.ifPresent(filename -> {
+      try {
+        File file = new File(dir, filename + ".java");
+        if (file.createNewFile())
+          consumer.accept(file);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    });
+  }
+
+  private void openTab(File file) {
+    ObservableList<Tab> tabs = tabPaneFile.getTabs();
+
+    Tab tab = new Tab(file.getName());
+    tabs.add(tab);
+
+    StackPane anchorPane = new StackPane();
+    TextArea textArea = new TextArea();
+
+    anchorPane.getChildren().addAll(textArea);
+    tab.setContent(anchorPane);
   }
 
 }
