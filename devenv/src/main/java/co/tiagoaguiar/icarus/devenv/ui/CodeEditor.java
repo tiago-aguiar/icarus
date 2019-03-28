@@ -12,13 +12,16 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
-import co.tiagoaguiar.icarus.devenv.controller.MainController;
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
-import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
@@ -31,9 +34,13 @@ import javafx.scene.layout.StackPane;
 public class CodeEditor {
 
   private final TabPane tabPane;
+  private final ExecutorService executor;
+  private final CodeArea codeArea;
 
   public CodeEditor(TabPane tabPane) {
     this.tabPane = tabPane;
+    this.executor = Executors.newSingleThreadExecutor();
+    this.codeArea = new CodeArea();
   }
 
   public void open(File file, FileExtension fileExtension) {
@@ -65,31 +72,45 @@ public class CodeEditor {
   }
 
   private CodeArea buildCodeArea(String text, FileExtension fileExtension) {
-    CodeArea codeArea = new CodeArea();
-
-    // add line numbers to the left of area
     codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
-
-    // recompute the syntax highlighting 500 ms after user stops editing area
-    Subscription cleanupWhenNoLongerNeedIt = codeArea
-            .multiPlainChanges()
+    Subscription cleanupWhenNoLongerNeedIt = codeArea.multiPlainChanges()
             .successionEnds(Duration.ofMillis(100))
-            .subscribe(ignore -> {
-              codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText(), fileExtension));
-            });
+            .supplyTask(() -> computeHighlightingAsync(fileExtension))
+            .awaitLatest(codeArea.multiPlainChanges())
+            .filterMap(t -> {
+              if (t.isSuccess()) {
+                return Optional.of(t.get());
+              } else {
+                t.getFailure().printStackTrace();
+                return Optional.empty();
+              }
+            })
+            .subscribe(this::applyHighlighting);
 
     // when no longer need syntax highlighting and wish to clean up memory leaks
     // run: `cleanupWhenNoLongerNeedIt.unsubscribe();`
-    cleanupWhenNoLongerNeedIt.unsubscribe();
-
     codeArea.replaceText(0, 0, text);
 
     return codeArea;
   }
 
+  private void applyHighlighting(StyleSpans<Collection<String>> highlighting) {
+    codeArea.setStyleSpans(0, highlighting);
+  }
 
+  private Task<StyleSpans<Collection<String>>> computeHighlightingAsync(FileExtension fileExtension) {
+    String text = codeArea.getText();
+    Task<StyleSpans<Collection<String>>> task = new Task<StyleSpans<Collection<String>>>() {
+      @Override
+      protected StyleSpans<Collection<String>> call() throws Exception {
+        return computeHighlighting(text, fileExtension);
+      }
+    };
+    executor.execute(task);
+    return task;
+  }
 
-  private static StyleSpans<Collection<String>> computeHighlighting(String text, FileExtension fileExtension) {
+  private StyleSpans<Collection<String>> computeHighlighting(String text, FileExtension fileExtension) {
     Matcher matcher = null;
 
     switch (fileExtension) {

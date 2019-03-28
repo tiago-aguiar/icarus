@@ -2,28 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_27_0_1_jre.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_qual_2_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_fxmisc_flowless_flowless_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_fxmisc_richtext_richtextfx_0_9_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_fxmisc_undo_undofx_2_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_fxmisc_wellbehaved_wellbehavedfx_0_3_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_reactfx_reactfx_2_0_M5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/devenv.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/devenv.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/model/FileExtension.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/JavaStyle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/TreeStringExplorer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../android/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../android/app/src/main/java/co/tiagoaguiar/icarus/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android/app/src/main/java/co/tiagoaguiar/icarus/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../android/app/src/main/java/co/tiagoaguiar/icarus/core/Icarus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android/app/src/main/java/co/tiagoaguiar/icarus/core/Icarus.java" afterDir="false" />
@@ -35,14 +13,9 @@
       <change beforePath="$PROJECT_DIR$/../android/fly/src/main/java/co/tiagoaguiar/icarus/graphics/CanvasManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android/fly/src/main/java/co/tiagoaguiar/icarus/graphics/CanvasManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../android/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../android/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPointImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPointImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/tiagoaguiar/icarus/devenv/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/tiagoaguiar/icarus/devenv/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/tiagoaguiar/icarus/devenv/util/Dialogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/Dialogs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/tiagoaguiar/icarus/devenv/util/FileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/tiagoaguiar/icarus/devenv/view/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/tiagoaguiar/devenv/view/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -114,10 +87,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+            <state relative-caret-position="477">
+              <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -168,9 +141,9 @@
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/JavaStyle.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/TreeStringExplorer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" />
         <option value="$PROJECT_DIR$/out/production/resources/co/tiagoaguiar/devenv/view/main.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" />
       </list>
     </option>
   </component>
@@ -391,6 +364,23 @@
             <path>
               <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="concurrent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Gradle: org.fxmisc.richtext:richtextfx:0.9.3" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
@@ -405,6 +395,24 @@
               <item name="Gradle: org.fxmisc.richtext:richtextfx:0.9.3" type="70bed36:NamedLibraryElementNode" />
               <item name="richtextfx-0.9.3.jar" type="462c0819:PsiDirectoryNode" />
               <item name="richtext" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Gradle: org.reactfx:reactfx:2.0-M5" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Gradle: org.reactfx:reactfx:2.0-M5" type="70bed36:NamedLibraryElementNode" />
+              <item name="reactfx-2.0-M5.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Gradle: org.reactfx:reactfx:2.0-M5" type="70bed36:NamedLibraryElementNode" />
+              <item name="reactfx-2.0-M5.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="reactfx" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -423,7 +431,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553808860454" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553810470048" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -579,7 +587,7 @@
     <frame x="240" y="-2" width="1680" height="1052" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.16904762" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.16904762" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -588,8 +596,8 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32865733" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3986014" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32865733" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3977956" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32967034" />
@@ -599,8 +607,8 @@
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32967034" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="14" visible="true" weight="0.3747495" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.3296593" />
+      <window_info anchor="bottom" id="Terminal" order="14" weight="0.3747495" />
       <window_info anchor="bottom" id="Build" order="15" weight="0.32967034" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -621,6 +629,16 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="selectedItem" language="JAVA" />
@@ -898,16 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.fxmisc.richtext/richtextfx/0.9.3/96179a038b5359863e76929be12366dddab4150d/richtextfx-0.9.3-sources.jar!/org/fxmisc/richtext/LineNumberFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -954,20 +962,51 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java">
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/util/concurrent/Executors.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+        <state relative-caret-position="372">
+          <caret line="171" column="31" selection-start-line="171" selection-start-column="31" selection-end-line="171" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/util/concurrent/ThreadPoolExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="1196" column="11" selection-start-line="1196" selection-start-column="11" selection-end-line="1196" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.reactfx/reactfx/2.0-M5/ac8e445dd40ceb48172c782144fb16c133f7743c/reactfx-2.0-M5-sources.jar!/org/reactfx/EventStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+        <state relative-caret-position="380">
+          <caret line="87" column="13" lean-forward="true" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

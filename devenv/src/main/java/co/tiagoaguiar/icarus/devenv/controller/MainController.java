@@ -25,11 +25,10 @@ public class MainController implements Initializable {
     TreeStringExplorer treeExplorer = new TreeStringExplorer(treeFileExplorer);
     treeExplorer.load();
 
-    CodeEditor codeEditor = new CodeEditor(tabPaneFile);
-
     menuItemNewFile.setOnAction(event -> {
       // TODO: 28/03/19 reaload treeExplorer
       treeExplorer.createFile(FileExtension.JAVA, (fileCreated) -> {
+        CodeEditor codeEditor = new CodeEditor(tabPaneFile);
         codeEditor.open(fileCreated, FileExtension.JAVA);
       });
     });
@@ -38,8 +37,10 @@ public class MainController implements Initializable {
       if (event.getClickCount() == 2) {
         File file = treeExplorer.findCurrentFile();
 
-        if (file.isFile())
+        if (file.isFile()) {
+          CodeEditor codeEditor = new CodeEditor(tabPaneFile);
           codeEditor.open(file, FileExtension.JAVA);
+        }
 
       }
     });
