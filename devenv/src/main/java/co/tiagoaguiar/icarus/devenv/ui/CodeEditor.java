@@ -9,18 +9,21 @@ import org.reactfx.Subscription;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
+import javafx.collections.transformation.FilteredList;
 import javafx.concurrent.Task;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -34,17 +37,26 @@ import javafx.scene.layout.StackPane;
 public class CodeEditor {
 
   private final TabPane tabPane;
-  private final ExecutorService executor;
-  private final CodeArea codeArea;
+  private final HashMap<Tab, Boolean> tabFileLoaded;
+  private final HashMap<Tab, String> tabFileName;
+  private final HashMap<String, Tab> tabHash;
 
   public CodeEditor(TabPane tabPane) {
     this.tabPane = tabPane;
-    this.executor = Executors.newSingleThreadExecutor();
-    this.codeArea = new CodeArea();
+    this.tabFileLoaded = new HashMap<>();
+    this.tabFileName = new HashMap<>();
+    this.tabHash = new HashMap<>();
   }
 
   public void open(File file, FileExtension fileExtension) {
     try {
+
+      Tab currentTab = tabHash.get(file.getAbsolutePath());
+      if (currentTab != null) {
+        tabPane.getSelectionModel().select(currentTab);
+        return;
+      }
+
       Tab tab = new Tab(file.getName());
 
       tabPane.getTabs().add(tab);
@@ -56,7 +68,29 @@ public class CodeEditor {
       tabPane.getSelectionModel().select(tabPane.getTabs().size() - 1);
 
       applyStyle(fileExtension);
+
+      tabFileLoaded.put(tab, false);
+      tabFileName.put(tab, tab.getText());
+      tabHash.put(file.getAbsolutePath(), tab);
+
     } catch (IOException e) {
+      // TODO: 28/03/19 Logger
+    }
+  }
+
+  public void save(File file) {
+    Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+    StackPane stackPane = (StackPane) selectedTab.getContent();
+    VirtualizedScrollPane virtualScrollPane = (VirtualizedScrollPane) stackPane.getChildren().get(0);
+    CodeArea codeArea = (CodeArea) virtualScrollPane.getContent();
+    String text = codeArea.getText();
+
+    try {
+      Files.write(file.toPath(), text.getBytes());
+      applyFileChanged(false);
+
+    } catch (IOException e) {
+      e.printStackTrace();
       // TODO: 28/03/19 Logger
     }
   }
@@ -72,10 +106,12 @@ public class CodeEditor {
   }
 
   private CodeArea buildCodeArea(String text, FileExtension fileExtension) {
+    Executor executor = Executors.newSingleThreadExecutor();
+    CodeArea codeArea = new CodeArea();
     codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
     Subscription cleanupWhenNoLongerNeedIt = codeArea.multiPlainChanges()
             .successionEnds(Duration.ofMillis(100))
-            .supplyTask(() -> computeHighlightingAsync(fileExtension))
+            .supplyTask(() -> computeHighlightingAsync(executor, codeArea, fileExtension))
             .awaitLatest(codeArea.multiPlainChanges())
             .filterMap(t -> {
               if (t.isSuccess()) {
@@ -85,7 +121,10 @@ public class CodeEditor {
                 return Optional.empty();
               }
             })
-            .subscribe(this::applyHighlighting);
+            .subscribe((highlighting) -> {
+              this.applyHighlighting(codeArea, highlighting);
+              applyFileChanged(true);
+            });
 
     // when no longer need syntax highlighting and wish to clean up memory leaks
     // run: `cleanupWhenNoLongerNeedIt.unsubscribe();`
@@ -94,11 +133,27 @@ public class CodeEditor {
     return codeArea;
   }
 
-  private void applyHighlighting(StyleSpans<Collection<String>> highlighting) {
+  private void applyHighlighting(CodeArea codeArea, StyleSpans<Collection<String>> highlighting) {
     codeArea.setStyleSpans(0, highlighting);
   }
 
-  private Task<StyleSpans<Collection<String>>> computeHighlightingAsync(FileExtension fileExtension) {
+  private void applyFileChanged(boolean fileChanged) {
+    Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
+
+    Boolean fileLoaded = tabFileLoaded.get(selectedItem);
+    if (!fileLoaded) {
+      tabFileLoaded.put(selectedItem, true);
+      return;
+    }
+
+    if (fileChanged) {
+      selectedItem.setText(tabFileName.get(selectedItem) + "*");
+    } else {
+      selectedItem.setText(selectedItem.getText().substring(0, selectedItem.getText().length() - 1));
+    }
+  }
+
+  private Task<StyleSpans<Collection<String>>> computeHighlightingAsync(Executor executor, CodeArea codeArea, FileExtension fileExtension) {
     String text = codeArea.getText();
     Task<StyleSpans<Collection<String>>> task = new Task<StyleSpans<Collection<String>>>() {
       @Override
@@ -115,7 +170,7 @@ public class CodeEditor {
 
     switch (fileExtension) {
       case JAVA:
-     matcher = JavaStyle.PATTERN.matcher(text);
+        matcher = JavaStyle.PATTERN.matcher(text);
     }
 
     int lastKwEnd = 0;
@@ -124,13 +179,13 @@ public class CodeEditor {
     while (matcher.find()) {
       String styleClass =
               matcher.group("KEYWORD") != null ? "keyword" :
-              matcher.group("PAREN") != null ? "paren" :
-              matcher.group("BRACE") != null ? "brace" :
-              matcher.group("BRACKET") != null ? "bracket" :
-              matcher.group("SEMICOLON") != null ? "semicolon" :
-              matcher.group("STRING") != null ? "string" :
-              matcher.group("COMMENT") != null ? "comment" :
-              null; /* never happens */
+                      matcher.group("PAREN") != null ? "paren" :
+                              matcher.group("BRACE") != null ? "brace" :
+                                      matcher.group("BRACKET") != null ? "bracket" :
+                                              matcher.group("SEMICOLON") != null ? "semicolon" :
+                                                      matcher.group("STRING") != null ? "string" :
+                                                              matcher.group("COMMENT") != null ? "comment" :
+                                                                      null; /* never happens */
       assert styleClass != null;
       spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
       spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
