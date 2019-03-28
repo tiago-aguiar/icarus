@@ -6,6 +6,8 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.control.TreeItem;
 
@@ -48,6 +50,16 @@ public final class FileHelper {
     }
 
     return f;
+  }
+
+  public static String getText(File file) throws IOException {
+    List<String> lines = Files.readAllLines(file.toPath());
+
+    String[] lineArray = new String[lines.size()];
+    String[] _lineArray = lines.toArray(lineArray);
+    String text = String.join("\n", _lineArray);
+
+    return text;
   }
 
   private FileHelper() {
