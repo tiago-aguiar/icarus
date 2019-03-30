@@ -15,11 +15,11 @@ public class LogicThread implements Runnable {
 
   private boolean mRunning = false;
 
-  public LogicThread(RenderSystem renderSystem) {
+  LogicThread(RenderSystem renderSystem) {
     mRenderSystem = renderSystem;
   }
 
-  public void start() {
+  void start() {
     if (!mRunning) {
       mThread = new Thread(this, "LogicThread");
       mThread.start();
@@ -27,7 +27,7 @@ public class LogicThread implements Runnable {
     }
   }
 
-  public void stop() {
+  void stop() {
     if (mRunning) {
       try {
         mThread.join();
@@ -49,7 +49,7 @@ public class LogicThread implements Runnable {
       mRenderSystem.swap();
 
       try {
-        Thread.sleep(1000);
+        Thread.sleep(300);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

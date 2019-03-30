@@ -1,21 +1,17 @@
 package co.tiagoaguiar.icarus;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import co.tiagoaguiar.icarus.core.Icarus;
 import co.tiagoaguiar.icarus.graphics.MainSurfaceView;
-import co.tiagoaguiar.icarus.io.DexLoader;
-import co.tiagoaguiar.icarus.io.DynamicEntryPoint;
+import co.tiagoaguiar.icarus.util.ILog;
 
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,48 +28,12 @@ public class MainActivity extends AppCompatActivity {
     icarus = new Icarus(this);
     icarus.onCreate();
 
-    FrameLayout frameLayout = new FrameLayout(this);
-    frameLayout.setLayoutParams(new FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT));
-
     MainSurfaceView mainSurfaceView = new MainSurfaceView(this);
     mainSurfaceView.setRendererHolder(icarus.getRendererHolder());
-    frameLayout.addView(mainSurfaceView);
+    setContentView(mainSurfaceView);
 
-    Button button = new Button(this);
-    button.setLayoutParams(new FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
-    button.setText("Teste");
-    frameLayout.addView(button);
-    
-    button.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Toast.makeText(MainActivity.this, "hello", Toast.LENGTH_SHORT).show();
-        icarus.onReload();
-      }
-    });
+    registerReceiver(broadcastReceiver, new IntentFilter("broadCastName"));
 
-    setContentView(frameLayout);
-
-//    final DynamicEntryPoint entryPoint = test();
-//
-//
-//
-//
-//    final RendererImpl renderer = new RendererImpl(entryPoint);
-//    UIWindow window = new UIWindow(this, renderer);
-//    setContentView(window);
-
-
-
-
-
-//    new Handler().postDelayed(new Runnable() {
-//      @Override
-//      public void run() {
-//        DynamicEntryPoint entryPoint1 = test();
-//        renderer.reload(entryPoint1);
-//      }
-//    }, 5000);
   }
 
   @Override
@@ -88,14 +48,17 @@ public class MainActivity extends AppCompatActivity {
     icarus.onStop();
   }
 
-  // TODO: 20/03/19 lyfecycle
+  // Add this inside your class
+  BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      // TODO: 30/03/19 adb shell am broadcast -a co.tiagoaguiar.icarus.RELOAD --es url "hello\ world" -n co.tiagoaguiar.icarus/.io.AdbBroadcastReceiver
+      Bundle b = intent.getExtras();
+      String message = b.getString("message");
+      ILog.i(message);
+      icarus.onReload();
+    }
+  };
 
-  private DynamicEntryPoint test() {
-    DexLoader dexLoader = new DexLoader(this);
-    Toast.makeText(MainActivity.this, "hello", Toast.LENGTH_SHORT).show();
-    DynamicEntryPoint entryPoint = dexLoader.load("dm.dex", getCacheDir().getAbsolutePath(),
-            "co.tiagoaguiar.icarus.EntryPoint");
-    return entryPoint;
-  }
 
 }

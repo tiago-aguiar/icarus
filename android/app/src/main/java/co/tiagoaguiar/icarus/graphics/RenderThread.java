@@ -95,8 +95,6 @@ public class RenderThread implements Runnable, RendererHolder {
 
           Canvas canvas = mHolder.lockCanvas();
 
-          canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-
           mRenderer.onDraw(canvas);
 
           mHolder.unlockCanvasAndPost(canvas);
@@ -120,68 +118,3 @@ public class RenderThread implements Runnable, RendererHolder {
   }
 
 }
-
-  /*
-  private final SurfaceHolder surfaceHolder;
-  private final Object lock = new Object();
-  private DynamicEntryPoint entryPoint;
-
-  public RenderThread(DynamicEntryPoint entryPoint,
-                      SurfaceHolder surfaceHolder) {
-    super("RenderThread");
-    this.entryPoint = entryPoint;
-    this.surfaceHolder = surfaceHolder;
-  }
-
-  public void reload(DynamicEntryPoint entryPoint1) {
-    this.entryPoint = entryPoint1;
-    synchronized (lock) {
-      Canvas canvas = surfaceHolder.lockCanvas();
-
-      entryPoint.setup(canvas);
-
-      entryPoint.init();
-
-      surfaceHolder.unlockCanvasAndPost(canvas);
-
-      lock.notify();
-    }
-  }
-
-  @Override
-  public void run() {
-    Canvas canvas = surfaceHolder.lockCanvas();
-
-    entryPoint.setup(canvas);
-
-    entryPoint.init();
-
-    surfaceHolder.unlockCanvasAndPost(canvas);
-
-    for (; ; ) {
-      canvas = surfaceHolder.lockCanvas();
-
-      if (canvas != null) {
-
-        entryPoint.drawBackground();
-
-        entryPoint.draw();
-
-        surfaceHolder.unlockCanvasAndPost(canvas);
-      }
-
-
-//      synchronized (lock) {
-//        try {
-//          lock.wait();
-//        } catch (InterruptedException e) {
-//          e.printStackTrace();
-//        }
-//      }
-    }
-
-  }
-
-}
-
-  */

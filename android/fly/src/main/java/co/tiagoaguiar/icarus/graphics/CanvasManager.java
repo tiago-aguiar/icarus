@@ -11,25 +11,17 @@ import android.graphics.PorterDuff;
  * @author suporte@moonjava.com.br (Tiago Aguiar).
  */
 public class CanvasManager {
-
   private static CanvasManager INSTANCE;
 
   private Canvas canvas;
   private Paint currentPaint;
 
-  public static int backgroundColor;
+  public static int width;
+  public static int height;
 
-
-  public static void background(int color) {
-    backgroundColor = Color.argb(255, color, color, color);
-  }
-
-  public static void color(int color) {
-    INSTANCE.currentPaint.setColor(Color.argb(255, color, color, color));
-  }
-
-  public static void rect(float left, float top, float width, float height) {
-    INSTANCE.canvas.drawRect(left, top, left + width, top + height, INSTANCE.currentPaint);
+  private CanvasManager(Canvas canvas) {
+    this.canvas = canvas;
+    this.currentPaint = new Paint();
   }
 
   public static CanvasManager newGlobalInstance(Canvas canvas) {
@@ -37,14 +29,21 @@ public class CanvasManager {
     return INSTANCE;
   }
 
-  public void drawBackground() {
-    canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-    canvas.drawColor(backgroundColor);
+  public static void background(int r, int g, int b) {
+    background(r, g, b, PorterDuff.Mode.CLEAR);
   }
 
-  private CanvasManager(Canvas canvas) {
-    this.canvas = canvas;
-    this.currentPaint = new Paint();
+  public static void background(int r, int g, int b, PorterDuff.Mode mode) {
+    INSTANCE.canvas.drawColor(Color.GREEN, mode);
+    INSTANCE.canvas.drawColor(Color.argb(255, r, g, b));
+  }
+
+  public static void color(int r, int g, int b) {
+    INSTANCE.currentPaint.setColor(Color.argb(255, r, g, b));
+  }
+
+  public static void rect(float x, float y, float width, float height) {
+    INSTANCE.canvas.drawRect(x, y, x + width, y + height, INSTANCE.currentPaint);
   }
 
 }

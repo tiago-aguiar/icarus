@@ -17,11 +17,20 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
+
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <receiver android:name=".io.AdbBroadcastReceiver">
+            <intent-filter>
+                <action android:name="co.tiagoaguiar.icarus.RELOAD" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

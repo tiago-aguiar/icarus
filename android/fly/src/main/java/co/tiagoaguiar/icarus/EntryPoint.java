@@ -2,8 +2,7 @@ package co.tiagoaguiar.icarus;
 
 import co.tiagoaguiar.icarus.io.DynamicEntryPointImpl;
 
-import static co.tiagoaguiar.icarus.graphics.CanvasManager.color;
-import static co.tiagoaguiar.icarus.graphics.CanvasManager.rect;
+import static co.tiagoaguiar.icarus.graphics.CanvasManager.*;
 
 /**
  * Março, 19 2019
@@ -15,14 +14,13 @@ public class EntryPoint extends DynamicEntryPointImpl {
   float left = 0;
 
   public void draw() {
-    color(255); // create paint
+    background(0, 0, 0);
 
-    rect(left,left,290,110); // add to list
-    left += 1;
+    color(255, 0, 255);
+    rect(left, left, 100, 100);
 
- //   mock.setColor(0xFFFF0000);
+    left++;
 
- //   canvas.drawRect(10, 10, 200, 200, mock);
   }
 
 }

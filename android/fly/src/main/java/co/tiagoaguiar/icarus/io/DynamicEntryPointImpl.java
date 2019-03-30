@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.util.Log;
 
 import co.tiagoaguiar.icarus.graphics.CanvasManager;
-import co.tiagoaguiar.icarus.graphics.ShapeLibrary;
 
 /**
  * Março, 19 2019
@@ -13,17 +12,19 @@ import co.tiagoaguiar.icarus.graphics.ShapeLibrary;
  */
 public class DynamicEntryPointImpl implements DynamicEntryPoint {
 
-  private CanvasManager canvasManager;
-
   @Override
   public void setup(Canvas canvas) {
-      canvasManager = CanvasManager.newGlobalInstance(canvas);
+      CanvasManager.newGlobalInstance(canvas);
+  }
+
+  @Override
+  public void setSize(int width, int height) {
+    CanvasManager.width = width;
+    CanvasManager.height = height;
   }
 
   @Override
   public void tearDown() {
-
-    canvasManager = null;
   }
 
   @Override
@@ -33,11 +34,6 @@ public class DynamicEntryPointImpl implements DynamicEntryPoint {
 
   @Override
   public void draw() {
-  }
-
-  @Override
-  public void drawBackground() {
-    canvasManager.drawBackground();
   }
 
   public void print(String msg) {

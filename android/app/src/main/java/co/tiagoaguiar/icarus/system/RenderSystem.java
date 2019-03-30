@@ -1,7 +1,6 @@
 package co.tiagoaguiar.icarus.system;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
 
 import co.tiagoaguiar.icarus.graphics.RenderThread;
 import co.tiagoaguiar.icarus.io.DynamicEntryPoint;
@@ -25,6 +24,12 @@ public class RenderSystem implements RenderThread.Renderer {
   @Override
   public void onSurfaceChanged(int width, int height) {
     ILog.i("RenderSystem: onSurface Changed :: w" + width + " x " + "h" + height);
+    synchronized (entryLock) {
+      if (entryPoint != null) {
+        entryPoint.setSize(width, height);
+      }
+      entryLock.notify();
+    }
   }
 
   public void swap() { // Logic Thread
@@ -49,7 +54,6 @@ public class RenderSystem implements RenderThread.Renderer {
 
   @Override
   public void onDraw(Canvas canvas) { // Render Thread
-
     synchronized (drawLock) {
       while (!drawQueueChanged) {
         try {
@@ -69,7 +73,6 @@ public class RenderSystem implements RenderThread.Renderer {
       entryPoint.draw();
       entryLock.notify();
     }
-
   }
 
   @Override

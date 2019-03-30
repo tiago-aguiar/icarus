@@ -11,11 +11,11 @@ public interface DynamicEntryPoint {
 
   void setup(Canvas canvas);
 
+  void setSize(int width, int height);
+
   void init();
 
   void draw();
-
-  void drawBackground();
 
   void tearDown();
 
