@@ -20,7 +20,7 @@ import javafx.scene.control.TreeView;
  */
 public class TreeStringExplorer {
 
-  private static final String ROOT = "/home/tiago/android/icarus/devenv"; // TODO: 26/03/19
+  private static final String ROOT = "/home/tiago/android/icarus/devenv/src/main/java"; // TODO: 26/03/19
 
   private final TreeView<String> rootTreeView;
 

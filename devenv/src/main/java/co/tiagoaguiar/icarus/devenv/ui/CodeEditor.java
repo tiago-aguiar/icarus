@@ -5,6 +5,9 @@ import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
+import org.fxmisc.wellbehaved.event.EventPattern;
+import org.fxmisc.wellbehaved.event.InputMap;
+import org.fxmisc.wellbehaved.event.Nodes;
 import org.reactfx.Subscription;
 
 import java.io.File;
@@ -17,16 +20,16 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
-import javafx.collections.transformation.FilteredList;
 import javafx.concurrent.Task;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -46,6 +49,7 @@ public class CodeEditor {
     this.tabFileLoaded = new HashMap<>();
     this.tabFileName = new HashMap<>();
     this.tabHash = new HashMap<>();
+
   }
 
   public void open(File file, FileExtension fileExtension) {
@@ -108,6 +112,19 @@ public class CodeEditor {
   private CodeArea buildCodeArea(String text, FileExtension fileExtension) {
     Executor executor = Executors.newSingleThreadExecutor();
     CodeArea codeArea = new CodeArea();
+
+    codeArea.getStyleClass().add("code-area-icarus");
+    codeArea.getStylesheets().add(Settings.CODE_AREA_CSS);
+    codeArea.setUseInitialStyleForInsertion(true);
+
+    // width TAB for 2 spaces
+    InputMap<KeyEvent> im = InputMap.consume(
+            EventPattern.keyPressed(KeyCode.TAB),
+            e -> codeArea.replaceSelection("  ")
+    );
+    Nodes.addInputMap(codeArea, im);
+
+    // configure codeArea
     codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
     Subscription cleanupWhenNoLongerNeedIt = codeArea.multiPlainChanges()
             .successionEnds(Duration.ofMillis(100))

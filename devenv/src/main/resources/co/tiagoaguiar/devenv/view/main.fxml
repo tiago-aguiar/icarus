@@ -39,7 +39,7 @@
         </MenuBar>
         <BorderPane layoutX="55.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
             <center>
-                <SplitPane dividerPositions="0.2508361204013378" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <SplitPane dividerPositions="0.05" prefHeight="60.0" BorderPane.alignment="CENTER">
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="121.0">
                      <children>

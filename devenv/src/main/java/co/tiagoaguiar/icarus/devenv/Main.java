@@ -18,7 +18,8 @@ public class Main extends Application {
     MainController mainController = fxmlLoader.getController();
     mainController.onSceneCreate(scene);
 
-    primaryStage.setTitle("Icarus 0.0.1");
+    primaryStage.setMaximized(true);
+    primaryStage.setTitle("Icarus 0.0.2");
     primaryStage.setScene(scene);
     primaryStage.show();
   }
