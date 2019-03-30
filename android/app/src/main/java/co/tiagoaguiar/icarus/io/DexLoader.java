@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import co.tiagoaguiar.icarus.MainActivity;
 import dalvik.system.DexClassLoader;
 
 /**
@@ -31,57 +30,48 @@ public class DexLoader {
   }
 
   public DynamicEntryPoint load(String name, String cacheDir, String cls) {
-        try {
-            File dex = copyDexFile(name);
-            if (dex == null) return null;
-            DexClassLoader dexClassLoader = new DexClassLoader(dex.getAbsolutePath(),
-                    cacheDir, null, getClass().getClassLoader());
+    try {
+      File dex = copyDexFile(name);
+      if (dex == null) return null;
+      DexClassLoader dexClassLoader = new DexClassLoader(dex.getAbsolutePath(),
+              cacheDir, null, getClass().getClassLoader());
 
-            Class<?> clazz = dexClassLoader.loadClass(cls);
+      Class<?> clazz = dexClassLoader.loadClass(cls);
 
-            if (DynamicEntryPoint.class.isAssignableFrom(clazz)) {
-                return (DynamicEntryPoint) clazz.newInstance();
-            }
-            return null;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
-        return null;
+      if (DynamicEntryPoint.class.isAssignableFrom(clazz)) {
+        return (DynamicEntryPoint) clazz.newInstance();
+      }
+      return null;
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    } catch (InstantiationException e) {
+      e.printStackTrace();
     }
+    return null;
+  }
 
-    private String sourceFile(String name) {
-        try {
-            return activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).applicationInfo.dataDir + "/files/" + name;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+  private File copyDexFile(String name) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      if (activity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
         return null;
+      }
     }
+    try {
+      File file = FileMemory.getFile(activity, name);
 
-    private File copyDexFile(String name) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (activity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-                return null;
-            }
-        }
-        try {
-            File file = new File(sourceFile(name));
+      String sdCardPath = Environment.getExternalStorageDirectory().getPath();
+      File source = new File(sdCardPath + "/" + name);
+      FileInputStream is = new FileInputStream(source);
 
-            String sdCardPath = Environment.getExternalStorageDirectory().getPath();
-            File source = new File(sdCardPath + "/" + name);
-            FileInputStream is = new FileInputStream(source);
-
-            FileUtils.copyToFile(is, file);
-            return file;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+      FileUtils.copyToFile(is, file);
+      return file;
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+    return null;
+  }
 
 }

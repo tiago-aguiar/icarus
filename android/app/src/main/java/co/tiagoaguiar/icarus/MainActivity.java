@@ -5,17 +5,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import co.tiagoaguiar.icarus.core.Icarus;
 import co.tiagoaguiar.icarus.graphics.MainSurfaceView;
+import co.tiagoaguiar.icarus.io.AdbBroadcastReceiver;
 import co.tiagoaguiar.icarus.util.ILog;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
+import static android.widget.FrameLayout.LayoutParams.MATCH_PARENT;
 
 public class MainActivity extends AppCompatActivity {
 
+  private ProgressBar progressView;
   private Icarus icarus;
 
   @Override
@@ -28,12 +35,36 @@ public class MainActivity extends AppCompatActivity {
     icarus = new Icarus(this);
     icarus.onCreate();
 
+    FrameLayout frameLayout = new FrameLayout(this);
+    frameLayout.setLayoutParams(new FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT));
+
+
     MainSurfaceView mainSurfaceView = new MainSurfaceView(this);
     mainSurfaceView.setRendererHolder(icarus.getRendererHolder());
-    setContentView(mainSurfaceView);
 
-    registerReceiver(broadcastReceiver, new IntentFilter("broadCastName"));
+    frameLayout.addView(mainSurfaceView);
 
+    setContentView(frameLayout);
+
+    registerReceiver(new BroadcastReceiver() {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        ILog.i("code onReload");
+
+        progressView = new ProgressBar(MainActivity.this, null, android.R.attr.progressBarStyleHorizontal);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
+        layoutParams.topMargin = -16;
+        progressView.setLayoutParams(layoutParams);
+        progressView.setIndeterminate(true);
+
+        // TODO: 30/03/19 remove this???
+        frameLayout.addView(progressView);
+
+        icarus.onReload(intent.getExtras().getString(AdbBroadcastReceiver.ADB_FILE));
+
+        new Handler().postDelayed(() -> frameLayout.removeView(progressView), 500);
+      }
+    }, new IntentFilter(AdbBroadcastReceiver.ADB_ACTION));
   }
 
   @Override
@@ -47,18 +78,5 @@ public class MainActivity extends AppCompatActivity {
     super.onStop();
     icarus.onStop();
   }
-
-  // Add this inside your class
-  BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      // TODO: 30/03/19 adb shell am broadcast -a co.tiagoaguiar.icarus.RELOAD --es url "hello\ world" -n co.tiagoaguiar.icarus/.io.AdbBroadcastReceiver
-      Bundle b = intent.getExtras();
-      String message = b.getString("message");
-      ILog.i(message);
-      icarus.onReload();
-    }
-  };
-
 
 }

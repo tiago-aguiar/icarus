@@ -10,9 +10,9 @@ import java.io.File;
  *
  * @author suporte@moonjava.com.br (Tiago Aguiar).
  */
-public final class FileMemory {
+final class FileMemory {
 
-  public static File getFile(Context context, String filename) {
+  static File getFile(Context context, String filename) {
     File file = null;
     try {
       String sourceFile = context.getPackageManager().getPackageInfo(context.getPackageName(),

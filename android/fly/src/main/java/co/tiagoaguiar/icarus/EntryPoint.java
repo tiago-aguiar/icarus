@@ -11,16 +11,15 @@ import static co.tiagoaguiar.icarus.graphics.CanvasManager.*;
  */
 public class EntryPoint extends DynamicEntryPointImpl {
 
-  float left = 0;
+  private float left = 0;
 
   public void draw() {
     background(0, 0, 0);
 
-    color(255, 0, 255);
-    rect(left, left, 100, 100);
+    color(255, 0, 0);
+    rect(left, left, 50, 100);
 
-    left++;
-
+    left += 10;
   }
 
 }
