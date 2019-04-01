@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #333;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.tiagoaguiar.icarus.devenv.controller.WizardController">
+   <children>
+      <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" layoutX="211.0" layoutY="438.0" prefHeight="50.0" prefWidth="432.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" text="Cancel">
+               <FlowPane.margin>
+                  <Insets right="20.0" />
+               </FlowPane.margin>
+            </Button>
+            <Button id="dark-blue" mnemonicParsing="false" styleClass="" stylesheets="@../style/icarus-theme.css" text="Finish" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="20.0" />
+         </padding></FlowPane>
+      <VBox alignment="CENTER" layoutX="118.0" layoutY="66.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="63.0" prefWidth="200.0">
+               <children>
+                  <Label text="Project Name" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="270.0" style="-fx-background-color: #444; -fx-text-fill: #FFF;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="63.0" prefWidth="400.0">
+               <children>
+                  <Label text="Project Directory" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="270.0" style="-fx-background-color: #444; -fx-text-fill: #FFF;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+         </children></VBox>
+   </children>
+</AnchorPane>

@@ -1,6 +1,6 @@
 package co.tiagoaguiar.icarus.devenv;
 
-import co.tiagoaguiar.icarus.devenv.controller.MainController;
+import co.tiagoaguiar.icarus.devenv.controller.WelcomeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,16 +11,16 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/tiagoaguiar/devenv/view/main.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/tiagoaguiar/devenv/view/welcome.fxml"));
     Parent root = fxmlLoader.load();
-    Scene scene = new Scene(root, 1280, 768);
+    Scene scene = new Scene(root);
 
-    MainController mainController = fxmlLoader.getController();
+    WelcomeController mainController = fxmlLoader.getController();
     mainController.onSceneCreate(scene);
 
-    primaryStage.setMaximized(true);
     primaryStage.setTitle("Icarus 0.0.2");
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
