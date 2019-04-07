@@ -1,7 +1,5 @@
 package co.tiagoaguiar.icarus.devenv.controller;
 
-import com.google.errorprone.annotations.FormatMethod;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;

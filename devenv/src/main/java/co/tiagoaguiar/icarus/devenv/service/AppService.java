@@ -1,0 +1,82 @@
+package co.tiagoaguiar.icarus.devenv.service;
+
+import java.io.File;
+import java.io.IOException;
+
+import co.tiagoaguiar.icarus.devenv.util.logging.DebugLogger;
+import co.tiagoaguiar.icarus.devenv.util.logging.ProcessLogger;
+
+import static co.tiagoaguiar.icarus.devenv.Settings.ANDROID_SDK_ROOT;
+
+/**
+ * Abril, 07 2019
+ *
+ * @author suporte@moonjava.com.br (Tiago Aguiar).
+ */
+public class AppService {
+
+  private final String androidFolder = getClass().getResource("/android/").getPath();
+
+  public void compile() throws IOException {
+    Process process = new ProcessBuilder(
+            "./gradlew",
+            "clean",
+            "build"
+    ).directory(new File(androidFolder))
+            .start();
+
+    new ProcessLogger(process).output();
+  }
+
+  public void genDebugApk() throws IOException {
+    Process process = new ProcessBuilder(
+            "./gradlew",
+            "assembleDebug"
+    ).directory(new File(androidFolder))
+            .start();
+
+    new ProcessLogger(process).output();
+  }
+
+  private void install() throws IOException {
+    Process process = new ProcessBuilder(
+            ANDROID_SDK_ROOT + "/platform-tools/adb",
+            "install",
+            "-r",
+            androidFolder + "/app/build/outputs/apk/debug/app-debug.apk"
+    ).directory(new File(androidFolder))
+            .start();
+
+    new ProcessLogger(process).output();
+  }
+
+  private void launch() throws IOException {
+    Process process = new ProcessBuilder(
+            ANDROID_SDK_ROOT + "/platform-tools/adb",
+            "shell",
+            "am",
+            "start",
+            "-n",
+            "co.tiagoaguiar.icarus/co.tiagoaguiar.icarus.MainActivity"
+    ).directory(new File(androidFolder))
+            .start();
+
+    new ProcessLogger(process).output();
+  }
+
+  public void run() {
+    new Thread(() -> {
+      try {
+
+        compile();
+        genDebugApk();
+        install();
+        launch();
+
+      } catch (IOException e) {
+        DebugLogger.error(e);
+      }
+    }, "Run-Thread").start();
+  }
+
+}

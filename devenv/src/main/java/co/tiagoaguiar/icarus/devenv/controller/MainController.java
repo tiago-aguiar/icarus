@@ -5,27 +5,40 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
+import co.tiagoaguiar.icarus.devenv.service.AppService;
+import co.tiagoaguiar.icarus.devenv.service.EmulatorService;
 import co.tiagoaguiar.icarus.devenv.ui.CodeEditor;
 import co.tiagoaguiar.icarus.devenv.ui.TreeStringExplorer;
 import co.tiagoaguiar.icarus.devenv.util.ShortCut;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TreeView;
 
 public class MainController extends FxController implements Initializable {
 
-  @FXML private TabPane tabPaneFile;
-  @FXML private MenuItem menuItemNewFile;
-  @FXML private MenuItem menuItemSaveFile;
-  @FXML private MenuItem menuItemLoadTree;
-  @FXML private TreeView<String> treeFileExplorer;
+  @FXML
+  private TabPane tabPaneFile;
+  @FXML
+  private MenuItem menuItemNewFile;
+  @FXML
+  private MenuItem menuItemSaveFile;
+  @FXML
+  private MenuItem menuItemLoadTree;
+  @FXML
+  private TreeView<String> treeFileExplorer;
+  @FXML
+  private Button buttonPlay;
 
   private TreeStringExplorer treeExplorer;
   private CodeEditor codeEditor;
   private String rootDir;
+
+  private EmulatorService emulatorService;
+  private AppService appService;
 
   @Override
   public void onSceneCreate(Scene scene) {
@@ -36,10 +49,14 @@ public class MainController extends FxController implements Initializable {
     treeExplorer.load();
 
     codeEditor = new CodeEditor(tabPaneFile);
+
   }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    emulatorService = new EmulatorService(); // TODO: 07/04/19 inject
+    appService = new AppService(); // TODO: 07/04/19 inject
+
     menuItemNewFile.setOnAction(event -> {
       // TODO: 28/03/19 reload treeExplorer
       treeExplorer.createFile(FileExtension.JAVA, (fileCreated) -> {
@@ -57,9 +74,17 @@ public class MainController extends FxController implements Initializable {
 
       }
     });
+
+    buttonPlay.setOnAction(event -> {
+      emulatorService.start(bootCompleted -> {
+        if (bootCompleted) {
+          appService.run();
+        }
+      });
+    });
   }
 
-  void setRootDir(String rootDir) {
+  public void setRootDir(String rootDir) {
     this.rootDir = rootDir;
   }
 
