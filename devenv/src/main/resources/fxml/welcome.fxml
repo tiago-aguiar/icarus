@@ -10,12 +10,13 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="53.0">
          <image>
-            <Image url="@../assets/img/logo-tiagoaguiar-white.png" />
+            <Image url="@../img/logo-tiagoaguiar-white.png" />
          </image>
          <viewport>
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Hyperlink fx:id="linkCreateProject" alignment="CENTER" layoutX="197.0" layoutY="188.0" prefHeight="24.0" prefWidth="200.0" text="Create a New Project" textAlignment="CENTER" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="203.0" AnchorPane.topAnchor="200.0" />
+      <Hyperlink fx:id="linkCreateProject" alignment="CENTER" layoutX="197.0" layoutY="200.0" prefHeight="24.0" prefWidth="200.0" text="Create a New Project" textAlignment="CENTER" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="203.0" AnchorPane.topAnchor="200.0" />
+      <Hyperlink fx:id="linkOpenProject" alignment="CENTER" layoutX="197.0" layoutY="250.0" prefHeight="24.0" prefWidth="200.0" text="Open Existing Project" textAlignment="CENTER" />
    </children>
 </AnchorPane>

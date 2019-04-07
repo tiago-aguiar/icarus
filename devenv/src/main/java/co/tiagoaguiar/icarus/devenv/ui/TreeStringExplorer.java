@@ -20,11 +20,11 @@ import javafx.scene.control.TreeView;
  */
 public class TreeStringExplorer {
 
-  private static final String ROOT = "/home/tiago/android/icarus/devenv/src/main/java"; // TODO: 26/03/19
-
+  private final String rootDir;
   private final TreeView<String> rootTreeView;
 
-  public TreeStringExplorer(TreeView<String> rootTreeView) {
+  public TreeStringExplorer(String rootDir, TreeView<String> rootTreeView) {
+    this.rootDir = rootDir;
     this.rootTreeView = rootTreeView;
   }
 
@@ -33,7 +33,7 @@ public class TreeStringExplorer {
       TreeItem<String> rootItem = new TreeItem<>("Base");
       rootItem.setExpanded(true);
 
-      Path rootPath = Paths.get(new File(ROOT).toURI());
+      Path rootPath = Paths.get(new File(rootDir).toURI());
 
       FileHelper.mapTree(rootItem, rootPath, 0);
 
@@ -49,7 +49,7 @@ public class TreeStringExplorer {
     TreeItem<String> selectedItem = rootTreeView.getSelectionModel().getSelectedItem();
     File currentDirTree = FileHelper.getCurrentDirTree(new File(selectedItem.getValue()), selectedItem);
 
-    Path root = Paths.get(ROOT).getParent();
+    Path root = Paths.get(rootDir).getParent();
     File dir = new File(root.toFile(), currentDirTree.toString());
 
     if (!dir.isDirectory())
@@ -78,7 +78,7 @@ public class TreeStringExplorer {
 
     File currentDirTree = FileHelper.getCurrentDirTree(new File(selectedItem.getValue()), selectedItem);
 
-    Path root = Paths.get(ROOT).getParent();
+    Path root = Paths.get(rootDir).getParent();
 
     return new File(root.toFile(), currentDirTree.toString());
   }
