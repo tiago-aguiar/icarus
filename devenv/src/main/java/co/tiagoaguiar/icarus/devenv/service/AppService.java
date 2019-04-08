@@ -3,8 +3,7 @@ package co.tiagoaguiar.icarus.devenv.service;
 import java.io.File;
 import java.io.IOException;
 
-import co.tiagoaguiar.icarus.devenv.util.logging.DebugLogger;
-import co.tiagoaguiar.icarus.devenv.util.logging.ProcessLogger;
+import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 
 import static co.tiagoaguiar.icarus.devenv.Settings.ANDROID_SDK_ROOT;
 
@@ -25,7 +24,8 @@ public class AppService {
     ).directory(new File(androidFolder))
             .start();
 
-    new ProcessLogger(process).output();
+    LoggerManager.loadProcess(process);
+    LoggerManager.infoProcess();
   }
 
   public void genDebugApk() throws IOException {
@@ -35,7 +35,8 @@ public class AppService {
     ).directory(new File(androidFolder))
             .start();
 
-    new ProcessLogger(process).output();
+    LoggerManager.loadProcess(process);
+    LoggerManager.infoProcess();
   }
 
   private void install() throws IOException {
@@ -47,7 +48,8 @@ public class AppService {
     ).directory(new File(androidFolder))
             .start();
 
-    new ProcessLogger(process).output();
+    LoggerManager.loadProcess(process);
+    LoggerManager.infoProcess();
   }
 
   private void launch() throws IOException {
@@ -61,20 +63,21 @@ public class AppService {
     ).directory(new File(androidFolder))
             .start();
 
-    new ProcessLogger(process).output();
+    LoggerManager.loadProcess(process);
+    LoggerManager.infoProcess();
   }
 
   public void run() {
     new Thread(() -> {
       try {
 
-        compile();
+        LoggerManager.clear();
         genDebugApk();
         install();
         launch();
 
       } catch (IOException e) {
-        DebugLogger.error(e);
+        LoggerManager.error(e);
       }
     }, "Run-Thread").start();
   }

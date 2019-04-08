@@ -11,26 +11,22 @@ import java.io.InputStreamReader;
  */
 public class ProcessLogger {
 
-  private final BufferedReader stdInput;
+  private BufferedReader stdInput;
 
-  public ProcessLogger(Process process) {
+  public void setProcess(Process process) {
     stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
   }
 
   public String read() {
+    if (stdInput == null)
+      throw new IllegalStateException("You must setProcess before");
     try {
       String line = stdInput.readLine();
       return line;
     } catch (IOException e) {
-      DebugLogger.error(e);
+      LoggerManager.error(e);
       return "Failed to read input stream";
     }
-  }
-
-  public void output() {
-    String s = null;
-    while ((s = read()) != null)
-      DebugLogger.info(s);
   }
 
 }
