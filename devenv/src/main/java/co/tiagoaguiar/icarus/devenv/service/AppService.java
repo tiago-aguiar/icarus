@@ -18,10 +18,44 @@ public class AppService {
   private final String APK_DEBUG =
           getClass().getResource("/config/app-debug.apk").getPath();
 
-  public void compileFly() throws IOException {
+  private void compileFly() throws IOException {
     Process process = new ProcessBuilder(
             "./gradlew",
-            ":fly:dynamicDex"
+            ":fly:dynamicDex",
+            "--stacktrace"
+    ).directory(SYSTEM_FOLDER_FLY)
+            .start();
+
+    LoggerManager.loadProcess(process);
+    LoggerManager.infoProcess();
+  }
+
+  private void deployFly() throws IOException {
+    Process process = new ProcessBuilder(
+            ANDROID_SDK_ROOT + "/platform-tools/adb", // TODO: 09/04/19 add ADB in Settings
+            "push",
+            "dm.dex",
+            "/sdcard/"
+    ).directory(SYSTEM_FOLDER_FLY)
+            .start();
+
+    LoggerManager.loadProcess(process);
+    LoggerManager.infoProcess();
+  }
+
+  private void notifyFly() throws IOException {
+    Process process = new ProcessBuilder(
+            ANDROID_SDK_ROOT + "/platform-tools/adb", // TODO: 09/04/19 add ADB in Settings
+            "shell",
+            "am",
+            "broadcast",
+            "-a",
+            "co.tiagoaguiar.icarus.RELOAD",
+            "--es",
+            "file",
+            "\"dm.dex\"",
+            "-n",
+            "co.tiagoaguiar.icarus/.io.AdbBroadcastReceiver"
     ).directory(SYSTEM_FOLDER_FLY)
             .start();
 
@@ -60,9 +94,8 @@ public class AppService {
       try {
 
         LoggerManager.clear();
-//        installApp();
-//        launchApp();
-        compileFly();
+        installApp();
+        launchApp();
 
       } catch (IOException e) {
         LoggerManager.error(e);
@@ -70,4 +103,18 @@ public class AppService {
     }, "Run-Thread").start();
   }
 
+  public void applyChanges() {
+    new Thread(() -> {
+      try {
+
+        LoggerManager.clear();
+        compileFly();
+        deployFly();
+        notifyFly();
+
+      } catch (IOException e) {
+        LoggerManager.error(e);
+      }
+    }, "ApplyChanges-Thread").start();
+  }
 }

@@ -19,6 +19,7 @@ public class Settings {
 
   public static final String JAVA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-java-keywords.css").toExternalForm();
   public static final String CODE_AREA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-code-area.css").toExternalForm();
+
   public static final File SRC_FLY = new File(Settings.class.getResource("/system").getPath());
   public static final File SYSTEM_FOLDER_FLY = new File(new File(System.getProperty("user.home"), Settings.ICARUS_DOT_CONFIG), "system");
 }

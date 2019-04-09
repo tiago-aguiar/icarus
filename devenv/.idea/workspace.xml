@@ -5,32 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/buildSrc/src/main/groovy/DynamicDexTask.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/src/androidTest/java/co/tiagoaguiar/icarus/ExampleInstrumentedTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/EntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/graphics/CanvasManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPointImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/fly/src/test/java/co/tiagoaguiar/icarus/ExampleUnitTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/local.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../android/fly/src/main/java/co/tiagoaguiar/icarus/Ball.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/DeployService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../android/app/src/main/java/co/tiagoaguiar/icarus/io/AdbBroadcastReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android/app/src/main/java/co/tiagoaguiar/icarus/io/AdbBroadcastReceiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../android/fly/src/main/java/co/tiagoaguiar/icarus/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../android/fly/src/main/java/co/tiagoaguiar/icarus/EntryPoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/ProcessLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/ProcessLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/app-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/EntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/EntryPoint.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,37 +89,20 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.58385414">
-      <split-first>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="310">
-                  <caret line="58" column="14" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="484">
-                  <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -153,6 +125,7 @@
       <find>setSt</find>
       <find>.apk</find>
       <find>getPro</find>
+      <find>EntryPoint</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/../../devenv</dir>
@@ -182,7 +155,6 @@
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/ShortCut.java" />
         <option value="$PROJECT_DIR$/Test.java" />
         <option value="$PROJECT_DIR$/src/main/resources/co/tiagoaguiar/devenv/style/code-area-icarus.css" />
-        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java" />
         <option value="$PROJECT_DIR$/src/main/resources/co/tiagoaguiar/devenv/style/icarus-code-area.css" />
         <option value="$PROJECT_DIR$/src/main/resources/co/tiagoaguiar/devenv/view/main.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/co/tiagoaguiar/devenv/view/welcome.fxml" />
@@ -199,18 +171,21 @@
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/WelcomeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/GradleService.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/Logger.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/ProcessLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/EmulatorService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/app.properties" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/DebugLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/LoggerManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/TabLogger.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java" />
+        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/EntryPoint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/DeployService.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/ProcessLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java" />
       </list>
     </option>
@@ -220,9 +195,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="1020" />
-    <option name="width" value="1920" />
-    <option name="height" value="1110" />
+    <option name="x" value="240" />
+    <option name="y" value="-30" />
+    <option name="width" value="1680" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -246,32 +222,6 @@
             <path>
               <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
               <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -294,6 +244,15 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="devenv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="devenv" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
@@ -311,6 +270,15 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="devenv" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="devenv" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -318,7 +286,25 @@
               <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="devenv" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="logging" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="fxml" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
@@ -328,125 +314,117 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="system" type="462c0819:PsiDirectoryNode" />
             </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
             <path>
-              <item name="devenv" type="58d84e3e:PackageViewProjectNode" />
-              <item name="devenv" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="fly" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="58d84e3e:PackageViewProjectNode" />
-              <item name="devenv" type="eaaa3913:PackageViewModuleGroupNode" />
-              <item name="devenv.main" type="616d4139:PackageViewModuleNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="fly" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="58d84e3e:PackageViewProjectNode" />
-              <item name="devenv" type="eaaa3913:PackageViewModuleGroupNode" />
-              <item name="devenv.main" type="616d4139:PackageViewModuleNode" />
-              <item name="co.tiagoaguiar.icarus.devenv" type="1f31426a:PackageElementNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="fly" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="58d84e3e:PackageViewProjectNode" />
-              <item name="devenv" type="eaaa3913:PackageViewModuleGroupNode" />
-              <item name="devenv.main" type="616d4139:PackageViewModuleNode" />
-              <item name="co.tiagoaguiar.icarus.devenv" type="1f31426a:PackageElementNode" />
-              <item name="service" type="1f31426a:PackageElementNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devenv" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="fly" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="icarus" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="58d84e3e:PackageViewProjectNode" />
-              <item name="devenv" type="eaaa3913:PackageViewModuleGroupNode" />
-              <item name="devenv.main" type="616d4139:PackageViewModuleNode" />
-              <item name="config" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="co" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="co" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="tiagoaguiar" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="nio" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="co" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="tiagoaguiar" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="icarus" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="nio" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="co" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="tiagoaguiar" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="icarus" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="devenv" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="sun" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="co" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="tiagoaguiar" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="icarus" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="devenv" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="service" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="sun" type="462c0819:PsiDirectoryNode" />
+              <item name="nio" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="devenv" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="devenv" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="main" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="config" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="devenv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="sun" type="462c0819:PsiDirectoryNode" />
+              <item name="nio" type="462c0819:PsiDirectoryNode" />
+              <item name="fs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -458,7 +436,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554783955850" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554849375198" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="project.structure.last.edited" value="Project" />
@@ -628,10 +606,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="1020" width="1920" height="1110" extended-state="0" />
+    <frame x="240" y="-30" width="1680" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="1283" y="1086" width="464" height="1044" id="Project" order="0" sideWeight="0.6703755" type="FLOATING" weight="0.24166666" />
+      <window_info content_ui="combo" x="671" y="1086" width="464" height="1044" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2761905" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -639,9 +617,9 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32777777" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32662836" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.38601533" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3275862" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3362919" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38560158" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295238" />
@@ -651,8 +629,8 @@
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32854405" />
-      <window_info anchor="bottom" id="Terminal" order="14" weight="0.37260535" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32840237" />
+      <window_info anchor="bottom" id="Terminal" order="14" weight="0.37179488" />
       <window_info anchor="bottom" id="Build" order="15" weight="0.31992337" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -710,37 +688,12 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java</url>
-          <line>33</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java</url>
-          <line>22</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java</url>
-          <line>65</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java</url>
-          <line>59</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="dest" language="JAVA" />
+        <watch expression="destPath.toString().replace(icarusSrcDir.toString(), &quot;&quot;)" language="JAVA" />
+        <watch expression="destPath.getFileName()" language="JAVA" />
+        <watch expression="destPath.toString().replace(icarusSrcDir.toString(), &quot;&quot;).replace(destPath.getFileName().toString(), &quot;&quot;)" language="JAVA" />
+        <watch expression="destPath.toString().replace(new File(SYSTEM_FOLDER_FLY, &quot;fly/src/main/java/&quot;).toString(), &quot;&quot;).replace(&quot;/&quot;, &quot;.&quot;)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -751,6 +704,46 @@
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
+        <expression-string>destPath.toString().replace(new File(SYSTEM_FOLDER_FLY, &quot;fly/src/main/java/&quot;).toString(), &quot;&quot;).replace(&quot;/&quot;, &quot;.&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>destPath.toString().replace(new File(SYSTEM_FOLDER_FLY, &quot;fly/src/main/java/&quot;).toString(), &quot;&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>destPath.toString().replace(icarusSrcDir.toString(), &quot;&quot;).replace(destPath.getFileName().toString(), &quot;&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>destPath.toString().replace(icarusSrcDir.toString(), &quot;&quot;).replace(destPath.getFileName(), &quot;&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>destPath.getFileName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>destPath.toString().replace(icarusSrcDir.toString(), &quot;&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>destPath.toString().compareTo(icarusSrcDir.toString())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>destPath.toString().lastIndexOf(icarusSrcDir.toString())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>dest</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -760,87 +753,9 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>dest.toPath()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>resource.toURI()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>resource.toString()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>resource.getPath()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>logger.getClass().getResource(&quot;/config/app.properties&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>((StackPane) content).getChildren().get(0)</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>javafx.scene.layout.StackPane</custom-info>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>((StackPane) content).getChildren()</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>javafx.scene.layout.StackPane</custom-info>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>f.getParentFile()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/idea64.vmoptions">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/model/FileExtension.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/Dialogs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/css/icarus-theme.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="73" selection-start-line="3" selection-start-column="73" selection-end-line="3" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/wizard.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/FxController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -860,16 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
           <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -932,28 +837,10 @@
     <entry file="file://$PROJECT_DIR$/../android/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/main.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="80" column="78" selection-start-line="80" selection-start-column="78" selection-end-line="80" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/java/jdk1.8.0_201/javafx-src.zip!/javafx/scene/control/TextInputControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="463" selection-start-line="463" selection-end-line="463" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/ProcessLogger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -971,16 +858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/LoggerManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1050,24 +927,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPoint.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPointImpl.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/graphics/CanvasManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-        </state>
-      </provider>
     </entry>
     <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1076,55 +937,121 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/DebugLogger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/nio/file/Files.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/graphics/CanvasManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="2979" column="23" selection-start-line="2979" selection-start-column="23" selection-end-line="2979" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/nio/file/CopyOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/nio/file/StandardCopyOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="45" column="15" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+        <state relative-caret-position="176">
+          <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java">
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/jre/lib/rt.jar!/sun/nio/fs/AbstractFileSystemProvider.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+        <state relative-caret-position="462">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/ui/CodeEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-194">
+          <caret line="91" column="8" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+        <state relative-caret-position="374">
+          <caret line="17" column="76" selection-start-line="17" selection-start-column="76" selection-end-line="17" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/main.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="60" column="67" selection-start-line="60" selection-start-column="67" selection-end-line="60" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/io/DynamicEntryPointImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/util/stream/Stream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="168" column="14" selection-start-line="168" selection-start-column="14" selection-end-line="168" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/DebugLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/nio/file/Files.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="1267" column="23" selection-start-line="1267" selection-start-column="23" selection-end-line="1267" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/nio/file/CopyOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/jre/lib/rt.jar!/com/sun/nio/file/ExtendedCopyOption.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/nio/file/LinkOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/nio/file/StandardCopyOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="51" column="28" lean-forward="true" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1133,15 +1060,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/system/fly/src/main/java/co/tiagoaguiar/icarus/EntryPoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="286">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/DeployService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/LoggerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/ProcessLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="89" column="21" lean-forward="true" selection-start-line="89" selection-start-column="21" selection-end-line="89" selection-end-column="21" />
+        <state relative-caret-position="529">
+          <caret line="101" column="25" selection-start-line="101" selection-start-column="25" selection-end-line="101" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1150,8 +1114,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="58" column="14" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
+        <state relative-caret-position="110">
+          <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

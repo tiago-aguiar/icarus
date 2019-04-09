@@ -8,12 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-import javax.tools.StandardLocation;
-
+import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.scene.control.TreeItem;
 
 /**
@@ -23,19 +23,35 @@ import javafx.scene.control.TreeItem;
  */
 public final class FileHelper {
 
+  public static Optional<Path> findFileWith(File srcDir, String text) throws IOException {
+    try (Stream<Path> stream = Files.walk(srcDir.toPath())) {
+      return stream.filter(sourcePath -> {
+        try {
+          String textOfFile = getText(sourcePath.toFile());
+          return textOfFile.contains(text);
+        } catch (IOException e) {
+          LoggerManager.error(e);
+        }
+        return false;
+      }).findFirst();
+    }
+  }
+
   public static void copyFolder(File src, File dest) throws IOException {
-    if (dest.exists())
-      return;
+    copyFolder(src, dest, null);
+  }
+
+  public static void copyFolder(File src, File dest, Consumer<Path> destFilePath) throws IOException {
     try (Stream<Path> stream = Files.walk(src.toPath())) {
       stream.forEachOrdered(sourcePath -> {
-
+        Path destPath = dest.toPath().resolve(src.toPath().relativize(sourcePath));
+        LoggerManager.infoDebug("Copy from: " + sourcePath.toString() + " to: " + destPath);
         try {
-          Files.copy(
-                  sourcePath,
-                  dest.toPath().resolve(src.toPath().relativize(sourcePath)));
+          Files.copy( sourcePath, destPath, StandardCopyOption.REPLACE_EXISTING);
+          if (destFilePath != null)
+            destFilePath.accept(destPath);
         } catch (Exception e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
+          LoggerManager.error(e);
         }
       });
     }

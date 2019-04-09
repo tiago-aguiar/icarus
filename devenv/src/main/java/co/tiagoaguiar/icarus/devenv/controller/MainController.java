@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
 import co.tiagoaguiar.icarus.devenv.service.AppService;
+import co.tiagoaguiar.icarus.devenv.service.DeployService;
 import co.tiagoaguiar.icarus.devenv.service.EmulatorService;
 import co.tiagoaguiar.icarus.devenv.ui.CodeEditor;
 import co.tiagoaguiar.icarus.devenv.ui.TreeStringExplorer;
@@ -36,6 +37,8 @@ public class MainController extends FxController implements Initializable {
   private TreeView<String> treeFileExplorer;
   @FXML
   private Button buttonPlay;
+  @FXML
+  private Button buttonStart;
 
   private TreeStringExplorer treeExplorer;
   private CodeEditor codeEditor;
@@ -43,6 +46,7 @@ public class MainController extends FxController implements Initializable {
 
   private EmulatorService emulatorService;
   private AppService appService;
+  private DeployService deployService;
 
   @Override
   public void onSceneCreate(Scene scene) {
@@ -58,6 +62,8 @@ public class MainController extends FxController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     emulatorService = new EmulatorService(); // TODO: 07/04/19 inject
     appService = new AppService(); // TODO: 07/04/19 inject
+    deployService = new DeployService(); // TODO: 07/04/19 inject
+
     LoggerManager.loadTextArea(textAreaEmulator);
 
     menuItemNewFile.setOnAction(event -> {
@@ -78,7 +84,7 @@ public class MainController extends FxController implements Initializable {
       }
     });
 
-    buttonPlay.setOnAction(event -> {
+    buttonStart.setOnAction(event -> {
       if (!emulatorService.isBootCompleted()) {
         emulatorService.start(bootCompleted -> {
           if (bootCompleted) {
@@ -89,6 +95,11 @@ public class MainController extends FxController implements Initializable {
       else {
         appService.run();
       }
+    });
+
+    buttonPlay.setOnAction(event -> {
+      deployService.deploySourceCode(rootDir);
+      appService.applyChanges();
     });
   }
 

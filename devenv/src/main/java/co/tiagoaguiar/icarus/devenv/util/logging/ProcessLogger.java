@@ -14,6 +14,7 @@ public class ProcessLogger {
   private BufferedReader stdInput;
 
   public void setProcess(Process process) {
+    // TODO: 09/04/19 handler ErrorStream and InputStream 
     stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
   }
 

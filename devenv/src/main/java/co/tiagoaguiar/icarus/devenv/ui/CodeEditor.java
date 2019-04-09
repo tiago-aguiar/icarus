@@ -90,6 +90,7 @@ public class CodeEditor {
     String text = codeArea.getText();
 
     try {
+      // FIXME: 09/04/19 New File > Edit > Save > Crash 
       Files.write(file.toPath(), text.getBytes());
       applyFileChanged(false);
 

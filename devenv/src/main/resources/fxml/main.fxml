@@ -55,6 +55,7 @@
                                             <children>
                                                 <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <children>
+                                                        <Button fx:id="buttonStart" alignment="TOP_RIGHT" contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" styleClass="btn-success" stylesheets="@../css/icarus-theme.css" text="Turn On" />
                                                         <Button fx:id="buttonPlay" alignment="TOP_RIGHT" contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" styleClass="btn-success" stylesheets="@../css/icarus-theme.css" text="Play" />
                                                         <TabPane fx:id="tabPaneFile" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
                                                             <cursor>
