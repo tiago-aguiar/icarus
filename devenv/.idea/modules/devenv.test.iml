@@ -13,15 +13,6 @@
     <orderEntry type="library" name="Gradle: org.fxmisc.richtext:richtextfx:0.9.3" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava:27.0.1-jre" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
-    <orderEntry type="module-library" scope="RUNTIME">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../../.." />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="Gradle: org.fxmisc.undo:undofx:2.1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.fxmisc.flowless:flowless:0.6" level="project" />
     <orderEntry type="library" name="Gradle: org.reactfx:reactfx:2.0-M5" level="project" />

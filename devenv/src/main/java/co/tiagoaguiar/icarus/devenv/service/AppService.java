@@ -1,6 +1,6 @@
 package co.tiagoaguiar.icarus.devenv.service;
 
-import java.io.File;
+
 import java.io.IOException;
 
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
@@ -14,28 +14,18 @@ import static co.tiagoaguiar.icarus.devenv.Settings.ANDROID_SDK_ROOT;
  */
 public class AppService {
 
-  private final String androidFolder = getClass().getResource("/android/").getPath();
+  private final String APK_DEBUG =
+          getClass().getResource("/config/app-debug.apk").getPath();
 
   public void compile() throws IOException {
-    Process process = new ProcessBuilder(
-            "./gradlew",
-            "clean",
-            "build"
-    ).directory(new File(androidFolder))
-            .start();
+//    Process process = new ProcessBuilder(
+//            "./gradlew",
+//            "clean",
+//            "build"
+//    ).directory(new File(androidFolder))
+//            .start();
 
-    LoggerManager.loadProcess(process);
-    LoggerManager.infoProcess();
-  }
-
-  public void genDebugApk() throws IOException {
-    Process process = new ProcessBuilder(
-            "./gradlew",
-            "assembleDebug"
-    ).directory(new File(androidFolder))
-            .start();
-
-    LoggerManager.loadProcess(process);
+//    LoggerManager.loadProcess(process);
     LoggerManager.infoProcess();
   }
 
@@ -44,9 +34,8 @@ public class AppService {
             ANDROID_SDK_ROOT + "/platform-tools/adb",
             "install",
             "-r",
-            androidFolder + "/app/build/outputs/apk/debug/app-debug.apk"
-    ).directory(new File(androidFolder))
-            .start();
+            APK_DEBUG
+    ).start();
 
     LoggerManager.loadProcess(process);
     LoggerManager.infoProcess();
@@ -60,8 +49,7 @@ public class AppService {
             "start",
             "-n",
             "co.tiagoaguiar.icarus/co.tiagoaguiar.icarus.MainActivity"
-    ).directory(new File(androidFolder))
-            .start();
+    ).start();
 
     LoggerManager.loadProcess(process);
     LoggerManager.infoProcess();
@@ -72,7 +60,6 @@ public class AppService {
       try {
 
         LoggerManager.clear();
-        genDebugApk();
         install();
         launch();
 
