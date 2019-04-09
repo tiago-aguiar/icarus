@@ -6,6 +6,7 @@ import java.io.IOException;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 
 import static co.tiagoaguiar.icarus.devenv.Settings.ANDROID_SDK_ROOT;
+import static co.tiagoaguiar.icarus.devenv.Settings.SYSTEM_FOLDER_FLY;
 
 /**
  * Abril, 07 2019
@@ -17,19 +18,18 @@ public class AppService {
   private final String APK_DEBUG =
           getClass().getResource("/config/app-debug.apk").getPath();
 
-  public void compile() throws IOException {
-//    Process process = new ProcessBuilder(
-//            "./gradlew",
-//            "clean",
-//            "build"
-//    ).directory(new File(androidFolder))
-//            .start();
+  public void compileFly() throws IOException {
+    Process process = new ProcessBuilder(
+            "./gradlew",
+            ":fly:dynamicDex"
+    ).directory(SYSTEM_FOLDER_FLY)
+            .start();
 
-//    LoggerManager.loadProcess(process);
+    LoggerManager.loadProcess(process);
     LoggerManager.infoProcess();
   }
 
-  private void install() throws IOException {
+  private void installApp() throws IOException {
     Process process = new ProcessBuilder(
             ANDROID_SDK_ROOT + "/platform-tools/adb",
             "install",
@@ -41,7 +41,7 @@ public class AppService {
     LoggerManager.infoProcess();
   }
 
-  private void launch() throws IOException {
+  private void launchApp() throws IOException {
     Process process = new ProcessBuilder(
             ANDROID_SDK_ROOT + "/platform-tools/adb",
             "shell",
@@ -60,8 +60,9 @@ public class AppService {
       try {
 
         LoggerManager.clear();
-        install();
-        launch();
+//        installApp();
+//        launchApp();
+        compileFly();
 
       } catch (IOException e) {
         LoggerManager.error(e);

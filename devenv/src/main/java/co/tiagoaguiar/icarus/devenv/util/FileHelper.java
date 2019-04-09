@@ -2,12 +2,17 @@ package co.tiagoaguiar.icarus.devenv.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.CopyOption;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
+
+import javax.tools.StandardLocation;
 
 import javafx.scene.control.TreeItem;
 
@@ -17,6 +22,24 @@ import javafx.scene.control.TreeItem;
  * @author suporte@moonjava.com.br (Tiago Aguiar).
  */
 public final class FileHelper {
+
+  public static void copyFolder(File src, File dest) throws IOException {
+    if (dest.exists())
+      return;
+    try (Stream<Path> stream = Files.walk(src.toPath())) {
+      stream.forEachOrdered(sourcePath -> {
+
+        try {
+          Files.copy(
+                  sourcePath,
+                  dest.toPath().resolve(src.toPath().relativize(sourcePath)));
+        } catch (Exception e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      });
+    }
+  }
 
   public static void mapTree(TreeItem<String> rootItem, Path rootPath, int depth) throws IOException {
     BasicFileAttributes attrs = Files.readAttributes(rootPath, BasicFileAttributes.class);

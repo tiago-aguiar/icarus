@@ -1,7 +1,7 @@
 package co.tiagoaguiar.icarus.devenv;
 
 import co.tiagoaguiar.icarus.devenv.controller.MainController;
-import co.tiagoaguiar.icarus.devenv.controller.WelcomeController;
+import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,12 +22,15 @@ public class Main extends Application {
     mainController.setRootDir("/home/tiago/icarus/HelloWorld");
     mainController.onSceneCreate(scene);
 
-    primaryStage.setTitle("Icarus Project :: 0.0.3");
+    primaryStage.setTitle(String.format("Icarus Project :: %s", Settings.ICARUS_VERSION));
     primaryStage.setScene(scene);
 //    primaryStage.setResizable(false);
     primaryStage.setResizable(true);
 //    primaryStage.setMaximized(true);
     primaryStage.show();
+
+    // setup fly system
+    FileHelper.copyFolder(Settings.SRC_FLY, Settings.SYSTEM_FOLDER_FLY);
   }
 
   public static void main(String[] args) {
