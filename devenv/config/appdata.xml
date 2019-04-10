@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- See https://www.freedesktop.org/software/appstream/docs/chap-Quickstart.html -->
+<component type="desktop-application">
+  <id>co.tiagoaguiar.icaruside.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0</project_license>
+  <developer_name>Tiago Aguiar</developer_name>
+
+  <name>Icarus IDE</name>
+  <summary>Icarus is open-source software platform for Android Developers</summary>
+
+  <description>
+    <p>
+		TODO
+    </p>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://google.com/img.png</image>
+      <caption>The Icarus IDE showing a simple example program</caption>
+    </screenshot>
+  </screenshots>
+
+  <content_rating type="oars-1.1" />
+
+  <releases>
+    <release date="2019-04-01" version="1.0" />
+  </releases>
+
+  <url type="homepage">http://www.google.com/</url>
+  <url type="help">https://www.google.com/reference/</url>
+  <url type="bugtracker">https://github.com/issues?q=is%3Aopen</url>
+  <url type="translate">https://github.com/tree/master/build/shared/lib/languages</url>
+  <url type="donation">https://github.com/download/support.html</url>
+
+  <update_contact>suporte@xxx.com</update_contact>
+</component>

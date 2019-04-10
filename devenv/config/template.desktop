@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Icarus IDE
+GenericName=Icarus IDE
+Comment=Icarus is open-source software platform for Android Developers
+Exec=<BIN_DIR>
+Icon=<ICON_FILE>
+Terminal=false
+Categories=Development;IDE;Programming;
+MimeType=text/x-icarus;
+Keywords=icarus;software;programming;coding;developer;
+StartupWMClass=icarus-app-Base
