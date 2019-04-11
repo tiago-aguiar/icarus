@@ -3,7 +3,8 @@ package co.tiagoaguiar.icarus.io;
 import android.graphics.Canvas;
 import android.util.Log;
 
-import co.tiagoaguiar.icarus.graphics.CanvasManager;
+import co.tiagoaguiar.icarus.core.graphics.CanvasManager;
+
 
 /**
  * Março, 19 2019

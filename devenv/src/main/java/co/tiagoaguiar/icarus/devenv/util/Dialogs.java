@@ -1,6 +1,10 @@
 package co.tiagoaguiar.icarus.devenv.util;
 
+import javafx.scene.Node;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.Region;
 
 /**
  * Março, 26 2019
@@ -36,6 +40,56 @@ public class Dialogs {
       dialog.setHeaderText(headerText);
       dialog.setContentText(contentText);
       return dialog;
+    }
+
+  }
+
+  public static class Builder {
+
+    private String title;
+    private String headerText;
+    private String contentText;
+    private boolean enableClose;
+    private boolean resizableEnabled;
+
+    public Builder title(String title) {
+      this.title = title;
+      return this;
+    }
+
+    public Builder headerText(String headerText) {
+      this.headerText = headerText;
+      return this;
+    }
+
+    public Builder contentText(String contentText) {
+      this.contentText = contentText;
+      return this;
+    }
+
+    public Builder enableClose(boolean enableClose) {
+      this.enableClose = enableClose;
+      return this;
+    }
+
+    public Builder setResizableEnabled(boolean resizableEnabled) {
+      this.resizableEnabled = resizableEnabled;
+      return this;
+    }
+
+    public Dialog build() {
+      Dialog<String> stringDialog = new Dialog<>();
+      stringDialog.setTitle(title);
+      stringDialog.setContentText(contentText);
+      stringDialog.setResizable(resizableEnabled);
+      stringDialog.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+      if (enableClose) {
+        stringDialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        Node closeButton = stringDialog.getDialogPane().lookupButton(ButtonType.CLOSE);
+        closeButton.managedProperty().bind(closeButton.visibleProperty());
+        closeButton.setVisible(false);
+      }
+      return stringDialog;
     }
 
   }

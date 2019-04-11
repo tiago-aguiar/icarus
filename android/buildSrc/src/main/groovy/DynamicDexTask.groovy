@@ -7,40 +7,46 @@ import javax.inject.Inject
 
 class DynamicDexTask extends DefaultTask {
 
-	String androidSdkLocation
+    String androidSdkLocation
     String buildToolsVersion
     String srcFolder = "build/outputs/aar/"
+    String libFolder = "libs/"
     String srcName
     String srcVariant = "debug"
     String srcPkgType = "aar"
     String destinationFolder = "../app/src/main/assets"
     String dexName = "dm"
 
-	@TaskAction
-	def run() {
-		unzipFile()
-		dexClassFile()
-	}
+    @TaskAction
+    def run() {
+        unzipFile()
+        dexClassFile()
+    }
 
-	def unzipFile() {
-		getProject().copy {
+    def unzipFile() {
+        getProject().copy {
             from getProject().zipTree("${srcFolder}/${srcName}-${srcVariant}.${srcPkgType}")
             into "${srcFolder}/${srcName}"
         }
-	}
+        getProject().copy {
+            from getProject().zipTree("${libFolder}/core-${srcVariant}.${srcPkgType}")
+            into "${srcFolder}/core"
+        }
+    }
 
-	def dexClassFile() {
+    def dexClassFile() {
         ExecAction execAction = getExecActionFactory().newExecAction()
         execAction.setExecutable("${androidSdkLocation}/build-tools/${buildToolsVersion}/dx")
         execAction.setArgs([
-			"--dex", "--output",
-            "${destinationFolder}/${dexName}.dex",
-            "${srcFolder}/${srcName}/classes.jar"
-		])
+                "--dex", "--output",
+                "${destinationFolder}/${dexName}.dex",
+                "${srcFolder}/${srcName}/classes.jar",
+                "${srcFolder}/core/classes.jar"
+        ])
         execAction.execute()
     }
 
-	@Inject
+    @Inject
     protected ExecActionFactory getExecActionFactory() {
         throw new UnsupportedOperationException()
     }

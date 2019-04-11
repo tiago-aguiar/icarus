@@ -6,7 +6,7 @@ import java.io.IOException;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 
 import static co.tiagoaguiar.icarus.devenv.Settings.ANDROID_SDK_ROOT;
-import static co.tiagoaguiar.icarus.devenv.Settings.SYSTEM_FOLDER_FLY;
+import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
 
 /**
  * Abril, 07 2019
@@ -23,7 +23,7 @@ public class AppService {
             "./gradlew",
             ":fly:dynamicDex",
             "--stacktrace"
-    ).directory(SYSTEM_FOLDER_FLY)
+    ).directory(ICARUS_SYSTEM_FLY_DIR)
             .start();
 
     LoggerManager.loadProcess(process);
@@ -34,9 +34,9 @@ public class AppService {
     Process process = new ProcessBuilder(
             ANDROID_SDK_ROOT + "/platform-tools/adb", // TODO: 09/04/19 add ADB in Settings
             "push",
-            "dm.dex",
+            "app/src/main/assets/dm.dex",
             "/sdcard/"
-    ).directory(SYSTEM_FOLDER_FLY)
+    ).directory(ICARUS_SYSTEM_FLY_DIR)
             .start();
 
     LoggerManager.loadProcess(process);
@@ -56,7 +56,7 @@ public class AppService {
             "\"dm.dex\"",
             "-n",
             "co.tiagoaguiar.icarus/.io.AdbBroadcastReceiver"
-    ).directory(SYSTEM_FOLDER_FLY)
+    ).directory(ICARUS_SYSTEM_FLY_DIR)
             .start();
 
     LoggerManager.loadProcess(process);
@@ -82,7 +82,7 @@ public class AppService {
             "am",
             "start",
             "-n",
-            "co.tiagoaguiar.icarus/co.tiagoaguiar.icarus.MainActivity"
+            "co.tiagoaguiar.icarus/co.tiagoaguiar.icarus.app.MainActivity"
     ).start();
 
     LoggerManager.loadProcess(process);

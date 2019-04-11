@@ -3,8 +3,6 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 28
 
-
-
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 28
@@ -22,10 +20,23 @@ android {
         }
     }
 
+    flavorDimensions "1.0"
+    productFlavors {
+        prod {
+        }
+        dev {
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // must include .aar at libs
+    prodImplementation fileTree(dir: 'libs', include: ['*.aar'])
+
+    // for developing
+    devImplementation project(":core")
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
@@ -34,7 +45,7 @@ dependencies {
 }
 
 task dynamicDex(type: DynamicDexTask, dependsOn: "assembleDebug") {
-	srcName "fly"
-	androidSdkLocation android.sdkDirectory.absolutePath
+    srcName "fly"
+    androidSdkLocation android.sdkDirectory.absolutePath
     buildToolsVersion android.buildToolsVersion
 }

@@ -1,8 +1,6 @@
 package co.tiagoaguiar.icarus.graphics;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.SurfaceHolder;
 
 import co.tiagoaguiar.icarus.util.ILog;

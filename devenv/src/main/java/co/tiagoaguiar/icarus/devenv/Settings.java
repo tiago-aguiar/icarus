@@ -1,6 +1,13 @@
 package co.tiagoaguiar.icarus.devenv;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.zip.ZipFile;
+
+import co.tiagoaguiar.icarus.devenv.util.FileHelper;
+import co.tiagoaguiar.icarus.devenv.util.ZipHelper;
+import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 
 /**
  * Março, 28 2019
@@ -13,13 +20,34 @@ public class Settings {
 
   // TODO: 07/04/19 remove this
   public static final String ANDROID_SDK_ROOT = "/home/tiago/Android/Sdk";
-  public static final String ICARUS_DOT_CONFIG = ".icarus" + ICARUS_VERSION;
+
+  public static final File ICARUS_DOT_CONFIG_DIR = new File(System.getProperty("user.home"), ".icarus" + ICARUS_VERSION);
+  public static final File ICARUS_SYSTEM_FLY_DIR = new File(ICARUS_DOT_CONFIG_DIR, "system");
+  public static final File ICARUS_SYSTEM_FLY_ZIP = new File(ICARUS_DOT_CONFIG_DIR, "system.zip");
+
+  public static final InputStream SRC_FLY = Settings.class.getResourceAsStream("/system.zip");
 
   private static final String BASE_STYLE_DIR = "/css/";
 
   public static final String JAVA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-java-keywords.css").toExternalForm();
   public static final String CODE_AREA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-code-area.css").toExternalForm();
 
-  public static final File SRC_FLY = new File(Settings.class.getResource("/system").getPath());
-  public static final File SYSTEM_FOLDER_FLY = new File(new File(System.getProperty("user.home"), Settings.ICARUS_DOT_CONFIG), "system");
+
+  static void setup() throws IOException {
+    // setup fly system
+    if (!ICARUS_DOT_CONFIG_DIR.exists())
+      if (!ICARUS_DOT_CONFIG_DIR.mkdir())
+        LoggerManager.error(new RuntimeException("Failed to create dir: " + ICARUS_DOT_CONFIG_DIR));
+
+    if (!ICARUS_SYSTEM_FLY_DIR.exists()) {
+      FileHelper.copyFolder(Settings.SRC_FLY, Settings.ICARUS_SYSTEM_FLY_ZIP);
+      ZipHelper.extract(ICARUS_SYSTEM_FLY_ZIP, ICARUS_DOT_CONFIG_DIR);
+      if (ICARUS_SYSTEM_FLY_ZIP.delete())
+        LoggerManager.infoDebug("system fly configured!");
+    }
+
+    LoggerManager.infoDebug("system is ready!");
+  }
+
+
 }

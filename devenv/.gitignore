@@ -5,3 +5,8 @@ out
 
 # Ignore Gradle build output directory
 build
+lib
+
+# JDK embedded
+java
+

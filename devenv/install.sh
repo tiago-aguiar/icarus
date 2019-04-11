@@ -24,7 +24,7 @@ xdg_install() {
 simple_install() {
 	TEMP_DIR=$(mktemp --directory)
 
-	sed -e "s,<BIN_DIR>,${SCRIPT_PATH}/icarus,g" \
+	sed -e "s,<BIN_DIR>,${SCRIPT_PATH}/bin/devenv,g" \
 		-e "s,<ICON_FILE>,${SCRIPT_PATH}/config/icons/icarus-128.png,g" "${SCRIPT_PATH}/config/template.desktop" > "${TEMP_DIR}/${RESOURCE}.desktop"
 
 	mkdir -p "${HOME}/.local/share/applications"

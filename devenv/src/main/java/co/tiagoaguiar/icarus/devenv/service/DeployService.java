@@ -11,8 +11,7 @@ import java.util.Optional;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 
-import static co.tiagoaguiar.icarus.devenv.Settings.SRC_FLY;
-import static co.tiagoaguiar.icarus.devenv.Settings.SYSTEM_FOLDER_FLY;
+import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
 
 /**
  * Abril, 09 2019
@@ -28,11 +27,11 @@ public class DeployService {
       Optional<Path> main = findMain(rootDir);
       if (main.isPresent()) {
         // write main entry_point
-        File icarusSrcDir = new File(SYSTEM_FOLDER_FLY, "fly/src/main/java/co/tiagoaguiar/icarus");
+        File icarusSrcDir = new File(ICARUS_SYSTEM_FLY_DIR, "fly/src/main/java/co/tiagoaguiar/icarus");
         File entryPoint = new File(icarusSrcDir, "EntryPoint.java");
         String sourceCode = FileHelper.getText(main.get().toFile());
 
-        File srcEntryPoint = new File(SRC_FLY, "fly/src/main/java/co/tiagoaguiar/icarus/EntryPoint.java");
+        File srcEntryPoint = new File(ICARUS_SYSTEM_FLY_DIR, "EntryPoint.template");
         List<String> mainLines = Files.readAllLines(srcEntryPoint.toPath(), StandardCharsets.UTF_8);
         mainLines.add(mainLines.size() - 1, sourceCode);
         Files.write(entryPoint.toPath(), mainLines, StandardCharsets.UTF_8);
@@ -44,7 +43,7 @@ public class DeployService {
 
             // write package co.xxx.yyy
             String _package = destPath.toString()
-                    .replace(new File(SYSTEM_FOLDER_FLY, "fly/src/main/java/").toString(), "")
+                    .replace(new File(ICARUS_SYSTEM_FLY_DIR, "fly/src/main/java/").toString(), "")
                     .replace("/", ".")
                     .replace(destPath.getFileName().toString(), "");
 
