@@ -7,10 +7,12 @@ import android.content.Intent;
 /**
  * adb shell am broadcast -a co.tiagoaguiar.icarus.RELOAD
  * -n co.tiagoaguiar.icarus/.io.AdbBroadcastReceiver
- * <p>
  * use next line for args
- * --es url "hello\ world"
+ * --es file "<filename>"
  * Março, 30 2019
+ *
+ * ./gradlew :fly:dynamicDex
+ * adb push app/src/main/assets/dm.dex /sdcard/
  *
  * @author suporte@moonjava.com.br (Tiago Aguiar).
  */

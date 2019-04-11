@@ -48,6 +48,7 @@ public class LogicThread implements Runnable {
       // TODO: 21/03/19 objectManager.draw()
       mRenderSystem.swap();
 
+      // TODO: 09/04/19 FPS
       try {
         Thread.sleep(300);
       } catch (InterruptedException e) {
