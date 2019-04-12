@@ -28,7 +28,7 @@ public class DeployService {
       if (main.isPresent()) {
         // write main entry_point
         File icarusSrcDir = new File(ICARUS_SYSTEM_FLY_DIR, "fly/src/main/java/co/tiagoaguiar/icarus");
-        File entryPoint = new File(icarusSrcDir, "EntryPoint.java");
+        File entryPoint = new File(new File(ICARUS_SYSTEM_FLY_DIR, "fly/src/prod/java/co/tiagoaguiar/icarus"), "EntryPoint.java");
         String sourceCode = FileHelper.getText(main.get().toFile());
 
         File srcEntryPoint = new File(ICARUS_SYSTEM_FLY_DIR, "EntryPoint.template");

@@ -25,7 +25,7 @@ class DynamicDexTask extends DefaultTask {
 
     def unzipFile() {
         getProject().copy {
-            from getProject().zipTree("${srcFolder}/${srcName}-${srcVariant}.${srcPkgType}")
+            from getProject().zipTree("${srcFolder}/${srcName}-prod-${srcVariant}.${srcPkgType}")
             into "${srcFolder}/${srcName}"
         }
         getProject().copy {

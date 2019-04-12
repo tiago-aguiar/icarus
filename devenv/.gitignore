@@ -2,11 +2,9 @@
 .gradle
 .idea/libraries
 out
+*.zip
 
 # Ignore Gradle build output directory
 build
-lib
-
-# JDK embedded
-java
-
+prod/lib
+prod/java

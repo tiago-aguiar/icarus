@@ -44,7 +44,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-task dynamicDex(type: DynamicDexTask, dependsOn: "assembleDebug") {
+task dynamicDex(type: DynamicDexTask, dependsOn: "assembleProdDebug") {
     srcName "fly"
     androidSdkLocation android.sdkDirectory.absolutePath
     buildToolsVersion android.buildToolsVersion

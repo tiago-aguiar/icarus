@@ -1,15 +1,8 @@
 package co.tiagoaguiar.icarus.devenv.util;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.nio.file.CopyOption;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,13 +12,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.scene.control.TreeItem;
-import jdk.internal.util.xml.impl.Input;
 
 /**
  * Março, 26 2019
