@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
 import co.tiagoaguiar.icarus.devenv.service.AppService;
 import co.tiagoaguiar.icarus.devenv.service.DeployService;
@@ -12,20 +13,24 @@ import co.tiagoaguiar.icarus.devenv.ui.CodeEditor;
 import co.tiagoaguiar.icarus.devenv.ui.TreeStringExplorer;
 import co.tiagoaguiar.icarus.devenv.util.ShortCut;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.VBox;
 
 public class MainController extends FxController implements Initializable {
 
   @FXML
   private TabPane tabPaneFile;
+  @FXML
+  private VBox vBoxPane;
   @FXML
   private TextArea textAreaEmulator;
   @FXML
@@ -61,6 +66,9 @@ public class MainController extends FxController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+//    vBoxPane.getStylesheets().add(Settings.THEME_CSS);
+//    vBoxPane.getStyleClass().add("dark-mode");
+
     emulatorService = new EmulatorService(); // TODO: 07/04/19 inject
     appService = new AppService(); // TODO: 07/04/19 inject
     deployService = new DeployService(); // TODO: 07/04/19 inject
@@ -68,7 +76,6 @@ public class MainController extends FxController implements Initializable {
     LoggerManager.loadTextArea(textAreaEmulator);
 
     menuItemNewFile.setOnAction(event -> {
-      // TODO: 28/03/19 reload treeExplorer
       treeExplorer.createFile(FileExtension.JAVA, (fileCreated) -> {
         codeEditor.open(fileCreated, FileExtension.JAVA);
       });

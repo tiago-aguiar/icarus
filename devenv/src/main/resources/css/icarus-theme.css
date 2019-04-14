@@ -16,3 +16,43 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
     -fx-text-fill: #395306;
 }
+
+.dark-mode {
+    -fx-background-color: #333;
+}
+
+.dark-mode.tree-cell {
+    -fx-text-fill: #999;
+}
+
+.dark-mode.tree-cell > .tree-disclosure-node > .arrow  {
+    -fx-background-color: red;
+}
+
+.dark-mode.tree-cell:selected {
+    -fx-background-color: #444;
+    -fx-text-fill: white;
+}
+
+.dark-mode.tree-cell:expanded > .tree-disclosure-node > .arrow {
+    -fx-background-color: orange;
+}
+
+.tab-pane .tab {
+    -fx-background-color: orange;
+}
+
+.split-pane *.split-pane-divider {
+   -fx-background-color: black;
+
+    -fx-padding: 0 ;
+}
+
+.menu-bar {
+    -fx-background-color: #333;
+}
+
+.menu .label
+{
+    -fx-text-fill: #999;
+}

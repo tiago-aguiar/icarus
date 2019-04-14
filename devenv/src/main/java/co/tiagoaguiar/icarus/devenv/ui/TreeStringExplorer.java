@@ -11,12 +11,16 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
+import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
 import co.tiagoaguiar.icarus.devenv.util.Dialogs;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
+import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
 
 /**
  * Março, 28 2019
@@ -44,6 +48,24 @@ public class TreeStringExplorer {
 
       TreeItem<String> rootTree = rootItem.getChildren().remove(0);
 
+      // stylesheet
+      rootTreeView.setCellFactory(new Callback<TreeView<String>, TreeCell<String>>() {
+        @Override
+        public TreeCell<String> call(TreeView<String> param) {
+          return new TreeCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+              super.updateItem(item, empty);
+
+              getStylesheets().add(Settings.THEME_CSS);
+              getStyleClass().add("dark-mode");
+              getStyleClass().add("tree-cell");
+              setText(item);
+            }
+          };
+        }
+      });
+
       rootTreeView.setRoot(rootTree);
     } catch (IOException e) {
       LoggerManager.error(e);
@@ -51,7 +73,7 @@ public class TreeStringExplorer {
   }
 
   public void createFile(FileExtension fileExtension, Consumer<File> consumer) {
-    TreeItem<String> selectedItem = rootTreeView.getSelectionModel().getSelectedItem();
+    TreeItem<String> selectedItem = Optional.ofNullable(rootTreeView.getSelectionModel().getSelectedItem()).orElse(rootTreeView.getRoot());
     File currentDirTree = FileHelper.getCurrentDirTree(new File(selectedItem.getValue()), selectedItem);
 
     Path root = Paths.get(rootDir).getParent();
@@ -93,7 +115,7 @@ public class TreeStringExplorer {
     File file = null;
     switch (fileExtension) {
       case JAVA:
-         file = new File(selectedItem.getValue() + "." + fileExtension.name().toLowerCase());
+        file = new File(selectedItem.getValue() + "." + fileExtension.name().toLowerCase());
     }
     File currentDirTree = FileHelper.getCurrentDirTree(file, selectedItem);
 
