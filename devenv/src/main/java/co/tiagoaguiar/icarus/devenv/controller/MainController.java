@@ -12,6 +12,7 @@ import co.tiagoaguiar.icarus.devenv.ui.CodeEditor;
 import co.tiagoaguiar.icarus.devenv.ui.TreeStringExplorer;
 import co.tiagoaguiar.icarus.devenv.util.ShortCut;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -84,6 +85,7 @@ public class MainController extends FxController implements Initializable {
       }
     });
 
+
     buttonStart.setOnAction(event -> {
       if (!emulatorService.isBootCompleted()) {
         emulatorService.start(bootCompleted -> {
@@ -91,8 +93,7 @@ public class MainController extends FxController implements Initializable {
             appService.run();
           }
         });
-      }
-      else {
+      } else {
         appService.run();
       }
     });
@@ -110,8 +111,7 @@ public class MainController extends FxController implements Initializable {
   private void mapShortcuts(Scene scene) {
     // CTRL + S -> Save File
     ShortCut.ctrlS(scene, () -> {
-      File currentFile = treeExplorer.findCurrentFile();
-      codeEditor.save(currentFile);
+      codeEditor.save();
     });
   }
 

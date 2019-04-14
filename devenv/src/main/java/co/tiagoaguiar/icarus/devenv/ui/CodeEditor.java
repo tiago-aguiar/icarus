@@ -25,12 +25,14 @@ import java.util.regex.Matcher;
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
+import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.concurrent.Task;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import sun.rmi.runtime.Log;
 
 /**
  * Março, 28 2019
@@ -42,20 +44,32 @@ public class CodeEditor {
   private final TabPane tabPane;
   private final HashMap<Tab, Boolean> tabFileLoaded;
   private final HashMap<Tab, String> tabFileName;
-  private final HashMap<String, Tab> tabHash;
+  private final HashMap<String, Tab> tabFilePath;
+  private final HashMap<Tab, String> tabHash;
+
+  private Tab currentTab;
 
   public CodeEditor(TabPane tabPane) {
     this.tabPane = tabPane;
     this.tabFileLoaded = new HashMap<>();
     this.tabFileName = new HashMap<>();
+    this.tabFilePath = new HashMap<>();
     this.tabHash = new HashMap<>();
 
+    setup();
+  }
+
+  private void setup() {
+    tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+      if (oldValue != newValue)
+        this.currentTab = newValue;
+    });
   }
 
   public void open(File file, FileExtension fileExtension) {
     try {
 
-      Tab currentTab = tabHash.get(file.getAbsolutePath());
+      Tab currentTab = tabFilePath.get(file.getAbsolutePath());
       if (currentTab != null) {
         tabPane.getSelectionModel().select(currentTab);
         return;
@@ -75,28 +89,28 @@ public class CodeEditor {
 
       tabFileLoaded.put(tab, false);
       tabFileName.put(tab, tab.getText());
-      tabHash.put(file.getAbsolutePath(), tab);
+      tabFilePath.put(file.getAbsolutePath(), tab);
+      tabHash.put(tab, file.getAbsolutePath());
 
     } catch (IOException e) {
-      // TODO: 28/03/19 Logger
+      LoggerManager.error(e);
     }
   }
 
-  public void save(File file) {
-    Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-    StackPane stackPane = (StackPane) selectedTab.getContent();
+  public void save() {
+    String absoluteFilePath = this.tabHash.get(currentTab);
+    StackPane stackPane = (StackPane) currentTab.getContent();
     VirtualizedScrollPane virtualScrollPane = (VirtualizedScrollPane) stackPane.getChildren().get(0);
     CodeArea codeArea = (CodeArea) virtualScrollPane.getContent();
     String text = codeArea.getText();
 
     try {
       // FIXME: 09/04/19 New File > Edit > Save > Crash 
-      Files.write(file.toPath(), text.getBytes());
+      Files.write(new File(absoluteFilePath).toPath(), text.getBytes());
       applyFileChanged(false);
 
     } catch (IOException e) {
-      e.printStackTrace();
-      // TODO: 28/03/19 Logger
+      LoggerManager.error(e);
     }
   }
 

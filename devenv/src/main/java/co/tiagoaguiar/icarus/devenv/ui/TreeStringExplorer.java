@@ -40,6 +40,7 @@ public class TreeStringExplorer {
       TreeItem<String> rootTree = rootItem.getChildren().remove(0);
 
       rootTreeView.setRoot(rootTree);
+
     } catch (IOException e) {
       // TODO: 28/03/19 Logger
     }
