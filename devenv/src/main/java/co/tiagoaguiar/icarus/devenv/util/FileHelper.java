@@ -14,6 +14,7 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.TreeItem;
 
 /**
@@ -78,8 +79,15 @@ public final class FileHelper {
 
 
     } else {
-      if (!rootPath.toFile().isHidden())
-        rootItem.getChildren().add(new TreeItem<>(rootPath.getFileName().toString()));
+      if (!rootPath.toFile().isHidden()) {
+        String fileName = rootPath.getFileName().toString();
+        Optional<String> _fileName = Optional.ofNullable(fileName)
+              .filter(s -> s.contains("."))
+              .map(s -> s.substring(0, s.lastIndexOf(".")));
+
+        TreeItem<String> item = new TreeItem<>(_fileName.orElseThrow(() -> new RuntimeException("Failed to load file")));
+        rootItem.getChildren().add(item);
+      }
     }
 
   }

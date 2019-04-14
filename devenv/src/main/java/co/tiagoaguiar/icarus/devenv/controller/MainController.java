@@ -76,7 +76,7 @@ public class MainController extends FxController implements Initializable {
 
     treeFileExplorer.setOnMouseClicked(event -> {
       if (event.getClickCount() == 2) {
-        File file = treeExplorer.findCurrentFile();
+        File file = treeExplorer.findCurrentFile(FileExtension.JAVA);
 
         if (file.isFile()) {
           codeEditor.open(file, FileExtension.JAVA);

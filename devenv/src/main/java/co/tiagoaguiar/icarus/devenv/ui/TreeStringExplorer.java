@@ -1,15 +1,20 @@
 package co.tiagoaguiar.icarus.devenv.ui;
 
+import com.sun.webkit.dom.TreeWalkerImpl;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.logging.Logger;
 
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
 import co.tiagoaguiar.icarus.devenv.util.Dialogs;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
+import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
@@ -40,9 +45,8 @@ public class TreeStringExplorer {
       TreeItem<String> rootTree = rootItem.getChildren().remove(0);
 
       rootTreeView.setRoot(rootTree);
-
     } catch (IOException e) {
-      // TODO: 28/03/19 Logger
+      LoggerManager.error(e);
     }
   }
 
@@ -51,10 +55,11 @@ public class TreeStringExplorer {
     File currentDirTree = FileHelper.getCurrentDirTree(new File(selectedItem.getValue()), selectedItem);
 
     Path root = Paths.get(rootDir).getParent();
-    File dir = new File(root.toFile(), currentDirTree.toString());
+    final File dir = new File(root.toFile(), currentDirTree.toString());
 
+    File parentDir = dir;
     if (!dir.isDirectory())
-      dir = dir.getParentFile();
+      parentDir = dir.getParentFile();
 
     Optional<String> result = new Dialogs.TextInputBuilder()
             .title("New File") // TODO: 28/03/19 multilanguage
@@ -62,22 +67,35 @@ public class TreeStringExplorer {
             .build()
             .showAndWait();
 
-    File finalDir = dir;
+    final File finalDir = parentDir;
     result.ifPresent(filename -> {
       try {
         File file = new File(finalDir, filename + "." + fileExtension.name().toLowerCase());
-        if (file.createNewFile())
+        if (file.createNewFile()) {
+          if (dir.isDirectory()) {
+            selectedItem.getChildren().add(new TreeItem<>(filename));
+            selectedItem.getChildren().sort(Comparator.comparing(TreeItem::getValue));
+          } else {
+            selectedItem.getParent().getChildren().add(new TreeItem<>(filename));
+            selectedItem.getParent().getChildren().sort(Comparator.comparing(TreeItem::getValue));
+          }
           consumer.accept(file);
+        }
       } catch (IOException e) {
-        // TODO: 28/03/19 Logger
+        LoggerManager.error(e);
       }
     });
   }
 
-  public File findCurrentFile() {
+  public File findCurrentFile(FileExtension fileExtension) {
     TreeItem<String> selectedItem = rootTreeView.getSelectionModel().getSelectedItem();
 
-    File currentDirTree = FileHelper.getCurrentDirTree(new File(selectedItem.getValue()), selectedItem);
+    File file = null;
+    switch (fileExtension) {
+      case JAVA:
+         file = new File(selectedItem.getValue() + "." + fileExtension.name().toLowerCase());
+    }
+    File currentDirTree = FileHelper.getCurrentDirTree(file, selectedItem);
 
     Path root = Paths.get(rootDir).getParent();
 

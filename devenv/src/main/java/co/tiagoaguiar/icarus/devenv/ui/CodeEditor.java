@@ -68,29 +68,41 @@ public class CodeEditor {
 
   public void open(File file, FileExtension fileExtension) {
     try {
-
+      // select file already opened
       Tab currentTab = tabFilePath.get(file.getAbsolutePath());
       if (currentTab != null) {
         tabPane.getSelectionModel().select(currentTab);
         return;
       }
 
-      Tab tab = new Tab(file.getName());
+      Optional<String> _fileName = Optional.ofNullable(file.getName())
+              .filter(s -> s.contains("."))
+              .map(s -> s.substring(0, s.lastIndexOf(".")));
+
+      Tab tab = new Tab(_fileName.orElse(file.getName()));
 
       tabPane.getTabs().add(tab);
 
-      CodeArea codeArea = buildCodeArea(FileHelper.getText(file), fileExtension);
-
-      tab.setContent(new StackPane(new VirtualizedScrollPane<>(codeArea)));
-
-      tabPane.getSelectionModel().select(tabPane.getTabs().size() - 1);
-
+      // code area stuff
+      tab.setContent(new StackPane(new VirtualizedScrollPane<>(buildCodeArea(FileHelper.getText(file), fileExtension))));
       applyStyle(fileExtension);
 
+      // local state
       tabFileLoaded.put(tab, false);
       tabFileName.put(tab, tab.getText());
-      tabFilePath.put(file.getAbsolutePath(), tab);
       tabHash.put(tab, file.getAbsolutePath());
+      tabFilePath.put(file.getAbsolutePath(), tab);
+
+      // select last file opened
+      tabPane.getSelectionModel().select(tabPane.getTabs().size() - 1);
+
+      // reset when close tab
+      tab.setOnCloseRequest(event -> {
+        tabFileLoaded.remove(tab);
+        tabFileName.remove(tab);
+        tabFilePath.remove(tabHash.get(tab));
+        tabHash.remove(tab);
+      });
 
     } catch (IOException e) {
       LoggerManager.error(e);
