@@ -58,7 +58,7 @@ public class TreeStringExplorer {
               super.updateItem(item, empty);
 
               getStylesheets().add(Settings.THEME_CSS);
-              getStyleClass().add("dark-mode");
+              getStyleClass().add("theme-mode");
               getStyleClass().add("tree-cell");
               setText(item);
             }

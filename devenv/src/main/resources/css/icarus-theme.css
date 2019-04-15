@@ -1,58 +1,72 @@
 .btn-normal {
     -fx-background-color:
-        linear-gradient(#ffffff, #e0e0e0),
-        radial-gradient(center 50% -40%, radius 200%, #ffffff 45%, #e0e0e0 50%);
-    -fx-background-radius: 6, 5;
+        linear-gradient(#FF5733, #C70039),
+        radial-gradient(center 50% -40%, radius 200%, #C70039 45%, #FF5733 50%);
+    -fx-background-radius: 0, 5;
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
-    -fx-text-fill: #395306;
+    -fx-text-fill: white;
 }
 .btn-success {
     -fx-background-color:
-        linear-gradient(#f0ff35, #a9ff00),
-        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
-    -fx-background-radius: 6, 5;
+        linear-gradient(#C70039, #900C3F),
+        radial-gradient(center 50% -40%, radius 200%, #900C3F 45%, #C70039 50%);
+    -fx-background-radius: 0, 5;
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
-    -fx-text-fill: #395306;
-}
-
-.dark-mode {
-    -fx-background-color: #333;
-}
-
-.dark-mode.tree-cell {
-    -fx-text-fill: #999;
-}
-
-.dark-mode.tree-cell > .tree-disclosure-node > .arrow  {
-    -fx-background-color: red;
-}
-
-.dark-mode.tree-cell:selected {
-    -fx-background-color: #444;
     -fx-text-fill: white;
 }
 
-.dark-mode.tree-cell:expanded > .tree-disclosure-node > .arrow {
+.theme-mode {
+    -fx-background-color: white;
+}
+
+.theme-mode.tree-cell {
+    -fx-text-fill: #333;
+}
+
+.theme-mode.tree-cell > .tree-disclosure-node > .arrow  {
+    -fx-background-color: red;
+}
+
+.theme-mode.tree-cell:selected {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: #333;
+}
+
+.theme-mode.tree-cell:expanded > .tree-disclosure-node > .arrow {
     -fx-background-color: orange;
 }
 
 .tab-pane .tab {
-    -fx-background-color: orange;
+    -fx-background-color:
+        linear-gradient(#FFF, #EEE),
+        radial-gradient(center 50% -40%, radius 200%, #EEE 45%, #FFF 50%);
+    -fx-background-radius: 0, 1;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: white;
+    -fx-padding: 4 8;
 }
 
-.split-pane *.split-pane-divider {
-   -fx-background-color: black;
+.split-pane:horizontal *.split-pane-divider {
+    -fx-background-color: #EFEFEF;
+    -fx-padding: 0 1 0 0;
+}
 
-    -fx-padding: 0 ;
+.split-pane:vertical *.split-pane-divider {
+    -fx-background-color: #EFEFEF;
+    -fx-padding: 2 4 2 4;
 }
 
 .menu-bar {
-    -fx-background-color: #333;
+    -fx-background-color: white;
 }
 
-.menu .label
-{
-    -fx-text-fill: #999;
+.menu .label {
+    -fx-text-fill: #333;
+}
+
+.hbox {
+    -fx-background-color: #ddd;
 }

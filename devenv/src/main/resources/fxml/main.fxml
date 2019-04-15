@@ -37,7 +37,8 @@
             AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
             AnchorPane.topAnchor="28.0">
             <center>
-                <SplitPane dividerPositions="0.05" prefHeight="60.0" BorderPane.alignment="CENTER">
+                <SplitPane
+                    dividerPositions="0.05" prefHeight="60.0" BorderPane.alignment="CENTER">
                     <items>
                         <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="200.0">
                             <children>
@@ -61,18 +62,18 @@
                                                 <VBox prefHeight="200.0" prefWidth="100.0"
                                                     fx:id="vBoxPane" AnchorPane.bottomAnchor="0.0"
                                                     AnchorPane.leftAnchor="0.0"
-                                                    styleClass="dark-mode"
+                                                    styleClass="theme-mode"
                                                     AnchorPane.rightAnchor="0.0"
                                                     AnchorPane.topAnchor="0.0">
                                                     <children>
-                                                        <HBox>
+                                                        <HBox styleClass="hbox">
                                                             <children>
                                                                 <Button fx:id="buttonStart"
                                                                     alignment="TOP_RIGHT"
                                                                     contentDisplay="RIGHT"
                                                                     defaultButton="true"
                                                                     mnemonicParsing="false"
-                                                                    styleClass="btn-success"
+                                                                    styleClass="btn-normal"
                                                                     text="Turn On">
                                                                     <HBox.margin>
                                                                         <Insets right="8.0" />
