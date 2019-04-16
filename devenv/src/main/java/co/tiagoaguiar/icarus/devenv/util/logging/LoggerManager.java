@@ -49,17 +49,21 @@ public class LoggerManager {
     return processLogger.read();
   }
 
-  public static String lineProcessError() {
-    return processLogger.readError();
-  }
+  public static void infoProcess(String message) {
+    if (message != null)
+      Platform.runLater(() -> tabLogger.info(message));
 
-  public static void infoProcess() {
     String val;
     while ((val = processLogger.read()) != null) {
       debugLogger.info(val);
       final String finalVal = val;
-      Platform.runLater(() -> tabLogger.info(finalVal));
+      if (message == null)
+        Platform.runLater(() -> tabLogger.info(finalVal));
     }
+  }
+
+  public static void infoProcess() {
+    infoProcess(null);
   }
 
   public static String getErrorProcessLog() {

@@ -26,7 +26,7 @@ public class AppService {
             .start();
 
     LoggerManager.loadProcess(process);
-    LoggerManager.infoProcess();
+    LoggerManager.infoProcess("Preparing to flying...");
     LoggerManager.errorProcess();
 
     String errorProcessLog = LoggerManager.getErrorProcessLog();
@@ -42,9 +42,6 @@ public class AppService {
             "/sdcard/"
     ).directory(ICARUS_SYSTEM_FLY_DIR)
             .start();
-
-    LoggerManager.loadProcess(process);
-    LoggerManager.infoProcess();
   }
 
   private void notifyFly() throws IOException {
@@ -63,7 +60,7 @@ public class AppService {
             .start();
 
     LoggerManager.loadProcess(process);
-    LoggerManager.infoProcess();
+    LoggerManager.infoProcess("Changes applied...");
   }
 
   private void installApp() throws IOException {

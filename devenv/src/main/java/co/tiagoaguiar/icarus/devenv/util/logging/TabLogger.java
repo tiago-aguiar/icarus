@@ -45,6 +45,7 @@ public class TabLogger {
       problemArea.appendText(message + "\n");
     if (message.contains("cannot find symbol"))
       problemArea.appendText("Cannot find symbol " + "\n");
+    // TODO: 16/04/19 fix log source-code
   }
 
 }
