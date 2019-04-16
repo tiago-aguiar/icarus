@@ -28,7 +28,7 @@ public class LoggerManager {
               .title("Failed")
               .contentText(t.toString())
               .enableClose(true)
-              .setResizableEnabled(true)
+              .resizableEnabled(true)
               .build()
               .showAndWait();
   }

@@ -38,7 +38,7 @@ public class DeployService {
         Files.write(entryPoint.toPath(), mainLines, StandardCharsets.UTF_8);
 
         // add other objects
-        FileHelper.copyFolder(new File(Settings.ROOT_DIR), icarusSrcDir, destPath -> {
+        FileHelper.copyFolder(new File(Settings.getInstance().getProjectDir()), icarusSrcDir, destPath -> {
           if (destPath != null && destPath != main.get()) {
             List<String> lines;
 
@@ -74,7 +74,7 @@ public class DeployService {
 
   private Optional<Path> findMain() {
     try {
-      File _rootDir = new File(Settings.ROOT_DIR);
+      File _rootDir = new File(Settings.getInstance().getProjectDir());
       return FileHelper.findFileWith(_rootDir, "void draw()");
     } catch (IOException e) {
       LoggerManager.error(e);

@@ -1,6 +1,7 @@
 package co.tiagoaguiar.icarus.devenv.util;
 
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextInputDialog;
@@ -12,6 +13,57 @@ import javafx.scene.layout.Region;
  * @author suporte@moonjava.com.br (Tiago Aguiar).
  */
 public class Dialogs {
+
+  public static class ConfirmationBuilder {
+
+    private String title;
+    private String headerText;
+    private String contentText;
+    private ButtonType[] buttons;
+    private boolean enableClose;
+
+    public ConfirmationBuilder title(String title) {
+      this.title = title;
+      return this;
+    }
+
+    public ConfirmationBuilder headerText(String headerText) {
+      this.headerText = headerText;
+      return this;
+    }
+
+    public ConfirmationBuilder contentText(String contentText) {
+      this.contentText = contentText;
+      return this;
+    }
+
+    public ConfirmationBuilder buttons(ButtonType... buttons) {
+      this.buttons = buttons;
+      return this;
+    }
+
+    public ConfirmationBuilder enableClose(boolean enableClose) {
+      this.enableClose = enableClose;
+      return this;
+    }
+
+    public Alert build() {
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setTitle(title);
+      alert.setHeaderText(headerText);
+      alert.setContentText(contentText);
+      alert.getButtonTypes().clear();
+      alert.getButtonTypes().addAll(buttons);
+      if (enableClose) {
+        alert.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        Node closeButton = alert.getDialogPane().lookupButton(ButtonType.CLOSE);
+        closeButton.managedProperty().bind(closeButton.visibleProperty());
+        closeButton.setVisible(false);
+      }
+      return alert;
+    }
+
+  }
 
   public static class TextInputBuilder {
 
@@ -72,7 +124,7 @@ public class Dialogs {
       return this;
     }
 
-    public Builder setResizableEnabled(boolean resizableEnabled) {
+    public Builder resizableEnabled(boolean resizableEnabled) {
       this.resizableEnabled = resizableEnabled;
       return this;
     }

@@ -90,14 +90,14 @@ public class MainController extends FxController implements Initializable {
     });
 
     buttonPlay.setOnAction(event -> {
-//      if (emulatorService.isBootCompleted()) {
+      if (emulatorService.isBootCompleted()) {
         deployService.deploySourceCode();
         appService.applyChanges(() -> {
           tabPaneConsole.getSelectionModel().select(1);
         });
-//      } else {
-//        LoggerManager.infoTab("Emulador deve ser inicializado! Clique no botão \"Turn On\"");
-//      }
+      } else {
+        LoggerManager.infoTab("Emulador deve ser inicializado! Clique no botão \"Turn On\"");
+      }
     });
   }
 

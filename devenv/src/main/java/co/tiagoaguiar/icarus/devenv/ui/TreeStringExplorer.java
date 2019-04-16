@@ -40,7 +40,7 @@ public class TreeStringExplorer {
       TreeItem<String> rootItem = new TreeItem<>("Base");
       rootItem.setExpanded(true);
 
-      Path rootPath = Paths.get(new File(Settings.ROOT_DIR).toURI());
+      Path rootPath = Paths.get(new File(Settings.getInstance().getProjectDir()).toURI());
 
       FileHelper.mapTree(rootItem, rootPath, 0);
 
@@ -74,7 +74,7 @@ public class TreeStringExplorer {
     TreeItem<String> selectedItem = Optional.ofNullable(rootTreeView.getSelectionModel().getSelectedItem()).orElse(rootTreeView.getRoot());
     File currentDirTree = FileHelper.getCurrentDirTree(new File(selectedItem.getValue()), selectedItem);
 
-    Path root = Paths.get(Settings.ROOT_DIR).getParent();
+    Path root = Paths.get(Settings.getInstance().getProjectDir()).getParent();
     final File dir = new File(root.toFile(), currentDirTree.toString());
 
     File parentDir = dir;
@@ -117,7 +117,7 @@ public class TreeStringExplorer {
     }
     File currentDirTree = FileHelper.getCurrentDirTree(file, selectedItem);
 
-    Path root = Paths.get(Settings.ROOT_DIR).getParent();
+    Path root = Paths.get(Settings.getInstance().getAndroidSdkRoot()).getParent();
 
     return new File(root.toFile(), currentDirTree.toString());
   }

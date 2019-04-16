@@ -3,9 +3,9 @@ package co.tiagoaguiar.icarus.devenv.service;
 
 import java.io.IOException;
 
+import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 
-import static co.tiagoaguiar.icarus.devenv.Settings.ANDROID_SDK_ROOT;
 import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
 
 /**
@@ -16,7 +16,7 @@ import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
 public class AppService {
 
   private static final String APK_DEBUG = AppService.class.getResource("/config/app-debug.apk").getPath();
-  private static final String ADB       = ANDROID_SDK_ROOT + "/platform-tools/adb";  // TODO: 09/04/19 add ADB in Settings
+  private static final String ADB       = Settings.getInstance().getAndroidSdkRoot() + "/platform-tools/adb";  // TODO: 09/04/19 add ADB in Settings
 
   private boolean compileFly() throws IOException {
     Process process = new ProcessBuilder(
