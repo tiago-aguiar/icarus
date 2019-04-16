@@ -15,24 +15,28 @@ import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
  */
 public class AppService {
 
-  private final String APK_DEBUG =
-          getClass().getResource("/config/app-debug.apk").getPath();
+  private static final String APK_DEBUG = AppService.class.getResource("/config/app-debug.apk").getPath();
+  private static final String ADB       = ANDROID_SDK_ROOT + "/platform-tools/adb";  // TODO: 09/04/19 add ADB in Settings
 
-  private void compileFly() throws IOException {
+  private boolean compileFly() throws IOException {
     Process process = new ProcessBuilder(
             "./gradlew",
-            ":fly:dynamicDex",
-            "--stacktrace"
+            ":fly:dynamicDex"
     ).directory(ICARUS_SYSTEM_FLY_DIR)
             .start();
 
     LoggerManager.loadProcess(process);
     LoggerManager.infoProcess();
+    LoggerManager.errorProcess();
+
+    String errorProcessLog = LoggerManager.getErrorProcessLog();
+    LoggerManager.clearErrorProcessLog();
+
+    return errorProcessLog == null;
   }
 
   private void deployFly() throws IOException {
-    Process process = new ProcessBuilder(
-            ANDROID_SDK_ROOT + "/platform-tools/adb", // TODO: 09/04/19 add ADB in Settings
+    Process process = new ProcessBuilder(ADB,
             "push",
             "app/src/main/assets/dm.dex",
             "/sdcard/"
@@ -44,8 +48,7 @@ public class AppService {
   }
 
   private void notifyFly() throws IOException {
-    Process process = new ProcessBuilder(
-            ANDROID_SDK_ROOT + "/platform-tools/adb", // TODO: 09/04/19 add ADB in Settings
+    Process process = new ProcessBuilder(ADB,
             "shell",
             "am",
             "broadcast",
@@ -64,8 +67,7 @@ public class AppService {
   }
 
   private void installApp() throws IOException {
-    Process process = new ProcessBuilder(
-            ANDROID_SDK_ROOT + "/platform-tools/adb",
+    Process process = new ProcessBuilder(ADB,
             "install",
             "-r",
             APK_DEBUG
@@ -76,8 +78,7 @@ public class AppService {
   }
 
   private void launchApp() throws IOException {
-    Process process = new ProcessBuilder(
-            ANDROID_SDK_ROOT + "/platform-tools/adb",
+    Process process = new ProcessBuilder(ADB,
             "shell",
             "am",
             "start",
@@ -103,18 +104,26 @@ public class AppService {
     }, "Run-Thread").start();
   }
 
-  public void applyChanges() {
+  public void applyChanges(final OnErrorListener errorListener) {
     new Thread(() -> {
       try {
 
         LoggerManager.clear();
-        compileFly();
-        deployFly();
-        notifyFly();
+        if (compileFly()) {
+          deployFly();
+          notifyFly();
+        } else {
+          errorListener.onError();
+        }
 
       } catch (IOException e) {
         LoggerManager.error(e);
       }
     }, "ApplyChanges-Thread").start();
   }
+
+  public interface OnErrorListener {
+    void onError();
+  }
+
 }

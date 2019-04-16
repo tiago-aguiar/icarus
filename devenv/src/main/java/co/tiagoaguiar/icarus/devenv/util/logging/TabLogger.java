@@ -10,23 +10,41 @@ import javafx.scene.control.TextArea;
  */
 public class TabLogger {
 
-  private TextArea textAreaLogger;
+  private TextArea consoleArea;
+  private TextArea problemArea;
   private static TabLogger LOGGER;
 
-  public void setTextAreaLogger(TextArea textAreaLogger) {
-    this.textAreaLogger = textAreaLogger;
+  public void setConsoleArea(TextArea consoleArea) {
+    this.consoleArea = consoleArea;
+  }
+
+  public void setProblemArea(TextArea problemArea) {
+    this.problemArea = problemArea;
   }
 
   public void info(String message) {
-    if (textAreaLogger == null)
-      throw new IllegalArgumentException("You must setTextAreaLogger before");
-    textAreaLogger.appendText(message + "\n");
+    if (consoleArea == null)
+      throw new IllegalArgumentException("You must setConsoleArea before");
+    consoleArea.appendText(message + "\n");
   }
 
   public void clear() {
-    if (textAreaLogger == null)
-      throw new IllegalArgumentException("You must setTextAreaLogger before");
-    textAreaLogger.clear();
+    if (consoleArea == null)
+      throw new IllegalArgumentException("You must setConsoleArea before");
+    consoleArea.clear();
+
+    if (problemArea == null)
+      throw new IllegalArgumentException("You must setConsoleArea before");
+    problemArea.clear();
   }
-  
+
+  public void error(String message) {
+    if (problemArea == null)
+      throw new IllegalArgumentException("You must setProblemArea before");
+    if (!message.contains("EntryPoint"))
+      problemArea.appendText(message + "\n");
+    if (message.contains("cannot find symbol"))
+      problemArea.appendText("Cannot find symbol " + "\n");
+  }
+
 }

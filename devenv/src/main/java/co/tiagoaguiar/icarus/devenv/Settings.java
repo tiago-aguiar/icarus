@@ -20,26 +20,23 @@ public class Settings {
 
   public static final String ICARUS_VERSION = "0.0.4";
 
-  // TODO: 07/04/19 remove this
-  public static final String ANDROID_SDK_ROOT = "/home/tiago/Android/Sdk";
-  // TODO: 16/04/19 remove this
-  public static final String ROOT_DIR = "/home/tiago/icarus/HelloWorld";
+  private static final String BASE_STYLE_DIR  = "/css/";
+  private static final String BASE_FONT_DIR   = "/font/";
 
-  public static final File ICARUS_DOT_CONFIG_DIR = new File(System.getProperty("user.home"), ".icarus" + ICARUS_VERSION);
-  public static final File ICARUS_SYSTEM_FLY_DIR = new File(ICARUS_DOT_CONFIG_DIR, "system");
-  public static final File ICARUS_SYSTEM_FLY_ZIP = new File(ICARUS_DOT_CONFIG_DIR, "system.zip");
+  public static final String ANDROID_SDK_ROOT = "/home/tiago/Android/Sdk"; // FIXME: 07/04/19 remove this
+  public static final String ROOT_DIR         = "/home/tiago/icarus/HelloWorld"; // FIXME: 16/04/19 remove this
 
-  public static final InputStream SRC_FLY = Settings.class.getResourceAsStream("/system.zip");
+  public static final File ICARUS_DOT_CONFIG_DIR  = new File(System.getProperty("user.home"), ".icarus" + ICARUS_VERSION);
+  public static final File ICARUS_SYSTEM_FLY_DIR  = new File(ICARUS_DOT_CONFIG_DIR, "system");
+  public static final File ICARUS_SYSTEM_FLY_ZIP  = new File(ICARUS_DOT_CONFIG_DIR, "system.zip");
+  public static final InputStream SRC_FLY         = Settings.class.getResourceAsStream("/system.zip");
 
-  private static final String BASE_STYLE_DIR = "/css/";
-  private static final String BASE_FONT_DIR = "/font/";
+  public static final String JAVA_CSS       = Settings.class.getResource(BASE_STYLE_DIR + "icarus-java-keywords.css").toExternalForm();
+  public static final String CODE_AREA_CSS  = Settings.class.getResource(BASE_STYLE_DIR + "icarus-code-area.css").toExternalForm();
+  public static final String THEME_CSS      = Settings.class.getResource(BASE_STYLE_DIR + "icarus-theme.css").toExternalForm();
 
-  public static final String JAVA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-java-keywords.css").toExternalForm();
-  public static final String CODE_AREA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-code-area.css").toExternalForm();
-  public static final String THEME_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-theme.css").toExternalForm();
-
-  public static final Font FONT_FIRA_CODE_REGULAR = Font.loadFont(
-          Settings.class.getResource(BASE_FONT_DIR + "firacode/FiraCode-Medium.otf").toExternalForm(), 16);
+  public static final Font FONT_FIRA_CODE_REGULAR = 
+    Font.loadFont(Settings.class.getResource(BASE_FONT_DIR + "firacode/FiraCode-Medium.otf").toExternalForm(), 16);
 
   static void setup() {
     try {

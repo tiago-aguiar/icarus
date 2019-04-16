@@ -15,6 +15,8 @@ public class LoggerManager {
   static TabLogger tabLogger = new TabLogger();
   static DebugLogger debugLogger = new DebugLogger();
 
+  private static String errorProcessLog;
+
   public static void error(Throwable t) {
     error(t, false);
   }
@@ -35,20 +37,46 @@ public class LoggerManager {
     processLogger.setProcess(process);
   }
 
-  public static void loadTextArea(TextArea textArea) {
-    tabLogger.setTextAreaLogger(textArea);
+  public static void setConsoleArea(TextArea textArea) {
+    tabLogger.setConsoleArea(textArea);
+  }
+
+  public static void setProblemArea(TextArea textArea) {
+    tabLogger.setProblemArea(textArea);
   }
 
   public static String lineProcess() {
     return processLogger.read();
   }
 
+  public static String lineProcessError() {
+    return processLogger.readError();
+  }
+
   public static void infoProcess() {
-    String val = null;
+    String val;
     while ((val = processLogger.read()) != null) {
       debugLogger.info(val);
       final String finalVal = val;
       Platform.runLater(() -> tabLogger.info(finalVal));
+    }
+  }
+
+  public static String getErrorProcessLog() {
+    return errorProcessLog;
+  }
+
+  public static void clearErrorProcessLog() {
+    LoggerManager.errorProcessLog = null;
+  }
+
+  public static void errorProcess() {
+    String val;
+    while ((val = processLogger.readError()) != null) {
+      debugLogger.error(val);
+      errorProcessLog += val;
+      final String finalVal = val;
+      Platform.runLater(() -> tabLogger.error(finalVal));
     }
   }
 

@@ -49,6 +49,15 @@
     -fx-padding: 4 8;
 }
 
+.tab-pane .tab:selected {
+    -fx-background-color: #900C3F;
+    -fx-text-fill: #FFF;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #FFF;
+}
+
 .split-pane:horizontal *.split-pane-divider {
     -fx-background-color: #EFEFEF;
     -fx-padding: 0 1 0 0;

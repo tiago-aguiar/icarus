@@ -28,6 +28,7 @@ public class EmulatorService {
 
   public void start(final OnStartListener startListener) {
     new Thread(() -> {
+      LoggerManager.clear();
       Process process;
       try {
         // FIXME: 15/04/19 logging when KVM is busy (Virtual box running)

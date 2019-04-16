@@ -37,4 +37,8 @@ public class DebugLogger {
     logger.log(Level.SEVERE, t.getMessage(), t);
   }
 
+  public void error(String message) {
+    logger.log(Level.SEVERE, message);
+  }
+
 }

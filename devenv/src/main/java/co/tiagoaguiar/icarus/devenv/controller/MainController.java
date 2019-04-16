@@ -25,7 +25,9 @@ import javafx.scene.control.TreeView;
 public class MainController extends FxController implements Initializable {
 
   @FXML private TabPane tabPaneFile;
-  @FXML private TextArea textAreaEmulator;
+  @FXML private TabPane tabPaneConsole;
+  @FXML private TextArea textAreaConsole;
+  @FXML private TextArea textAreaProblem;
   @FXML private MenuItem menuItemNewFile;
   @FXML private MenuItem menuItemSaveFile;
   @FXML private MenuItem menuItemLoadTree;
@@ -58,7 +60,8 @@ public class MainController extends FxController implements Initializable {
     appService = new AppService(); // TODO: 07/04/19 inject
     deployService = new DeployService(); // TODO: 07/04/19 inject
 
-    LoggerManager.loadTextArea(textAreaEmulator);
+    LoggerManager.setConsoleArea(textAreaConsole);
+    LoggerManager.setProblemArea(textAreaProblem);
 
     menuItemNewFile.setOnAction(event -> {
       treeExplorer.createFile(FileExtension.JAVA, (fileCreated) -> {
@@ -87,15 +90,23 @@ public class MainController extends FxController implements Initializable {
     });
 
     buttonPlay.setOnAction(event -> {
-      deployService.deploySourceCode();
-      appService.applyChanges();
+//      if (emulatorService.isBootCompleted()) {
+        deployService.deploySourceCode();
+        appService.applyChanges(() -> {
+          tabPaneConsole.getSelectionModel().select(1);
+        });
+//      } else {
+//        LoggerManager.infoTab("Emulador deve ser inicializado! Clique no botão \"Turn On\"");
+//      }
     });
   }
 
   private void setupUI() {
-    textAreaEmulator.setFont(Settings.FONT_FIRA_CODE_REGULAR);
-    textAreaEmulator.setEditable(false);
-    textAreaEmulator.setText("hello world");
+    textAreaConsole.setFont(Settings.FONT_FIRA_CODE_REGULAR);
+    textAreaConsole.setEditable(false);
+
+    textAreaProblem.setFont(Settings.FONT_FIRA_CODE_REGULAR);
+    textAreaProblem.setEditable(false);
   }
 
   private void mapShortcuts(Scene scene) {
