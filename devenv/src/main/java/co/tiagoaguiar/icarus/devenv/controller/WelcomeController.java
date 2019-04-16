@@ -42,7 +42,6 @@ public class WelcomeController extends FxController implements Initializable {
           Scene scene = new Scene(root);
 
           MainController controller = fxmlLoader.getController();
-          controller.setRootDir(directory.getAbsolutePath());
           controller.onSceneCreate(scene);
 
           Stage stage = new Stage();

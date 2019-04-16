@@ -82,7 +82,7 @@ set CMD_LINE_ARGS=%*
 set CLASSPATH=%APP_HOME%\lib\devenv.jar;%APP_HOME%\lib\richtextfx-0.9.3.jar;%APP_HOME%\lib\guava-27.0.1-jre.jar;%APP_HOME%\lib\undofx-2.1.0.jar;%APP_HOME%\lib\flowless-0.6.jar;%APP_HOME%\lib\reactfx-2.0-M5.jar;%APP_HOME%\lib\wellbehavedfx-0.3.3.jar;%APP_HOME%\lib\failureaccess-1.0.1.jar;%APP_HOME%\lib\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;%APP_HOME%\lib\jsr305-3.0.2.jar;%APP_HOME%\lib\checker-qual-2.5.2.jar;%APP_HOME%\lib\error_prone_annotations-2.2.0.jar;%APP_HOME%\lib\j2objc-annotations-1.1.jar;%APP_HOME%\lib\animal-sniffer-annotations-1.17.jar
 
 @rem Execute devenv
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %DEVENV_OPTS%  -classpath "%CLASSPATH%" co.tiagoaguiar.icarus.devenv.Main %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %DEVENV_OPTS%  -classpath "%CLASSPATH%" co.tiagoaguiar.icarus.devenv.App %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell

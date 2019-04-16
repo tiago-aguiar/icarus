@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 
+import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 
@@ -21,10 +22,10 @@ import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
 public class DeployService {
 
 
-  public void deploySourceCode(String rootDir) {
+  public void deploySourceCode() {
     try {
       // setup entry_point
-      Optional<Path> main = findMain(rootDir);
+      Optional<Path> main = findMain();
       if (main.isPresent()) {
         // write main entry_point
         File icarusSrcDir = new File(ICARUS_SYSTEM_FLY_DIR, "fly/src/main/java/co/tiagoaguiar/icarus");
@@ -37,7 +38,7 @@ public class DeployService {
         Files.write(entryPoint.toPath(), mainLines, StandardCharsets.UTF_8);
 
         // add other objects
-        FileHelper.copyFolder(new File(rootDir), icarusSrcDir, destPath -> {
+        FileHelper.copyFolder(new File(Settings.ROOT_DIR), icarusSrcDir, destPath -> {
           if (destPath != null && destPath != main.get()) {
             List<String> lines;
 
@@ -71,9 +72,9 @@ public class DeployService {
     }
   }
 
-  private Optional<Path> findMain(String rootDir) {
+  private Optional<Path> findMain() {
     try {
-      File _rootDir = new File(rootDir);
+      File _rootDir = new File(Settings.ROOT_DIR);
       return FileHelper.findFileWith(_rootDir, "void draw()");
     } catch (IOException e) {
       LoggerManager.error(e);

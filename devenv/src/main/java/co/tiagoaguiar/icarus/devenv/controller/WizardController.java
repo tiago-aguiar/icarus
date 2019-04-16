@@ -50,7 +50,6 @@ class WizardController extends FxController implements Initializable {
         Scene scene = new Scene(root);
 
         MainController controller = fxmlLoader.getController();
-        controller.setRootDir(projectPath);
         controller.onSceneCreate(scene);
 
         Stage stage = new Stage();

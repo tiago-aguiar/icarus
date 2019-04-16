@@ -30,6 +30,7 @@ public class EmulatorService {
     new Thread(() -> {
       Process process;
       try {
+        // FIXME: 15/04/19 logging when KVM is busy (Virtual box running)
         process = new ProcessBuilder(
                 ANDROID_SDK_ROOT + "/emulator/emulator",
                 "-avd",
@@ -38,7 +39,7 @@ public class EmulatorService {
         ).start();
 
         LoggerManager.loadProcess(process);
-        String output = null;
+        String output;
         while ((output = LoggerManager.lineProcess()) != null) {
           LoggerManager.infoDebug(output);
           LoggerManager.infoTab(output);

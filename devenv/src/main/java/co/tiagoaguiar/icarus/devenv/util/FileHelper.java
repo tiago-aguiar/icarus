@@ -14,7 +14,6 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
-import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.TreeItem;
 
 /**

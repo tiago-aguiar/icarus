@@ -1,5 +1,6 @@
 package co.tiagoaguiar.icarus.devenv.util.logging;
 
+import co.tiagoaguiar.icarus.devenv.util.Dialogs;
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 
@@ -15,7 +16,19 @@ public class LoggerManager {
   static DebugLogger debugLogger = new DebugLogger();
 
   public static void error(Throwable t) {
+    error(t, false);
+  }
+
+  public static void error(Throwable t, boolean showDialog) {
     debugLogger.error(t);
+    if (showDialog)
+      new Dialogs.Builder()
+              .title("Failed")
+              .contentText(t.toString())
+              .enableClose(true)
+              .setResizableEnabled(true)
+              .build()
+              .showAndWait();
   }
 
   public static void loadProcess(Process process) {
