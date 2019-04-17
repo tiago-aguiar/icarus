@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
+import co.tiagoaguiar.icarus.devenv.Settings;
+import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,28 +43,27 @@ class WizardController extends FxController implements Initializable {
     buttonFinish.setOnAction(event -> {
       projectPath = textFieldProjectDir.getText() + File.separatorChar + textFieldProjectName.getText();
       try {
+        // TODO: 17/04/19 create a launcher icarus extension
         Files.createDirectory(Paths.get(projectPath));
+        boolean isDirectory = Files.isDirectory(Paths.get(projectPath));
 
-        // TODO: 07/04/19 WELCOME CONTROLLER AND THIS OBJECT USES THIS PROCESS... WRAP IT
-        Parent root;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-        root = fxmlLoader.load();
+        if (!isDirectory)
+          throw new IOException("Failed to create a project directory");
 
-        Scene scene = new Scene(root);
+        Settings.getInstance().setProjectDir(projectPath);
 
-        MainController controller = fxmlLoader.getController();
-        controller.onSceneCreate(scene);
+        Fx<MainController> fx = new Fx<>("main");
 
         Stage stage = new Stage();
         stage.setTitle(projectPath);
-        stage.setScene(scene);
+        stage.setScene(fx.getScene());
         stage.setMaximized(true);
         stage.show();
 
         this.scene.getWindow().hide();
+
       } catch (IOException e) {
-        e.printStackTrace();
-        // TODO: 01/04/19 logger
+        LoggerManager.error(e, true);
       }
     });
   }

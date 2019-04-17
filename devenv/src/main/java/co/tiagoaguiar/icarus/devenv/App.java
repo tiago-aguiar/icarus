@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Optional;
 
 import co.tiagoaguiar.icarus.devenv.controller.Fx;
-import co.tiagoaguiar.icarus.devenv.controller.MainController;
+import co.tiagoaguiar.icarus.devenv.controller.WelcomeController;
 import co.tiagoaguiar.icarus.devenv.util.Dialogs;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.application.Application;
@@ -20,28 +20,21 @@ public class App extends Application {
     Settings.getInstance().buildEnvironmentIfNeeded();
     Settings.getInstance().loadEnvironment();
 
-    if (Settings.getInstance().getAndroidSdkRoot() == null) {
-      showConfigSdk();
-    } else {
-      Fx<MainController> fx = new Fx<>("main");
+    if (Settings.getInstance().getAndroidSdkRoot() == null)
+      loadAndroidSdk();
 
-      // TODO: 14/04/19 remove this (secondary monitor for while)
-//      Screen.getScreens().forEach(screen -> {
-//        Rectangle2D rect = screen.getVisualBounds();
-//        double x = rect.getMinX();
-//        double y = rect.getMinY();
-//        primaryStage.setX(x);
-//        primaryStage.setY(y);
-//      });
-
-      primaryStage.setTitle(String.format("Icarus Project :: %s", Settings.ICARUS_VERSION));
-      primaryStage.setScene(fx.getScene());
-//      primaryStage.setMaximized(true);
-      primaryStage.show();
-    }
+    loadProject(primaryStage);
   }
 
-  private void showConfigSdk() {
+  private void loadProject(Stage primaryStage) {
+    Fx<WelcomeController> fx = new Fx<>("welcome");
+    primaryStage.setTitle(String.format("Icarus Project :: %s", Settings.ICARUS_VERSION));
+    primaryStage.setScene(fx.getScene());
+//      primaryStage.setMaximized(true);
+    primaryStage.show();
+  }
+
+  private void loadAndroidSdk() {
     final ButtonType buttonExists = new ButtonType("Diretório Existente Android SDK");
     final ButtonType buttonInstall = new ButtonType("Instalar o Android SDK");
 
@@ -66,16 +59,17 @@ public class App extends Application {
         if (!android.exists() || !android.isFile()) {
           Alert alertError = new Alert(Alert.AlertType.ERROR);
           alertError.setTitle("Error");
-          alertError.setHeaderText("Look, an Error Dialog");
-          alertError.setContentText("Ooops, there was an error!");
+          alertError.setHeaderText("Ops! Falha ao carregar Android SDK");
+          alertError.setContentText("Esta pasta não é um Android SDK válido");
 
           alertError.showAndWait();
-          showConfigSdk();
+          loadAndroidSdk();
           return;
         }
 
         Settings.getInstance().setAndroidSdkRoot(directory.getAbsolutePath());
         LoggerManager.infoDebug("Dir SDK Loaded: " + directory.getAbsolutePath());
+
       } else if (buttonType == buttonInstall) {
 
       }

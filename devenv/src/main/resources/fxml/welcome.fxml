@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="53.0">
          <image>
-            <Image url="@../img/logo-tiagoaguiar-white.png" />
+            <Image url="@../img/logo-icarus.png" />
          </image>
          <viewport>
             <Rectangle2D />
