@@ -4,17 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -24,15 +20,11 @@ import javafx.stage.Stage;
  *
  * @author suporte@moonjava.com.br (Tiago Aguiar).
  */
-public
-class WizardController extends FxController implements Initializable {
+public class WizardController extends FxController implements Initializable {
 
-  @FXML
-  TextField textFieldProjectName;
-  @FXML
-  TextField textFieldProjectDir;
-  @FXML
-  Button buttonFinish;
+  @FXML private TextField textFieldProjectName;
+  @FXML private TextField textFieldProjectDir;
+  @FXML private Button buttonFinish;
 
   private String projectPath;
 

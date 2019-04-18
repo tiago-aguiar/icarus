@@ -4,9 +4,9 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.tiagoaguiar.icarus.devenv.Settings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -28,8 +28,9 @@ public class WelcomeController extends FxController implements Initializable {
       DirectoryChooser directoryChooser = new DirectoryChooser();
       File directory = directoryChooser.showDialog(scene.getWindow());
 
-      // TODO: 17/04/19 open current dir as project_dir settings
       if (directory != null) {
+        Settings.getInstance().setProjectDir(directory.getAbsolutePath());
+
         Fx<MainController> fx = new Fx<>("main");
         Stage stage = new Stage();
         stage.setTitle(directory.getAbsolutePath());

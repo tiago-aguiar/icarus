@@ -1,7 +1,5 @@
 package co.tiagoaguiar.icarus.devenv.ui;
 
-import com.sun.webkit.dom.TreeWalkerImpl;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -9,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Consumer;
-import java.util.logging.Logger;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.model.FileExtension;
@@ -19,7 +16,6 @@ import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 /**
@@ -117,7 +113,7 @@ public class TreeStringExplorer {
     }
     File currentDirTree = FileHelper.getCurrentDirTree(file, selectedItem);
 
-    Path root = Paths.get(Settings.getInstance().getAndroidSdkRoot()).getParent();
+    Path root = Paths.get(Settings.getInstance().getProjectDir()).getParent();
 
     return new File(root.toFile(), currentDirTree.toString());
   }

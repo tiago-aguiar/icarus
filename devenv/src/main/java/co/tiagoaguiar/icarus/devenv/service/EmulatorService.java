@@ -32,7 +32,7 @@ public class EmulatorService {
                 Settings.getInstance().getAndroidSdkRoot() + "/emulator/emulator",
                 "-avd",
                 // TODO: 07/04/19 add emulator parameter to choose
-                "Pixel_2_API_28"
+                "icarus_emulator"
         ).start();
 
         LoggerManager.loadProcess(process);
