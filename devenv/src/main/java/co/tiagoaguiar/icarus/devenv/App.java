@@ -7,10 +7,12 @@ import java.util.Optional;
 
 import co.tiagoaguiar.icarus.devenv.controller.Fx;
 import co.tiagoaguiar.icarus.devenv.controller.WelcomeController;
+import co.tiagoaguiar.icarus.devenv.service.AndroidSdkService;
 import co.tiagoaguiar.icarus.devenv.util.Dialogs;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -79,9 +81,14 @@ public class App extends Application {
 
       } else if (buttonType == buttonInstall) {
         // TODO: 17/04/19 check if Linux, Windows or Mac
+        // TODO: 17/04/19 ask for user install unzip make expect and curl in linux
+        final AndroidSdkService androidSdkService = new AndroidSdkService();
 
         Alert alertScript = new Alert(Alert.AlertType.INFORMATION);
-        Label label = new Label("The exception stacktrace was:");
+        Label label = new Label("Baixando o Android SDK: Isso pode levar muito tempo (chegando à 60min).");
+        alertScript.setTitle("Setup Android SDK");
+        alertScript.setHeaderText("Configurando o Android SDK");
+
 
         TextArea textArea = new TextArea();
         textArea.setEditable(false);
@@ -94,43 +101,30 @@ public class App extends Application {
 
         GridPane expContent = new GridPane();
         expContent.setMaxWidth(Double.MAX_VALUE);
+        expContent.setMaxHeight(Double.MAX_VALUE);
         expContent.add(label, 0, 0);
         expContent.add(textArea, 0, 1);
 
-        alertScript.getDialogPane().setExpandableContent(expContent);
+        alertScript.getDialogPane().setContent(expContent);
+        alertScript.getDialogPane().lookupButton(ButtonType.OK).setDisable(true);
+        alertScript.setOnCloseRequest(event -> {
+          androidSdkService.stop();
+        });
 
-
-        // TODO: 17/04/19 ask for user install unzip make expect and curl in linux
-        new Thread(() -> {
-          try {
-            Process process = new ProcessBuilder(
-                    "bash",
-                    "sdk-command-line.sh"
-            ).redirectErrorStream(true)
-                    .directory(new File(System.getProperty("user.home")))
-                    .start();
-            LoggerManager.loadProcess(process);
-//            LoggerManager.errorProcess();
-
-//          alertScript.setTitle("Exception Dialog");
-//          alertScript.setHeaderText("Look, an Exception Dialog");
-//          alertScript.setContentText("Could not find file blabla.txt!");
-
-
-            String output;
-            while ((output = LoggerManager.lineProcess()) != null) {
-//            LoggerManager.infoDebug(output);
-//            LoggerManager.infoTab(output);
-              final String finalOutput = output;
-              System.out.println(output);
-              Platform.runLater(() -> textArea.appendText(finalOutput + "\n"));
-            }
-
-          } catch (IOException e) {
-            LoggerManager.error(e, true);
+        androidSdkService.install(new AndroidSdkService.InstallationListener() {
+          @Override
+          public void println(String line) {
+            if (line.contains("%"))
+              textArea.setText(line + "\n");
+            else
+              textArea.appendText(line + "\n");
           }
 
-        }).start();
+          @Override
+          public void onCompleteListener() {
+            alertScript.getDialogPane().lookupButton(ButtonType.OK).setDisable(false);
+          }
+        });
 
         alertScript.showAndWait();
       }

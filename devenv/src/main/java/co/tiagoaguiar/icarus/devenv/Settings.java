@@ -40,6 +40,9 @@ public class Settings {
   public static final String THEME_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-theme.css").toExternalForm();
   public static final InputStream SRC_FLY = Settings.class.getResourceAsStream("/system.zip");
 
+  // config
+  public static final String SDK_SCRIPT_INSTALL = Settings.class.getResource("/config/sdk-script-install.sh").getPath();
+
   public static final Font FONT_FIRA_CODE_REGULAR = Font.loadFont(Settings.class.getResource(BASE_FONT_DIR + "firacode/FiraCode-Medium.otf").toExternalForm(), 16);
 
   private String androidSdkRoot;
