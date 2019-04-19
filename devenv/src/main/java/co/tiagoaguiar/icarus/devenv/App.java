@@ -1,8 +1,6 @@
 package co.tiagoaguiar.icarus.devenv;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Optional;
 
 import co.tiagoaguiar.icarus.devenv.controller.Fx;
@@ -11,8 +9,6 @@ import co.tiagoaguiar.icarus.devenv.service.AndroidSdkService;
 import co.tiagoaguiar.icarus.devenv.util.Dialogs;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -30,9 +26,9 @@ public class App extends Application {
     Settings.getInstance().loadEnvironment();
 
     if (Settings.getInstance().getAndroidSdkRoot() == null)
-      loadAndroidSdk();
-
-    loadProject(primaryStage);
+      loadAndroidSdk(primaryStage);
+    else
+      loadProject(primaryStage);
   }
 
   private void loadProject(Stage primaryStage) {
@@ -43,7 +39,7 @@ public class App extends Application {
     primaryStage.show();
   }
 
-  private void loadAndroidSdk() {
+  private void loadAndroidSdk(Stage primaryStage) {
     final ButtonType buttonExists = new ButtonType("Diretório Existente Android SDK");
     final ButtonType buttonInstall = new ButtonType("Instalar o Android SDK");
 
@@ -72,12 +68,13 @@ public class App extends Application {
           alertError.setContentText("Esta pasta não é um Android SDK válido");
 
           alertError.showAndWait();
-          loadAndroidSdk();
+          loadAndroidSdk(primaryStage);
           return;
         }
 
         Settings.getInstance().setAndroidSdkRoot(directory.getAbsolutePath());
         LoggerManager.infoDebug("Dir SDK Loaded: " + directory.getAbsolutePath());
+        loadProject(primaryStage);
 
       } else if (buttonType == buttonInstall) {
         // TODO: 17/04/19 check if Linux, Windows or Mac
@@ -88,7 +85,6 @@ public class App extends Application {
         Label label = new Label("Baixando o Android SDK: Isso pode levar muito tempo (chegando à 60min).");
         alertScript.setTitle("Setup Android SDK");
         alertScript.setHeaderText("Configurando o Android SDK");
-
 
         TextArea textArea = new TextArea();
         textArea.setEditable(false);
@@ -113,7 +109,7 @@ public class App extends Application {
 
         androidSdkService.install(new AndroidSdkService.InstallationListener() {
           @Override
-          public void println(String line) {
+          public void onPrintln(String line) {
             if (line.contains("%"))
               textArea.setText(line + "\n");
             else
@@ -121,12 +117,14 @@ public class App extends Application {
           }
 
           @Override
-          public void onCompleteListener() {
+          public void onCompleteListener(String androidSdkPath) {
             alertScript.getDialogPane().lookupButton(ButtonType.OK).setDisable(false);
+            Settings.getInstance().setAndroidSdkRoot(androidSdkPath);
           }
         });
 
         alertScript.showAndWait();
+        loadProject(primaryStage);
       }
     });
   }

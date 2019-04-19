@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
+import co.tiagoaguiar.icarus.devenv.model.OS;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.application.Platform;
 
@@ -13,12 +14,14 @@ import javafx.application.Platform;
  * @author suporte@moonjava.com.br (Tiago Aguiar).
  */
 public final class AndroidSdkService implements Runnable {
+  private static final String ANDROID_SDK_DIR = "/android-sdk-linux";
 
   private final Thread thread;
-  private InstallationListener listener;
   private Process process;
 
-  // TODO: 19/04/19 refactor this class
+  private InstallationListener listener;
+  private boolean running = true;
+
   public AndroidSdkService() {
     thread = new Thread(this, "AndroidSDK-Thread");
   }
@@ -29,41 +32,66 @@ public final class AndroidSdkService implements Runnable {
   }
 
   public synchronized void stop() {
+    running = false;
+
     if (this.process.isAlive())
       this.process.destroy();
-    try { thread.join(); } catch (InterruptedException e) {}
+    try {
+      thread.join();
+    } catch (InterruptedException ignored) {
+    }
   }
 
   @Override
   public void run() {
     try {
-        Process process = new ProcessBuilder(
-                "bash",
-                Settings.SDK_SCRIPT_INSTALL
-        ).redirectErrorStream(true)
-                .directory(new File(System.getProperty("user.home")))
-                .start();
+      OS os = Settings.getInstance().getOperationSystem();
+      String script;
+      switch (os) {
+        case MAC:
+          script = "";
+          break;
 
-        this.process = process;
-        LoggerManager.loadProcess(process);
+        case WINDOWS:
+          script = "";
+          break;
 
-        String output;
-        while ((output = LoggerManager.lineProcess()) != null) {
-          LoggerManager.infoDebug(output);
-          final String finalOutput = output;
-          Platform.runLater(() -> listener.println(finalOutput));
-        }
-
-        Platform.runLater(listener::onCompleteListener);
-
-      } catch (IOException e) {
-        LoggerManager.error(e, true);
+        default:
+          script = Settings.SDK_SCRIPT_INSTALL_LINUX;
+          break;
       }
+
+      String homeDir = System.getProperty("user.home");
+      Process process = new ProcessBuilder("bash", script)
+              .redirectErrorStream(true)
+              .directory(new File(homeDir))
+              .start();
+
+      this.process = process;
+      LoggerManager.loadProcess(process);
+
+      String output;
+      while ((output = LoggerManager.lineProcess()) != null && running) {
+        LoggerManager.infoDebug(output);
+        final String finalOutput = output;
+        Platform.runLater(() -> listener.onPrintln(finalOutput));
+      }
+
+      if (running)
+        Platform.runLater(() -> listener.onCompleteListener(homeDir + ANDROID_SDK_DIR));
+
+      running = false;
+    } catch (IOException e) {
+      LoggerManager.error(e, true);
+    }
   }
 
   public interface InstallationListener {
-    void println(String line);
-    void onCompleteListener();
+
+    void onPrintln(String line);
+
+    void onCompleteListener(String androidSdkPath);
+
   }
 
 }

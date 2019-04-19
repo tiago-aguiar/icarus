@@ -28,6 +28,7 @@ public class EmulatorService {
       Process process;
       try {
         // FIXME: 15/04/19 logging when KVM is busy (Virtual box running)
+        // FIXME: 19/04/19 saved state not turn on again
         process = new ProcessBuilder(
                 Settings.getInstance().getAndroidSdkRoot() + "/emulator/emulator",
                 "-avd",

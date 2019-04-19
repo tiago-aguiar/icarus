@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import co.tiagoaguiar.icarus.devenv.model.OS;
 import co.tiagoaguiar.icarus.devenv.ui.DisplayMonitor;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import co.tiagoaguiar.icarus.devenv.util.ZipHelper;
@@ -28,6 +29,8 @@ public class Settings {
   private static final String BASE_STYLE_DIR = "/css/";
   private static final String BASE_FONT_DIR = "/font/";
 
+  private static final String OPERATION_SYSTEM = System.getProperty("os.name").toLowerCase();
+
   public static final File ICARUS_DOT_DIR = new File(System.getProperty("user.home"), ".icarus" + ICARUS_VERSION);
   public static final File ICARUS_SYSTEM_FLY_DIR = new File(ICARUS_DOT_DIR, "system");
   public static final File ICARUS_CONFIG_DIR = new File(ICARUS_DOT_DIR, "config");
@@ -41,7 +44,7 @@ public class Settings {
   public static final InputStream SRC_FLY = Settings.class.getResourceAsStream("/system.zip");
 
   // config
-  public static final String SDK_SCRIPT_INSTALL = Settings.class.getResource("/config/sdk-script-install.sh").getPath();
+  public static final String SDK_SCRIPT_INSTALL_LINUX = Settings.class.getResource("/config/sdk-script-install.sh").getPath();
 
   public static final Font FONT_FIRA_CODE_REGULAR = Font.loadFont(Settings.class.getResource(BASE_FONT_DIR + "firacode/FiraCode-Medium.otf").toExternalForm(), 16);
 
@@ -145,6 +148,12 @@ public class Settings {
     Properties properties = loadProperties();
     properties.setProperty(Keys.PROJECT_ROOT_KEY, projectDir);
     commitProperties(properties);
+  }
+
+  public OS getOperationSystem() {
+    return OPERATION_SYSTEM.contains("win") ? OS.WINDOWS
+            : OPERATION_SYSTEM.contains("mac") ? OS.MAC
+            : OS.LINUX;
   }
 
   private static class Keys {
