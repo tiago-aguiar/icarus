@@ -46,23 +46,23 @@ public final class AndroidSdkService implements Runnable {
   public void run() {
     try {
       OS os = Settings.getInstance().getOperationSystem();
-      String script;
+      File script;
       switch (os) {
         case MAC:
-          script = "";
+          script = null;
           break;
 
         case WINDOWS:
-          script = "";
+          script = null;
           break;
 
         default:
-          script = Settings.SDK_SCRIPT_INSTALL_LINUX;
+          script = Settings.ICARUS_SDK_SCRIPT_INSTALL;
           break;
       }
 
       String homeDir = System.getProperty("user.home");
-      Process process = new ProcessBuilder("bash", script)
+      Process process = new ProcessBuilder("bash", script.getAbsolutePath())
               .redirectErrorStream(true)
               .directory(new File(homeDir))
               .start();

@@ -35,16 +35,16 @@ public class Settings {
   public static final File ICARUS_SYSTEM_FLY_DIR = new File(ICARUS_DOT_DIR, "system");
   public static final File ICARUS_CONFIG_DIR = new File(ICARUS_DOT_DIR, "config");
   public static final File ICARUS_SYSTEM_FLY_ZIP = new File(ICARUS_DOT_DIR, "system.zip");
-
+  public static final File ICARUS_SDK_SCRIPT_INSTALL = new File(ICARUS_DOT_DIR, "sdk-script-install.sh");
   public static final File ICARUS_CONFIG_SETTINGS = new File(ICARUS_CONFIG_DIR, "settings.properties");
 
   public static final String JAVA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-java-keywords.css").toExternalForm();
   public static final String CODE_AREA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-code-area.css").toExternalForm();
   public static final String THEME_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-theme.css").toExternalForm();
   public static final InputStream SRC_FLY = Settings.class.getResourceAsStream("/system.zip");
+  public static final InputStream SRC_SDK_SCRIPT_INSTALL_LINUX = Settings.class.getResourceAsStream("/config/sdk-script-install.sh");
 
   // config
-  public static final String SDK_SCRIPT_INSTALL_LINUX = Settings.class.getResource("/config/sdk-script-install.sh").getPath();
 
   public static final Font FONT_FIRA_CODE_REGULAR = Font.loadFont(Settings.class.getResource(BASE_FONT_DIR + "firacode/FiraCode-Medium.otf").toExternalForm(), 16);
 
@@ -78,6 +78,10 @@ public class Settings {
         if (ICARUS_SYSTEM_FLY_ZIP.delete())
           LoggerManager.infoDebug("system fly configured!");
       }
+
+      // TODO: 19/04/19 copy by operation system
+      if (!ICARUS_SDK_SCRIPT_INSTALL.exists())
+        FileHelper.copyFolder(Settings.SRC_SDK_SCRIPT_INSTALL_LINUX, Settings.ICARUS_SDK_SCRIPT_INSTALL);
 
       // setup config
       if (!ICARUS_CONFIG_DIR.exists()) {

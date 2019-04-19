@@ -10,7 +10,7 @@ import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
  * Abril, 07 2019
  *
  * @author suporte@moonjava.com.br (Tiago Aguiar).
- *
+ * <p>
  * emulator -list-avds
  * emulator -avd avd_name
  */
@@ -34,7 +34,8 @@ public class EmulatorService {
                 "-avd",
                 // TODO: 07/04/19 add emulator parameter to choose
                 "icarus_emulator"
-        ).start();
+        ).redirectErrorStream(true)
+                .start();
 
         LoggerManager.loadProcess(process);
         String output;
