@@ -6,6 +6,47 @@
  * User Manual available at https://docs.gradle.org/5.3/userguide/tutorial_java_projects.html
  */
 
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+    }
+}
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply plugin: 'javafx-gradle-plugin'
+
+
+jfx {
+    verbose = true
+    mainClass = 'co.tiagoaguiar.icarus.devenv.App'
+    jfxMainAppJarName = 'icarus-ide.jar'
+
+    vendor = 'tiagoaguiar.co'
+    appName = 'icarus-ide'
+
+    additionalAppResources = 'src/main/additionalFiles'
+    bundleArguments = [
+            licenseType: 'ASL 2.0',
+            licenseFile: 'LICENSE'
+    ]
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:27.0.1-jre'
+    compile group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.9.3'
+}
+
+/*
 plugins {
     // Apply the java plugin to add support for Java
     id 'java'
@@ -24,10 +65,11 @@ dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     implementation 'com.google.guava:guava:27.0.1-jre'
     compile group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.9.3'
-    
+
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }
 
 // Define the main class for the application
 mainClassName = 'co.tiagoaguiar.icarus.devenv.App'
+*/

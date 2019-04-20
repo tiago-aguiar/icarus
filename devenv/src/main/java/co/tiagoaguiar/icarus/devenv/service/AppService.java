@@ -63,6 +63,7 @@ public class AppService {
     LoggerManager.infoProcess("Changes applied...");
   }
 
+  // FIXME: 20/04/19 when running on prod, the app is not installed
   private void installApp() throws IOException {
     Process process = new ProcessBuilder(ADB,
             "install",
