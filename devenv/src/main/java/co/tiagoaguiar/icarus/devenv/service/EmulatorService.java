@@ -40,7 +40,7 @@ public class EmulatorService {
         LoggerManager.loadProcess(process);
         String output;
         while ((output = LoggerManager.lineProcess()) != null) {
-          LoggerManager.infoDebug(output);
+          LoggerManager.info(output);
           LoggerManager.infoTab(output);
           if (output.contains("completed")) {
             this.bootCompleted = true;

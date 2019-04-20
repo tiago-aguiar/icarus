@@ -12,7 +12,6 @@ public class TabLogger {
 
   private TextArea consoleArea;
   private TextArea problemArea;
-  private static TabLogger LOGGER;
 
   public void setConsoleArea(TextArea consoleArea) {
     this.consoleArea = consoleArea;

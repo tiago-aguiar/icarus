@@ -55,7 +55,7 @@ public class WizardController extends FxController implements Initializable {
         this.scene.getWindow().hide();
 
       } catch (IOException e) {
-        LoggerManager.error(e, true);
+        LoggerManager.errorDialog(e);
       }
     });
   }

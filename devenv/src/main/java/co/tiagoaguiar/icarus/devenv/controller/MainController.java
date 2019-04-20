@@ -80,6 +80,7 @@ public class MainController extends FxController implements Initializable {
     buttonStart.setOnAction(event -> {
       if (!emulatorService.isBootCompleted()) {
         emulatorService.start(bootCompleted -> {
+          LoggerManager.info("bootCompleted: " + bootCompleted);
           if (bootCompleted) {
             appService.run();
           }

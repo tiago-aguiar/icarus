@@ -73,7 +73,7 @@ public class App extends Application {
         }
 
         Settings.getInstance().setAndroidSdkRoot(directory.getAbsolutePath());
-        LoggerManager.infoDebug("Dir SDK Loaded: " + directory.getAbsolutePath());
+        LoggerManager.info("Dir SDK Loaded: " + directory.getAbsolutePath());
         loadProject(primaryStage);
 
       } else if (buttonType == buttonInstall) {

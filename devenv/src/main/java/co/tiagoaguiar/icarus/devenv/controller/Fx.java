@@ -33,7 +33,7 @@ public class Fx<T extends FxController> {
       scene = new Scene(root);
       getController().onSceneCreate(scene);
     } catch (IOException e) {
-      LoggerManager.error(e, true);
+      LoggerManager.errorDialog(e);
     }
   }
 

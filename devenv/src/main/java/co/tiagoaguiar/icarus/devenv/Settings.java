@@ -33,20 +33,27 @@ public class Settings {
 
   public static final File ICARUS_DOT_DIR = new File(System.getProperty("user.home"), ".icarus" + ICARUS_VERSION);
   public static final File ICARUS_SYSTEM_FLY_DIR = new File(ICARUS_DOT_DIR, "system");
+  public static final File ICARUS_LOG_DIR = new File(ICARUS_DOT_DIR, "log");
+  public static final File ICARUS_LOG_FILE = new File(ICARUS_LOG_DIR, "application.log");
   public static final File ICARUS_CONFIG_DIR = new File(ICARUS_DOT_DIR, "config");
   public static final File ICARUS_SYSTEM_FLY_ZIP = new File(ICARUS_DOT_DIR, "system.zip");
+  public static final File ICARUS_SYSTEM_APK_DEBUG = new File(ICARUS_DOT_DIR, "app-debug.apk");
   public static final File ICARUS_SDK_SCRIPT_INSTALL = new File(ICARUS_DOT_DIR, "sdk-script-install.sh");
   public static final File ICARUS_CONFIG_SETTINGS = new File(ICARUS_CONFIG_DIR, "settings.properties");
 
   public static final String JAVA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-java-keywords.css").toExternalForm();
   public static final String CODE_AREA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-code-area.css").toExternalForm();
   public static final String THEME_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-theme.css").toExternalForm();
+
   public static final InputStream SRC_FLY = Settings.class.getResourceAsStream("/system.zip");
   public static final InputStream SRC_SDK_SCRIPT_INSTALL_LINUX = Settings.class.getResourceAsStream("/config/sdk-script-install.sh");
+  public static final InputStream SRC_LOGGING = Settings.class.getResourceAsStream("/config/logging.properties");
+  public static final InputStream SRC_APK_DEBUG = Settings.class.getResourceAsStream("/config/app-debug.apk");
 
   // config
 
-  public static final Font FONT_FIRA_CODE_REGULAR = Font.loadFont(Settings.class.getResource(BASE_FONT_DIR + "firacode/FiraCode-Medium.otf").toExternalForm(), 16);
+  public static final Font FONT_FIRA_CODE_REGULAR =
+          Font.loadFont(Settings.class.getResource(BASE_FONT_DIR + "firacode/FiraCode-Medium.otf").toExternalForm(), 16);
 
   private String androidSdkRoot;
   private String projectDir = "/home/tiago/icarus/HelloWorld"; // FIXME: 16/04/19 remove this
@@ -67,16 +74,24 @@ public class Settings {
       // (hack) configure anti-aliased for fonts
       System.setProperty("prism.lcdtext", "false");
 
-      // setup fly system
+      // main dot folder
       if (!ICARUS_DOT_DIR.exists())
         if (!ICARUS_DOT_DIR.mkdir())
           LoggerManager.error(new RuntimeException("Failed to create dir: " + ICARUS_DOT_DIR));
 
+      // setup log
+      if (!ICARUS_LOG_DIR.exists())
+        if (!ICARUS_LOG_DIR.mkdir())
+          System.out.println("Failed to crete a log folder");
+        else if (!ICARUS_LOG_FILE.createNewFile())
+          System.out.println("Failed to crete a log file");
+
+      // setup fly system
       if (!ICARUS_SYSTEM_FLY_DIR.exists()) {
         FileHelper.copyFolder(Settings.SRC_FLY, Settings.ICARUS_SYSTEM_FLY_ZIP);
         ZipHelper.extract(ICARUS_SYSTEM_FLY_ZIP, ICARUS_DOT_DIR);
         if (ICARUS_SYSTEM_FLY_ZIP.delete())
-          LoggerManager.infoDebug("system fly configured!");
+          LoggerManager.info("fly configured!");
       }
 
       // TODO: 19/04/19 copy by operation system
@@ -87,13 +102,13 @@ public class Settings {
       if (!ICARUS_CONFIG_DIR.exists()) {
         if (!ICARUS_CONFIG_DIR.mkdir())
           LoggerManager.error(new RuntimeException("Failed to create dir: " + ICARUS_CONFIG_DIR));
-        else
-          ICARUS_CONFIG_SETTINGS.createNewFile();
+        else if (!ICARUS_CONFIG_SETTINGS.createNewFile())
+          LoggerManager.error(new RuntimeException("Failed to create file: " + ICARUS_CONFIG_SETTINGS));
       }
 
-      LoggerManager.infoDebug("system is ready!");
+      LoggerManager.info("icarus is ready!");
     } catch (IOException e) {
-      LoggerManager.error(e, true);
+      LoggerManager.errorDialog(e);
     }
   }
 
@@ -119,7 +134,7 @@ public class Settings {
     try {
       properties.load(new FileInputStream(ICARUS_CONFIG_SETTINGS));
     } catch (IOException e) {
-      LoggerManager.error(e, true);
+      LoggerManager.errorDialog(e);
     }
     return properties;
   }
@@ -128,7 +143,7 @@ public class Settings {
     try {
       properties.store(new FileOutputStream(ICARUS_CONFIG_SETTINGS), null);
     } catch (Exception e) {
-      LoggerManager.error(e, true);
+      LoggerManager.errorDialog(e);
     }
   }
 

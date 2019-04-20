@@ -72,7 +72,7 @@ public final class AndroidSdkService implements Runnable {
 
       String output;
       while ((output = LoggerManager.lineProcess()) != null && running) {
-        LoggerManager.infoDebug(output);
+        LoggerManager.info(output);
         final String finalOutput = output;
         Platform.runLater(() -> listener.onPrintln(finalOutput));
       }
@@ -82,7 +82,7 @@ public final class AndroidSdkService implements Runnable {
 
       running = false;
     } catch (IOException e) {
-      LoggerManager.error(e, true);
+      LoggerManager.errorDialog(e);
     }
   }
 

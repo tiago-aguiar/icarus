@@ -49,7 +49,7 @@ public final class FileHelper {
     try (Stream<Path> stream = Files.walk(src.toPath())) {
       stream.forEachOrdered(sourcePath -> {
         Path destPath = dest.toPath().resolve(src.toPath().relativize(sourcePath));
-        LoggerManager.infoDebug("Copy from: " + sourcePath.toString() + " to: " + destPath);
+        LoggerManager.info("Copy from: " + sourcePath.toString() + " to: " + destPath);
         try {
           Files.copy( sourcePath, destPath, StandardCopyOption.REPLACE_EXISTING);
           if (destFilePath != null)

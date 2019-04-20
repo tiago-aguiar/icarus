@@ -4,6 +4,7 @@ package co.tiagoaguiar.icarus.devenv.service;
 import java.io.IOException;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
+import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 
 import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
@@ -15,7 +16,6 @@ import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
  */
 public class AppService {
 
-  private static final String APK_DEBUG = AppService.class.getResource("/config/app-debug.apk").getPath();
   private static final String ADB       = Settings.getInstance().getAndroidSdkRoot() + "/platform-tools/adb";  // TODO: 09/04/19 add ADB in Settings
 
   private boolean compileFly() throws IOException {
@@ -26,7 +26,8 @@ public class AppService {
             .start();
 
     LoggerManager.loadProcess(process);
-    LoggerManager.infoProcess("Preparing to flying...");
+//    LoggerManager.infoProcess("Preparing to flying...");
+    LoggerManager.infoProcess();
     LoggerManager.errorProcess();
 
     String errorProcessLog = LoggerManager.getErrorProcessLog();
@@ -42,6 +43,9 @@ public class AppService {
             "/sdcard/"
     ).directory(ICARUS_SYSTEM_FLY_DIR)
             .start();
+
+    LoggerManager.loadProcess(process);
+    LoggerManager.infoProcess();
   }
 
   private void notifyFly() throws IOException {
@@ -60,19 +64,25 @@ public class AppService {
             .start();
 
     LoggerManager.loadProcess(process);
-    LoggerManager.infoProcess("Changes applied...");
+//    LoggerManager.infoProcess("Changes applied...");
+    LoggerManager.infoProcess();
   }
 
-  // FIXME: 20/04/19 when running on prod, the app is not installed
   private void installApp() throws IOException {
+    FileHelper.copyFolder(Settings.SRC_APK_DEBUG, Settings.ICARUS_SYSTEM_APK_DEBUG);
+
+    LoggerManager.debug("Adb path: " + ADB);
     Process process = new ProcessBuilder(ADB,
             "install",
             "-r",
-            APK_DEBUG
-    ).start();
+            Settings.ICARUS_SYSTEM_APK_DEBUG.getAbsolutePath()
+    ).redirectErrorStream(true).start();
 
     LoggerManager.loadProcess(process);
     LoggerManager.infoProcess();
+
+    if (Settings.ICARUS_SYSTEM_APK_DEBUG.delete())
+      LoggerManager.info("temp apk deleted!");
   }
 
   private void launchApp() throws IOException {

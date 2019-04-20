@@ -11,31 +11,11 @@ import javafx.scene.control.TextArea;
  */
 public class LoggerManager {
 
-  static ProcessLogger processLogger = new ProcessLogger();
-  static TabLogger tabLogger = new TabLogger();
-  static DebugLogger debugLogger = new DebugLogger();
+  private static ProcessLogger processLogger = new ProcessLogger();
+  private static TabLogger tabLogger = new TabLogger();
+  private static IcarusLogger icarusLogger = new IcarusLogger();
 
   private static String errorProcessLog;
-
-  public static void error(Throwable t) {
-    error(t, false);
-  }
-
-  public static void error(Throwable t, boolean showDialog) {
-    debugLogger.error(t);
-    if (showDialog)
-      new Dialogs.Builder()
-              .title("Failed")
-              .contentText(t.toString())
-              .enableClose(true)
-              .resizableEnabled(true)
-              .build()
-              .showAndWait();
-  }
-
-  public static void loadProcess(Process process) {
-    processLogger.setProcess(process);
-  }
 
   public static void setConsoleArea(TextArea textArea) {
     tabLogger.setConsoleArea(textArea);
@@ -43,6 +23,25 @@ public class LoggerManager {
 
   public static void setProblemArea(TextArea textArea) {
     tabLogger.setProblemArea(textArea);
+  }
+
+  public static void error(Throwable t) {
+    icarusLogger.error(t);
+  }
+
+  public static void errorDialog(Throwable t) {
+    icarusLogger.error(t);
+    new Dialogs.Builder()
+            .title("Failed")
+            .contentText(t.toString())
+            .enableClose(true)
+            .resizableEnabled(true)
+            .build()
+            .showAndWait();
+  }
+
+  public static void loadProcess(Process process) {
+    processLogger.setProcess(process);
   }
 
   public static String lineProcess() {
@@ -55,7 +54,7 @@ public class LoggerManager {
 
     String val;
     while ((val = processLogger.read()) != null) {
-      debugLogger.info(val);
+      icarusLogger.info(val);
       final String finalVal = val;
       if (message == null)
         Platform.runLater(() -> tabLogger.info(finalVal));
@@ -77,15 +76,19 @@ public class LoggerManager {
   public static void errorProcess() {
     String val;
     while ((val = processLogger.readError()) != null) {
-      debugLogger.error(val);
+      icarusLogger.warning(val);
       errorProcessLog += val;
       final String finalVal = val;
       Platform.runLater(() -> tabLogger.error(finalVal));
     }
   }
 
-  public static void infoDebug(String message) {
-    debugLogger.info(message);
+  public static void info(String message) {
+    icarusLogger.info(message);
+  }
+
+  public static void debug(String message) {
+    icarusLogger.debug(message);
   }
 
   public static void infoTab(String message) {
