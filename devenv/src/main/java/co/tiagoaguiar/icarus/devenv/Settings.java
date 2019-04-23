@@ -39,7 +39,9 @@ public class Settings {
   public static final File ICARUS_SYSTEM_FLY_ZIP = new File(ICARUS_DOT_DIR, "system.zip");
   public static final File ICARUS_SYSTEM_APK_DEBUG = new File(ICARUS_DOT_DIR, "app-debug.apk");
   public static final File ICARUS_SDK_SCRIPT_INSTALL = new File(ICARUS_DOT_DIR, "sdk-script-install.sh");
+  public static final File ICARUS_SDK_SCRIPT_INSTALL_WIN = new File(ICARUS_DOT_DIR, "sdk-command-line-win.bat");
   public static final File ICARUS_CONFIG_SETTINGS = new File(ICARUS_CONFIG_DIR, "settings.properties");
+  public static final File ICARUS_CONFIG_BATCH_TEMP = new File(System.getProperty("user.home"), ".batch.temp");
 
   public static final String JAVA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-java-keywords.css").toExternalForm();
   public static final String CODE_AREA_CSS = Settings.class.getResource(BASE_STYLE_DIR + "icarus-code-area.css").toExternalForm();
@@ -47,6 +49,7 @@ public class Settings {
 
   public static final InputStream SRC_FLY = Settings.class.getResourceAsStream("/system.zip");
   public static final InputStream SRC_SDK_SCRIPT_INSTALL_LINUX = Settings.class.getResourceAsStream("/config/sdk-script-install.sh");
+  public static final InputStream SRC_SDK_SCRIPT_INSTALL_WIN = Settings.class.getResourceAsStream("/config/sdk-command-line-win.bat");
   public static final InputStream SRC_LOGGING = Settings.class.getResourceAsStream("/config/logging.properties");
   public static final InputStream SRC_APK_DEBUG = Settings.class.getResourceAsStream("/config/app-debug.apk");
 
@@ -97,6 +100,8 @@ public class Settings {
       // TODO: 19/04/19 copy by operation system
       if (!ICARUS_SDK_SCRIPT_INSTALL.exists())
         FileHelper.copyFolder(Settings.SRC_SDK_SCRIPT_INSTALL_LINUX, Settings.ICARUS_SDK_SCRIPT_INSTALL);
+      if (!ICARUS_SDK_SCRIPT_INSTALL_WIN.exists())
+        FileHelper.copyFolder(Settings.SRC_SDK_SCRIPT_INSTALL_WIN, Settings.ICARUS_SDK_SCRIPT_INSTALL_WIN);
 
       // setup config
       if (!ICARUS_CONFIG_DIR.exists()) {
@@ -113,6 +118,17 @@ public class Settings {
   }
 
   void loadEnvironment() {
+    if (getOperationSystem() == OS.WINDOWS) {
+      LoggerManager.info("Windows environment load");
+      if (ICARUS_CONFIG_BATCH_TEMP.exists()) {
+        if (ICARUS_CONFIG_BATCH_TEMP.delete()) {
+          LoggerManager.info("temp batch file deleted");
+          setAndroidSdkRoot(new File(System.getProperty("user.home"), "android-sdk").getAbsolutePath());
+        }
+      }
+    } else {
+      LoggerManager.info("Linux environment load");
+    }
     androidSdkRoot = loadProperties().getProperty(Keys.ANDROID_ROOT_SDK_KEY);
   }
 

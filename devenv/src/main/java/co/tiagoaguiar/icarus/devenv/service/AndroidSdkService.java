@@ -2,11 +2,13 @@ package co.tiagoaguiar.icarus.devenv.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.model.OS;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.application.Platform;
+import sun.rmi.runtime.Log;
 
 /**
  * Abril, 19 2019
@@ -47,27 +49,39 @@ public final class AndroidSdkService implements Runnable {
     try {
       OS os = Settings.getInstance().getOperationSystem();
       File script;
+      String shell;
       switch (os) {
         case MAC:
+          shell = "";
           script = null;
           break;
 
         case WINDOWS:
-          script = null;
+          shell = "cmd.exe";
+          script = Settings.ICARUS_SDK_SCRIPT_INSTALL_WIN;
           break;
 
         default:
+          shell = "bash";
           script = Settings.ICARUS_SDK_SCRIPT_INSTALL;
           break;
       }
 
       String homeDir = System.getProperty("user.home");
-      Process process = new ProcessBuilder("bash", script.getAbsolutePath())
+
+      Process process = new ProcessBuilder("cmd", "/C", "start", script.getAbsolutePath())
               .redirectErrorStream(true)
               .directory(new File(homeDir))
               .start();
 
+      System.exit(0);
+
       this.process = process;
+      try {
+        process.waitFor();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
       LoggerManager.loadProcess(process);
 
       String output;

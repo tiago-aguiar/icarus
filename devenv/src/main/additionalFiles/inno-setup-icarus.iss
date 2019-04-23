@@ -34,6 +34,6 @@ Source: "C:\Users\tiago\Desktop\devenv\build\jfx\native\icarus-ide\*"; DestDir: 
 Name: "{commonprograms}\Icarus IDE"; Filename: "{app}\icarus-ide.exe"
 Name: "{commondesktop}\Icarus IDE"; Filename: "{app}\icarus-ide.exe"; Tasks: desktopicon
 
-[Run]
-Filename: "{app}\icarus-ide.exe"; Description: "{cm:LaunchProgram,Icarus IDE}"; Flags: nowait postinstall skipifsilent
+; [Run]
+; Filename: "{app}\icarus-ide.exe"; Description: "{cm:LaunchProgram,Icarus IDE}"; Flags: nowait postinstall skipifsilent
 
