@@ -130,7 +130,17 @@ public class App extends Application {
   }
 
   public static void main(String[] args) {
-    launch(args);
+    try {
+      launch(args);
+    } catch (Throwable t) {
+      t.printStackTrace();
+      try {
+        LoggerManager.errorDialog(t);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      LoggerManager.error(t);
+    }
   }
 
 }

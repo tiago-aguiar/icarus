@@ -14,6 +14,9 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import co.tiagoaguiar.icarus.devenv.Settings;
+import co.tiagoaguiar.icarus.devenv.model.OS;
+
 /**
  * Abril, 11 2019
  *
@@ -31,6 +34,9 @@ public class ZipHelper {
     while ((count = in.read(buffer)) != -1)
       out.write(buffer, 0, count);
     out.close();
+
+    if (Settings.getInstance().getOperationSystem() == OS.WINDOWS)
+      return;
 
     Set<PosixFilePermission> perms = new HashSet<>();
     perms.add(PosixFilePermission.OWNER_READ);
