@@ -2,17 +2,11 @@ package co.tiagoaguiar.icarus.devenv.service;
 
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
-import sun.rmi.runtime.Log;
 
 import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_DOT_DIR;
 import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
@@ -51,6 +45,7 @@ public class AppService {
             .start();
 
     LoggerManager.loadProcess(process);
+//    LoggerManager.infoProcess("Deploy...");
     LoggerManager.infoProcess();
   }
 
@@ -65,13 +60,14 @@ public class AppService {
             "file",
             "\"dm.dex\"",
             "-n",
-            "co.tiagoaguiar.icarus/.io.Settings.getInstance().adb()BroadcastReceiver"
+            "co.tiagoaguiar.icarus/.io.AdbBroadcastReceiver"
     ).directory(ICARUS_SYSTEM_FLY_DIR)
             .start();
 
     LoggerManager.loadProcess(process);
 //    LoggerManager.infoProcess("Changes applied...");
     LoggerManager.infoProcess();
+//    LoggerManager.errorProcess();
   }
 
   private boolean installed() throws IOException {
@@ -91,6 +87,24 @@ public class AppService {
     while ((output = LoggerManager.lineProcess()) != null) {
       LoggerManager.infoProcess(output);
       if (output.contains("package"))
+        return true;
+    }
+    return false;
+  }
+
+  private boolean isRunning() throws IOException {
+    LoggerManager.debug("Adb path: " + Settings.getInstance().adb());
+    Process process = new ProcessBuilder(Settings.getInstance().adb(),
+            "shell",
+            "pidof",
+            "co.tiagoaguiar.icarus"
+    ).redirectErrorStream(true).start();
+
+    LoggerManager.loadProcess(process);
+    String output;
+    while ((output = LoggerManager.lineProcess()) != null) {
+      LoggerManager.infoProcess(output);
+      if (output.length() > 0)
         return true;
     }
     return false;
@@ -148,11 +162,15 @@ public class AppService {
       try {
 
         LoggerManager.clear();
-        if (compileFly()) {
-          deployFly();
-          notifyFly();
+        if (isRunning()) {
+          if (compileFly()) {
+            deployFly();
+            notifyFly();
+          } else {
+            errorListener.onError("error to compile");
+          }
         } else {
-          errorListener.onError();
+          errorListener.onError("the app is not running");
         }
 
       } catch (IOException e) {
@@ -162,7 +180,7 @@ public class AppService {
   }
 
   public interface OnErrorListener {
-    void onError();
+    void onError(String message);
   }
 
 }

@@ -39,6 +39,7 @@ public class DeployService {
 
         // add other objects
         FileHelper.copyFolder(new File(Settings.getInstance().getProjectDir()), icarusSrcDir, destPath -> {
+          LoggerManager.info(destPath.toString() + " :: " + main.get().toString());
           if (destPath != null && destPath != main.get()) {
             List<String> lines;
 

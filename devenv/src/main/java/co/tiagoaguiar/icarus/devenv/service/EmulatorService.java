@@ -1,6 +1,8 @@
 package co.tiagoaguiar.icarus.devenv.service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
@@ -58,9 +60,9 @@ public class EmulatorService {
                   .redirectErrorStream(true)
                   .start();
 
-          LoggerManager.loadProcess(process);
+          BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
           String output;
-          while ((output = LoggerManager.lineProcess()) != null) {
+          while ((output = bufferedReader.readLine()) != null) {
             if (output.contains("no devices") && status != EmulatorStatus.NO_DEVICE) {
               setEmulatorStatus(EmulatorStatus.NO_DEVICE);
               LoggerManager.infoTab("Dispositivo Desligado.");

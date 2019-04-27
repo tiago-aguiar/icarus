@@ -13,6 +13,7 @@ import co.tiagoaguiar.icarus.devenv.ui.CodeEditor;
 import co.tiagoaguiar.icarus.devenv.ui.TreeStringExplorer;
 import co.tiagoaguiar.icarus.devenv.util.ShortCut;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -97,11 +98,10 @@ public class MainController extends FxController implements Initializable {
     });
 
     buttonApply.setOnAction(event -> {
-      // TODO: 27/04/19  
-      if (emulatorService.getEmulatorStatus() == EmulatorService.EmulatorStatus.NO_DEVICE) {
+      if (emulatorService.getEmulatorStatus() == EmulatorService.EmulatorStatus.DEVICE_ONLINE) {
         deployService.deploySourceCode();
-        appService.applyChanges(() -> {
-          tabPaneConsole.getSelectionModel().select(1);
+        appService.applyChanges((message) -> {
+          Platform.runLater(() -> LoggerManager.infoTab(message));
         });
       } else {
         LoggerManager.infoTab("Emulador deve ser inicializado! Clique no botão \"Turn On\"");

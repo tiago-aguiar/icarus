@@ -48,11 +48,7 @@ final class IcarusLogger {
   }
 
   void error(Throwable t) {
-    t.printStackTrace();
-    StringWriter sw = new StringWriter();
-    t.printStackTrace(new PrintWriter(sw));
-
-    logger.log(Level.SEVERE, t.toString());
+    logger.log(Level.SEVERE, t.getMessage(), t);
   }
 
 }
