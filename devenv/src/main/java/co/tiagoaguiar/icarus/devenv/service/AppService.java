@@ -2,7 +2,12 @@ package co.tiagoaguiar.icarus.devenv.service;
 
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
@@ -92,20 +97,20 @@ public class AppService {
   }
 
   private void installApp() throws IOException {
-    File apk = new File(ICARUS_DOT_DIR, System.currentTimeMillis() + "app-debug.apk");
-    FileHelper.copyFolder(Settings.SRC_APK_DEBUG, apk);
+    File apkDest = new File(ICARUS_DOT_DIR, System.currentTimeMillis() + "app-debug.apk");
+    FileHelper.copyFolder(Settings.class.getResourceAsStream(Settings.SRC_APK_DEBUG), apkDest);
 
     LoggerManager.debug("Adb path: " + Settings.getInstance().adb());
     Process process = new ProcessBuilder(Settings.getInstance().adb(),
             "install",
             "-r",
-            apk.getAbsolutePath()
+            apkDest.getAbsolutePath()
     ).redirectErrorStream(true).start();
 
     LoggerManager.loadProcess(process);
     LoggerManager.infoProcess();
 
-    if (apk.delete())
+    if (apkDest.delete())
       LoggerManager.info("apk deleted");
   }
 

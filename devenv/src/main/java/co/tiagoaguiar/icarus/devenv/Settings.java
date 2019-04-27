@@ -30,6 +30,7 @@ public class Settings {
   private static final String BASE_FONT_DIR = "/font/";
 
   private static final String OPERATION_SYSTEM = System.getProperty("os.name").toLowerCase();
+  public static final String SRC_APK_DEBUG = "/config/app-debug.apk";
 
   public static final File ICARUS_DOT_DIR = new File(System.getProperty("user.home"), ".icarus" + ICARUS_VERSION);
   public static final File ICARUS_SYSTEM_FLY_DIR = new File(ICARUS_DOT_DIR, "system");
@@ -50,7 +51,6 @@ public class Settings {
   public static final InputStream SRC_SDK_SCRIPT_INSTALL_LINUX = Settings.class.getResourceAsStream("/config/sdk-script-install.sh");
   public static final InputStream SRC_SDK_SCRIPT_INSTALL_WIN = Settings.class.getResourceAsStream("/config/sdk-command-line-win.bat");
   public static final InputStream SRC_LOGGING = Settings.class.getResourceAsStream("/config/logging.properties");
-  public static final InputStream SRC_APK_DEBUG = Settings.class.getResourceAsStream("/config/app-debug.apk");
 
 
   // config

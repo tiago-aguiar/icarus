@@ -7,11 +7,9 @@
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/EmulatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/EmulatorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/IcarusLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/IcarusLogger.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,8 +101,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
-                  <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+                <state relative-caret-position="378">
+                  <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -128,16 +126,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Sett</find>
-      <find>tab</find>
-      <find>inde</find>
-      <find>.Main</find>
       <find>size</find>
       <find>setSt</find>
       <find>.apk</find>
       <find>getPro</find>
       <find>EntryPoint</find>
-      <find>SRC_FLY</find>
       <find>copyFolder</find>
       <find>copy(</find>
       <find>Dialog</find>
@@ -158,6 +151,11 @@
       <find>ADB</find>
       <find>button</find>
       <find>ICARUS_SYSTEM_APK_DEBUG</find>
+      <find>throwable</find>
+      <find>SRC_FLY</find>
+      <find>SRC_SDK_SCRIPT_INSTALL_LINUX</find>
+      <find>SRC_SDK_SCRIPT_INSTALL_WIN</find>
+      <find>SRC_LOGGING</find>
     </findStrings>
     <replaceStrings>
       <replace>Settings.getInstance().adb()</replace>
@@ -219,13 +217,13 @@
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AndroidSdkService.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/WizardController.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/DebugLogger.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/logging.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/IcarusLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/LoggerManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/EmulatorService.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/main.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/logging.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/IcarusLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java" />
         <option value="$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java" />
       </list>
@@ -236,7 +234,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="y" value="1020" />
+    <option name="y" value="-30" />
     <option name="width" value="1920" />
     <option name="height" value="1110" />
   </component>
@@ -505,7 +503,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="1020" width="1920" height="1110" extended-state="6" />
+    <frame x="0" y="-30" width="1920" height="1110" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" x="671" y="1086" width="464" height="1044" id="Project" order="0" sideWeight="0.6703755" weight="0.19010417" />
@@ -517,8 +515,8 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32380953" />
-      <window_info active="true" anchor="bottom" x="503" y="1416" width="341" height="109" id="Run" order="2" visible="true" weight="0.3276515" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3806818" />
+      <window_info anchor="bottom" x="503" y="1416" width="341" height="109" id="Run" order="2" weight="0.3276515" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3806818" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295238" />
@@ -529,7 +527,7 @@
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.32386363" />
-      <window_info anchor="bottom" id="Terminal" order="14" weight="0.5657143" />
+      <window_info anchor="bottom" id="Terminal" order="14" weight="0.26136363" />
       <window_info anchor="bottom" id="Build" order="15" weight="0.3194925" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -603,25 +601,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java</url>
-          <line>128</line>
+          <line>121</line>
           <properties />
-          <option name="timeStamp" value="43" />
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java</url>
-          <line>95</line>
+          <line>145</line>
           <properties />
-          <option name="timeStamp" value="44" />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java</url>
+          <line>99</line>
+          <properties />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="rootTreeView.getRoot()" language="JAVA" />
-        <watch expression="finalOutput.contains(&quot;%&quot;)" language="JAVA" />
-        <watch expression="node.setDisable(true);" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -682,18 +679,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/css/icarus-java-keywords.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/libraries/Gradle__org_fxmisc_richtext_richtextfx_0_9_3.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/libraries/Gradle__org_jfxtras_jmetro_5_3.xml" />
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jfxtras/jmetro/5.3/532637df227fb06375dfa59c1b4e8be356126b0a/jmetro-5.3.jar!/jfxtras/styles/jmetro8/JMetro.class">
       <provider selected="true" editor-type-id="text-editor" />
@@ -953,20 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/util/logging/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="129" column="52" selection-start-line="129" selection-start-column="52" selection-end-line="129" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/util/logging/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="1478" lean-forward="true" selection-start-line="1478" selection-end-line="1478" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/util/logging/LogManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
@@ -978,30 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/logging.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/IcarusLogger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/LoggerManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="785">
-          <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1040,17 +987,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="1995" column="23" selection-start-line="1995" selection-start-column="23" selection-end-line="1995" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/nio/file/Files.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="2947" column="11" selection-start-line="2947" selection-start-column="11" selection-end-line="2947" selection-end-column="11" />
+        <state relative-caret-position="1269">
+          <caret line="845" column="23" selection-start-line="845" selection-start-column="23" selection-end-line="845" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/util/logging/LogRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="454" column="16" selection-start-line="454" selection-start-column="16" selection-end-line="454" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/util/logging/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/java/jdk1.8.0_201/src.zip!/java/util/logging/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="869" column="54" selection-start-line="869" selection-start-column="45" selection-end-line="869" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/LoggerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/logging.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/logging/IcarusLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/util/FileHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="85" column="58" selection-start-line="85" selection-start-column="58" selection-end-line="85" selection-end-column="58" />
+        <state relative-caret-position="351">
+          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1059,8 +1058,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="110">
+          <caret line="32" column="68" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1069,8 +1068,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/co/tiagoaguiar/icarus/devenv/service/AppService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+        <state relative-caret-position="378">
+          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

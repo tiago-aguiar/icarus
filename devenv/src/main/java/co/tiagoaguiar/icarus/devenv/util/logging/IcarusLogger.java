@@ -1,6 +1,8 @@
 package co.tiagoaguiar.icarus.devenv.util.logging;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -46,7 +48,11 @@ final class IcarusLogger {
   }
 
   void error(Throwable t) {
-    logger.log(Level.SEVERE, t.getMessage(), t);
+    t.printStackTrace();
+    StringWriter sw = new StringWriter();
+    t.printStackTrace(new PrintWriter(sw));
+
+    logger.log(Level.SEVERE, t.toString());
   }
 
 }

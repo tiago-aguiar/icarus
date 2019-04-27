@@ -42,10 +42,6 @@ public final class FileHelper {
     Files.copy(src, dest.toPath());
   }
 
-  public static void copyFolder(File src, File dest) throws IOException {
-    copyFolder(src, dest, null);
-  }
-
   public static void copyFolder(File src, File dest, Consumer<Path> destFilePath) throws IOException {
     try (Stream<Path> stream = Files.walk(src.toPath())) {
       stream.forEachOrdered(sourcePath -> {
