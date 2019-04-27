@@ -32,8 +32,8 @@ public class MainController extends FxController implements Initializable {
   @FXML private MenuItem menuItemSaveFile;
   @FXML private MenuItem menuItemLoadTree;
   @FXML private TreeView<String> treeFileExplorer;
-  @FXML private Button buttonPlay;
-  @FXML private Button buttonStart;
+  @FXML private Button buttonApply;
+  @FXML private Button buttonTurnStart;
 
   private TreeStringExplorer treeExplorer;
   private CodeEditor codeEditor;
@@ -63,6 +63,17 @@ public class MainController extends FxController implements Initializable {
     LoggerManager.setConsoleArea(textAreaConsole);
     LoggerManager.setProblemArea(textAreaProblem);
 
+    emulatorService.setEmulatorStatusListener(statusChanged -> {
+      LoggerManager.info("emulatorStatus is: " + statusChanged);
+      buttonApply.setDisable(statusChanged != EmulatorService.EmulatorStatus.DEVICE_ONLINE);
+      buttonTurnStart.setText(statusChanged == EmulatorService.EmulatorStatus.NO_DEVICE ? "TURN ON" : "PLAY");
+      buttonTurnStart.setDisable(statusChanged == EmulatorService.EmulatorStatus.DEVICE_OFFLINE);
+
+//      if (statusChanged == EmulatorService.EmulatorStatus.DEVICE_ONLINE) {
+//        appService.run();
+//      }
+    });
+
     menuItemNewFile.setOnAction(event -> {
       treeExplorer.createFile(FileExtension.JAVA, (fileCreated) -> {
         codeEditor.open(fileCreated, FileExtension.JAVA);
@@ -77,21 +88,17 @@ public class MainController extends FxController implements Initializable {
       }
     });
 
-    buttonStart.setOnAction(event -> {
-      if (!emulatorService.isBootCompleted()) {
-        emulatorService.start(bootCompleted -> {
-          LoggerManager.info("bootCompleted: " + bootCompleted);
-          if (bootCompleted) {
-            appService.run();
-          }
-        });
+    buttonTurnStart.setOnAction(event -> {
+      if (emulatorService.getEmulatorStatus() != EmulatorService.EmulatorStatus.DEVICE_ONLINE) {
+        emulatorService.start();
       } else {
         appService.run();
       }
     });
 
-    buttonPlay.setOnAction(event -> {
-      if (emulatorService.isBootCompleted()) {
+    buttonApply.setOnAction(event -> {
+      // TODO: 27/04/19  
+      if (emulatorService.getEmulatorStatus() == EmulatorService.EmulatorStatus.NO_DEVICE) {
         deployService.deploySourceCode();
         appService.applyChanges(() -> {
           tabPaneConsole.getSelectionModel().select(1);
@@ -100,6 +107,8 @@ public class MainController extends FxController implements Initializable {
         LoggerManager.infoTab("Emulador deve ser inicializado! Clique no botão \"Turn On\"");
       }
     });
+
+    buttonApply.setDisable(emulatorService.getEmulatorStatus() != EmulatorService.EmulatorStatus.DEVICE_ONLINE);
   }
 
   private void setupUI() {

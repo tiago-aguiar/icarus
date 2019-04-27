@@ -68,24 +68,24 @@
                                                     <children>
                                                         <HBox styleClass="hbox">
                                                             <children>
-                                                                <Button fx:id="buttonStart"
+                                                                <Button fx:id="buttonTurnStart"
                                                                     alignment="TOP_RIGHT"
                                                                     contentDisplay="RIGHT"
                                                                     defaultButton="true"
                                                                     mnemonicParsing="false"
                                                                     styleClass="btn-normal"
-                                                                    text="Turn On">
+                                                                    text="TURN ON">
                                                                     <HBox.margin>
                                                                         <Insets right="8.0" />
                                                                     </HBox.margin>
                                                                 </Button>
-                                                                <Button fx:id="buttonPlay"
+                                                                <Button fx:id="buttonApply"
                                                                     alignment="TOP_RIGHT"
                                                                     contentDisplay="RIGHT"
                                                                     defaultButton="true"
                                                                     mnemonicParsing="false"
                                                                     styleClass="btn-success"
-                                                                    text="Play" />
+                                                                    text="APPLY" />
                                                             </children>
                                                         </HBox>
                                                         <TabPane fx:id="tabPaneFile"

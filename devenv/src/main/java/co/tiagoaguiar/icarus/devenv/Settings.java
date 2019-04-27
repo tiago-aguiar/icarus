@@ -37,7 +37,6 @@ public class Settings {
   public static final File ICARUS_LOG_FILE = new File(ICARUS_LOG_DIR, "application.log");
   public static final File ICARUS_CONFIG_DIR = new File(ICARUS_DOT_DIR, "config");
   public static final File ICARUS_SYSTEM_FLY_ZIP = new File(ICARUS_DOT_DIR, "system.zip");
-  public static final File ICARUS_SYSTEM_APK_DEBUG = new File(ICARUS_DOT_DIR, "app-debug.apk");
   public static final File ICARUS_SDK_SCRIPT_INSTALL = new File(ICARUS_DOT_DIR, "sdk-script-install.sh");
   public static final File ICARUS_SDK_SCRIPT_INSTALL_WIN = new File(ICARUS_DOT_DIR, "sdk-command-line-win.bat");
   public static final File ICARUS_CONFIG_SETTINGS = new File(ICARUS_CONFIG_DIR, "settings.properties");
@@ -52,6 +51,7 @@ public class Settings {
   public static final InputStream SRC_SDK_SCRIPT_INSTALL_WIN = Settings.class.getResourceAsStream("/config/sdk-command-line-win.bat");
   public static final InputStream SRC_LOGGING = Settings.class.getResourceAsStream("/config/logging.properties");
   public static final InputStream SRC_APK_DEBUG = Settings.class.getResourceAsStream("/config/app-debug.apk");
+
 
   // config
 
@@ -183,6 +183,10 @@ public class Settings {
     Properties properties = loadProperties();
     properties.setProperty(Keys.PROJECT_ROOT_KEY, projectDir);
     commitProperties(properties);
+  }
+
+  public String adb() {
+    return androidSdkRoot + "/platform-tools/adb";
   }
 
   public OS getOperationSystem() {

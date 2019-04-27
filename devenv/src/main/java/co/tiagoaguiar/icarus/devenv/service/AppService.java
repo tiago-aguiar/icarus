@@ -1,12 +1,15 @@
 package co.tiagoaguiar.icarus.devenv.service;
 
 
+import java.io.File;
 import java.io.IOException;
 
 import co.tiagoaguiar.icarus.devenv.Settings;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
+import sun.rmi.runtime.Log;
 
+import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_DOT_DIR;
 import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
 
 /**
@@ -15,8 +18,6 @@ import static co.tiagoaguiar.icarus.devenv.Settings.ICARUS_SYSTEM_FLY_DIR;
  * @author suporte@moonjava.com.br (Tiago Aguiar).
  */
 public class AppService {
-
-  private static final String ADB       = Settings.getInstance().getAndroidSdkRoot() + "/platform-tools/adb";  // TODO: 09/04/19 add ADB in Settings
 
   private boolean compileFly() throws IOException {
     Process process = new ProcessBuilder(
@@ -37,7 +38,7 @@ public class AppService {
   }
 
   private void deployFly() throws IOException {
-    Process process = new ProcessBuilder(ADB,
+    Process process = new ProcessBuilder(Settings.getInstance().adb(),
             "push",
             "app/src/main/assets/dm.dex",
             "/sdcard/"
@@ -49,7 +50,7 @@ public class AppService {
   }
 
   private void notifyFly() throws IOException {
-    Process process = new ProcessBuilder(ADB,
+    Process process = new ProcessBuilder(Settings.getInstance().adb(),
             "shell",
             "am",
             "broadcast",
@@ -59,7 +60,7 @@ public class AppService {
             "file",
             "\"dm.dex\"",
             "-n",
-            "co.tiagoaguiar.icarus/.io.AdbBroadcastReceiver"
+            "co.tiagoaguiar.icarus/.io.Settings.getInstance().adb()BroadcastReceiver"
     ).directory(ICARUS_SYSTEM_FLY_DIR)
             .start();
 
@@ -68,25 +69,48 @@ public class AppService {
     LoggerManager.infoProcess();
   }
 
-  private void installApp() throws IOException {
-    FileHelper.copyFolder(Settings.SRC_APK_DEBUG, Settings.ICARUS_SYSTEM_APK_DEBUG);
+  private boolean installed() throws IOException {
+    LoggerManager.debug("Adb path: " + Settings.getInstance().adb());
+    Process process = new ProcessBuilder(Settings.getInstance().adb(),
+            "shell",
+            "pm",
+            "list",
+            "packages",
+            "|",
+            "grep",
+            "co.tiagoaguiar.icarus"
+    ).redirectErrorStream(true).start();
 
-    LoggerManager.debug("Adb path: " + ADB);
-    Process process = new ProcessBuilder(ADB,
+    LoggerManager.loadProcess(process);
+    String output;
+    while ((output = LoggerManager.lineProcess()) != null) {
+      LoggerManager.infoProcess(output);
+      if (output.contains("package"))
+        return true;
+    }
+    return false;
+  }
+
+  private void installApp() throws IOException {
+    File apk = new File(ICARUS_DOT_DIR, System.currentTimeMillis() + "app-debug.apk");
+    FileHelper.copyFolder(Settings.SRC_APK_DEBUG, apk);
+
+    LoggerManager.debug("Adb path: " + Settings.getInstance().adb());
+    Process process = new ProcessBuilder(Settings.getInstance().adb(),
             "install",
             "-r",
-            Settings.ICARUS_SYSTEM_APK_DEBUG.getAbsolutePath()
+            apk.getAbsolutePath()
     ).redirectErrorStream(true).start();
 
     LoggerManager.loadProcess(process);
     LoggerManager.infoProcess();
 
-    if (Settings.ICARUS_SYSTEM_APK_DEBUG.delete())
-      LoggerManager.info("temp apk deleted!");
+    if (apk.delete())
+      LoggerManager.info("apk deleted");
   }
 
   private void launchApp() throws IOException {
-    Process process = new ProcessBuilder(ADB,
+    Process process = new ProcessBuilder(Settings.getInstance().adb(),
             "shell",
             "am",
             "start",
@@ -103,7 +127,9 @@ public class AppService {
       try {
 
         LoggerManager.clear();
-        installApp();
+        if (!installed())
+          installApp();
+
         launchApp();
 
       } catch (IOException e) {
