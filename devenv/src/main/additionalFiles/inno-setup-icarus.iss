@@ -15,7 +15,7 @@ AppSupportURL=http://tiagoaguiar.co
 AppUpdatesURL=http://tiagoaguiar.co
 DefaultDirName={pf}\Icarus
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\tiago\Desktop\devenv\src\main\additionalFiles\LICENSE
+LicenseFile=C:\Users\tiago\java\icarus\devenv\src\main\additionalFiles\LICENSE
 OutputBaseFilename=setup
 Compression=lzma
 SolidCompression=yes
@@ -27,7 +27,7 @@ Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortugue
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\tiago\Desktop\devenv\build\jfx\native\icarus-ide\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\tiago\java\icarus\devenv\build\jfx\native\icarus-ide\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

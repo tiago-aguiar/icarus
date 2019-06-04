@@ -41,13 +41,13 @@ public class App extends Application {
   }
 
   private void loadAndroidSdk(Stage primaryStage) {
-    final ButtonType buttonExists = new ButtonType("Diretório Existente Android SDK");
+    final ButtonType buttonExists = new ButtonType("Diretorio Existente Android SDK");
     final ButtonType buttonInstall = new ButtonType("Instalar o Android SDK");
 
     Alert alert = new Dialogs.ConfirmationBuilder()
-            .title("Configuração do Android SDK")
+            .title("Configure o Android SDK")
             .headerText("Nenhum Kit de Desenvolvimento Android foi encontrado.")
-            .contentText("Escolhe um diretório onde se encontra o Android SDK ou Instale um novo.")
+            .contentText("Escolha um diretorio onde se encontra o Android SDK ou Instale um novo.")
             .buttons(buttonExists, buttonInstall)
             .enableClose(true)
             .build();

@@ -1,10 +1,9 @@
 @echo off
-echo Downloading files...
+REM echo Downloading files...
+REM powershell.exe -Command (new-object System.Net.WebClient).DownloadFile('https://dl.google.com/android/repository/sdk-tools-windows-4333796.zip','android-sdk-win.zip')
+REM powershell.exe -Command Expand-Archive android-sdk-win.zip -DestinationPath %userprofile%/android-sdk
 
-powershell.exe -Command (new-object System.Net.WebClient).DownloadFile('https://dl.google.com/android/repository/sdk-tools-windows-4333796.zip','android-sdk-win.zip')
-powershell.exe -Command Expand-Archive android-sdk-win.zip -DestinationPath %userprofile%/android-sdk
-
-SET PATH=%PATH%;%userprofile%\AppData\Local\icarus-ide\app\jre1.8.0_211\bin
+REM SET PATH=%PATH%;C:\"Program Files (x86)"\Icarus\app\jre1.8.0_211\bin
 
 copy /y nul %userprofile%\.android\repositories.cfg
 
@@ -25,5 +24,5 @@ SET PATH=%PATH%;%ANDROID_HOME%/tools;%ANDROID_HOME%/platform-tools
 
 REM notify application that daemon cmd end
 @echo done > %userprofile%\.batch.temp
-start %userprofile%\AppData\Local\icarus-ide\icarus-ide.exe
+start C:\"Program Files (x86)"\Icarus\icarus-ide.exe
 exit
