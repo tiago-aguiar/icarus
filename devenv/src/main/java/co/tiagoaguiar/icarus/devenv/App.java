@@ -42,13 +42,12 @@ public class App extends Application {
 
   private void loadAndroidSdk(Stage primaryStage) {
     final ButtonType buttonExists = new ButtonType("Diretorio Existente Android SDK");
-    final ButtonType buttonInstall = new ButtonType("Instalar o Android SDK");
 
     Alert alert = new Dialogs.ConfirmationBuilder()
             .title("Configure o Android SDK")
             .headerText("Nenhum Kit de Desenvolvimento Android foi encontrado.")
-            .contentText("Escolha um diretorio onde se encontra o Android SDK ou Instale um novo.")
-            .buttons(buttonExists, buttonInstall)
+            .contentText("Escolha um diretorio onde se encontra o Android SDK.")
+            .buttons(buttonExists)
             .enableClose(true)
             .build();
 
@@ -73,13 +72,6 @@ public class App extends Application {
           return;
         }
 
-        Settings.getInstance().setAndroidSdkRoot(directory.getAbsolutePath());
-        LoggerManager.info("Dir SDK Loaded: " + directory.getAbsolutePath());
-        loadProject(primaryStage);
-
-      } else if (buttonType == buttonInstall) {
-        // TODO: 17/04/19 check if Linux, Windows or Mac
-        // TODO: 17/04/19 ask for user install unzip make expect and curl in linux
         final AndroidSdkService androidSdkService = new AndroidSdkService();
 
         Alert alertScript = new Alert(Alert.AlertType.INFORMATION);
@@ -121,6 +113,7 @@ public class App extends Application {
           public void onCompleteListener(String androidSdkPath) {
             alertScript.getDialogPane().lookupButton(ButtonType.OK).setDisable(false);
             Settings.getInstance().setAndroidSdkRoot(androidSdkPath);
+            LoggerManager.info("Dir SDK Loaded: " + androidSdkPath);
           }
         });
 
