@@ -35,7 +35,6 @@ public class DynamicEntryPointImpl implements DynamicEntryPoint {
 
   @Override
   public void draw() {
-    CanvasManager.background(10,10,10);
   }
 
   public void print(String msg) {

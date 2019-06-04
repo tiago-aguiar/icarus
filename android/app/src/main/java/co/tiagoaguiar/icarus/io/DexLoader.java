@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import dalvik.system.DexClassLoader;
 
@@ -32,7 +33,15 @@ public class DexLoader {
   public DynamicEntryPoint load(String name, String cacheDir, String cls) {
     try {
       File dex = copyDexFile(name);
-      if (dex == null) return null;
+      if (dex == null) {
+          InputStream is = activity.getAssets().open("dm.dex");
+
+          File file = FileMemory.getFile(activity, name);
+          FileUtils.copyToFile(is, file);
+
+          dex = file;
+      }
+
       DexClassLoader dexClassLoader = new DexClassLoader(dex.getAbsolutePath(),
               cacheDir, null, getClass().getClassLoader());
 
@@ -48,17 +57,14 @@ public class DexLoader {
       e.printStackTrace();
     } catch (InstantiationException e) {
       e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
     return null;
   }
 
   private File copyDexFile(String name) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      if (activity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-        return null;
-      }
-    }
+
     try {
       File file = FileMemory.getFile(activity, name);
 
