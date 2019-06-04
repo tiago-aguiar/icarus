@@ -6,6 +6,7 @@ import java.util.Optional;
 import co.tiagoaguiar.icarus.devenv.controller.Fx;
 import co.tiagoaguiar.icarus.devenv.controller.WelcomeController;
 import co.tiagoaguiar.icarus.devenv.service.AndroidSdkService;
+import co.tiagoaguiar.icarus.devenv.ui.Splash;
 import co.tiagoaguiar.icarus.devenv.util.Dialogs;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
 import javafx.application.Application;
@@ -18,12 +19,12 @@ import javafx.scene.layout.Priority;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+
+
 public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-    Settings.getInstance().buildEnvironmentIfNeeded();
-    Settings.getInstance().loadEnvironment();
 
     if (Settings.getInstance().getAndroidSdkRoot() == null)
       loadAndroidSdk(primaryStage);
@@ -130,6 +131,19 @@ public class App extends Application {
   }
 
   public static void main(String[] args) {
+    Splash splash = new Splash();
+
+    splash.render("/ build environment");
+    Settings.getInstance().buildEnvironmentIfNeeded(splash);
+
+    splash.render("Prepare to fly");
+    splash.render("load environment");
+    Settings.getInstance().loadEnvironment(splash);
+
+    splash.dispose();
+
+    System.gc();
+
     try {
       launch(args);
     } catch (Throwable t) {

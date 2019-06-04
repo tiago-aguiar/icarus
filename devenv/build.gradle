@@ -35,9 +35,16 @@ jfx {
     appName = 'icarus-ide'
 
     additionalAppResources = 'src/main/additionalFiles'
+    jvmArgs = ["-splash:img/icarus-about-1x.png"]
+//    runJavaParameter = "-splash:img/icarus-about-1x.png"
+//    runAppParameter = "-splash:img/icarus-about-1x.png"
     bundleArguments = [
             licenseType: 'ASL 2.0',
             licenseFile: 'LICENSE'
+    ]
+    manifestAttributes = [
+                'Built-By'       : System.properties['user.name'],
+                'SplashScreen-Image'    : 'img/icarus-about-1x.png'
     ]
 }
 

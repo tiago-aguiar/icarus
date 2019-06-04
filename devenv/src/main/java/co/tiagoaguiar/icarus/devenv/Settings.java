@@ -9,6 +9,7 @@ import java.util.Properties;
 
 import co.tiagoaguiar.icarus.devenv.model.OS;
 import co.tiagoaguiar.icarus.devenv.ui.DisplayMonitor;
+import co.tiagoaguiar.icarus.devenv.ui.Splash;
 import co.tiagoaguiar.icarus.devenv.util.FileHelper;
 import co.tiagoaguiar.icarus.devenv.util.ZipHelper;
 import co.tiagoaguiar.icarus.devenv.util.logging.LoggerManager;
@@ -72,15 +73,18 @@ public class Settings {
     return INSTANCE;
   }
 
-  void buildEnvironmentIfNeeded() {
+  void buildEnvironmentIfNeeded(Splash splash) {
     try {
       // (hack) configure anti-aliased for fonts
       System.setProperty("prism.lcdtext", "false");
+      splash.render("configure anti-aliased");
 
       // main dot folder
       if (!ICARUS_DOT_DIR.exists())
         if (!ICARUS_DOT_DIR.mkdir())
           LoggerManager.error(new RuntimeException("Failed to create dir: " + ICARUS_DOT_DIR));
+
+      splash.render("configure dot files");
 
       // setup log
       if (!ICARUS_LOG_DIR.exists())
@@ -88,6 +92,8 @@ public class Settings {
           System.out.println("Failed to crete a log folder");
         else if (!ICARUS_LOG_FILE.createNewFile())
           System.out.println("Failed to crete a log file");
+
+      splash.render("setup logging");
 
       // setup fly system
       if (!ICARUS_SYSTEM_FLY_DIR.exists()) {
@@ -97,11 +103,15 @@ public class Settings {
           LoggerManager.info("fly configured!");
       }
 
+      splash.render("fly configured");
+
       // TODO: 19/04/19 copy by operation system
       if (!ICARUS_SDK_SCRIPT_INSTALL.exists())
         FileHelper.copyFolder(Settings.SRC_SDK_SCRIPT_INSTALL_LINUX, Settings.ICARUS_SDK_SCRIPT_INSTALL);
       if (!ICARUS_SDK_SCRIPT_INSTALL_WIN.exists())
         FileHelper.copyFolder(Settings.SRC_SDK_SCRIPT_INSTALL_WIN, Settings.ICARUS_SDK_SCRIPT_INSTALL_WIN);
+
+      splash.render("configure OS");
 
       // setup config
       if (!ICARUS_CONFIG_DIR.exists()) {
@@ -117,8 +127,9 @@ public class Settings {
     }
   }
 
-  void loadEnvironment() {
+  void loadEnvironment(Splash splash) {
     if (getOperationSystem() == OS.WINDOWS) {
+      splash.render("Windows OS loaded. Fly Icarus");
       LoggerManager.info("Windows environment load");
       if (ICARUS_CONFIG_BATCH_TEMP.exists()) {
         if (ICARUS_CONFIG_BATCH_TEMP.delete()) {
@@ -127,6 +138,7 @@ public class Settings {
         }
       }
     } else {
+      splash.render("Linux OS loaded. Fly Icarus");
       LoggerManager.info("Linux environment load");
     }
     androidSdkRoot = loadProperties().getProperty(Keys.ANDROID_ROOT_SDK_KEY);
